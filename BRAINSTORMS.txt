@@ -1,3 +1,4 @@
+********************************
 multiple levels
   - Could be procedurally generated with math or could be same room with different level enemies
 
@@ -7,3 +8,94 @@ Scoring
 enemy health could be determined by level number multiplied by some equation?
 player could recieve upgrades when they defeat a level
 load and save will be based on JSON format/file
+
+********************************
+Michael Bruno:
+  GUI
+  •	Title Screen
+  •	Login Screen
+    o	Load Game (based on username)
+    o	Create New (creates a new username entry)
+  •	Main Menu
+    o	Buttons
+      	Start Game
+      	Help
+      	Game Options (Includes cheat mode, etc.)
+      	Credits
+    o	Button Event Sounds
+    o	Music (Optional)
+  •	In-Game HUD
+    o	Player Health (Dynamic health bar)
+    o	Player Energy/Resource (Dynamic resource bar) (Optional)
+    o	Player Score
+    o	Timer
+    o	Wave Number
+    o	Player Ability Cooldown (Optional)
+  •	End-Game Screen
+    o	Player Name
+    o	Ending Time
+    o	Ending Score
+    
+  Gameplay
+  •	Player
+    o	Controls
+      	WASD movement (possibly arrow keys as well)
+      	Player always faces and attacks at mouse cursor vector
+      	Click to basic attack
+      	Q and E to activate player abilities (Optional)
+      	Players may choose abilities prior to the start of a game (Optional)
+      	Esc to pause, access settings, or quit
+    o	Attributes
+      	Health: 100
+      	Energy: 100
+      	Speed: 15
+      	Attack Range: infinite
+      	Attack Power: 20 – 30
+      	Attack Rate: 1.5/sec.
+      
+  •	Computer
+    o	Behaviors
+      	Enemies “spawn” at the edges of the map
+      	Enemies follow the player
+      	When at a certain distance, enemies will attempt to attack the player
+      	Standard enemy, “Sentry”
+      	At the round end, spawn a final Boss, “Oblivion”
+      	Enemies may spawn with a variance of behaviors (Optional)
+    o	Types/Attributes (Optional)
+      	Spryte (Fast, weak enemy)
+        • Health: 20
+        • Speed: 18 – 20
+        •	Attack Power: 10
+        •	Attack Rate: 1.5/sec.
+      	Sentry (Moderate, balanced enemy)
+        •	Health: 80
+        •	Speed: 15
+        •	Attack Power: 20
+        •	Attack Rate: 1/sec.
+      	Golem (Slow, powerful enemy)
+        •	Health: 120
+        •	Speed: 10
+        •	Attack Power: 35
+        •	Attack Rate 0.5/sec.
+      	Oblivion (Final Boss enemy)							
+        •	Health 1500
+        •	Speed: 10
+        •	Attack Power: 50
+        •	Attack Rate: 1/sec.
+        
+  •	Mechanics
+    o	Scoring
+      	Points are awarded for each enemy defeated
+      	An increasing point multiplier is given for faster level completion speed
+        •	Example:
+          01:30 minutes
+          1 minute = 60 points
+          30 seconds = 30 points
+          multiplier = 90
+          (100 (completion) * (1/90)) * 100 = 111 points
+
+          02:00 minutes
+          2 minutes = 120 points
+          0 seconds = 0
+          multiplier = 120
+          (100 (completion) * (1/120)) * 100 = 83 points

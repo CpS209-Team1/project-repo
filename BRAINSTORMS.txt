@@ -1,13 +1,60 @@
 ********************************
-multiple levels
-  - Could be procedurally generated with math or could be same room with different level enemies
+Andrew Aviannte:
+  multiple levels
+    - Could be procedurally generated with math or could be same room with different level enemies
 
-Scoring
-  - scoring could be based on amount of kills or amount of time survived
-  
-enemy health could be determined by level number multiplied by some equation?
+   Character Creation: (optional)
+   - Head
+   - Torso
+   - Legs
+   - Skin
+   - Hair
+   - We create 5 sprytes for each part above. Game then turns all of the sprytes into a single image upon creation
+   - The player's spryte source will be saved in the GameControll
+   -Example:
+     -5 options for hair
+     -5 options for torso
+     -ect
+     
+   Player:
+   - Base Health 100
+   - Base speed is 15
+   - Base attack power is 25 hp
+   - Types of Classes to choose from:
+    - Mage:
+      - Attributes
+        - Wields Magic
+        - Regenertes energy faster by 20%
+        - Attack radius of 50 "units"
+        - Attack Rate 1.5 sec
+    - Knight
+      - Attributes
+        - Sword Wielder
+        - Health boost 10 hp
+        - Speed is 10
+        - Attack power 30
+        - Attack Rate 1.5 sec
+    - Archer
+      - Ranged Weapon
+        - Infinite range
+        - Attack power 2
+        - Attack Rate 1 sec
+        
+   Enemy Spawning:
+   - Level number * 2?
+   
+   Load and Save:
+   - JSON / Dictionary format
+   - Puts all GameControll variables into a .json or .txt file
+   
+   
+   Main Menu:
+   - "New Game"
+      - Leads to character creation
+   - "Load Save"
+   - "Options"
+   
 player could recieve upgrades when they defeat a level
-load and save will be based on JSON format/file
 
 ********************************
 Michael Bruno:

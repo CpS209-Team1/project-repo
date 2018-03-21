@@ -1,1 +1,9 @@
-type stuff
+multiple levels
+  - Could be procedurally generated with math or could be same room with different level enemies
+
+Scoring
+  - scoring could be based on amount of kills or amount of time survived
+  
+enemy health could be determined by level number multiplied by some equation?
+player could recieve upgrades when they defeat a level
+load and save will be based on JSON format/file

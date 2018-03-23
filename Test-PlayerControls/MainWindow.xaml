@@ -1,0 +1,16 @@
+﻿<Window x:Class="Test_PlayerControls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test_PlayerControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" KeyDown="MovePlayer" MouseMove="OnMouseMove">
+    <Canvas x:Name="canvas" Height="350" Width="525" >
+        <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" Margin="234,159,0,0" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="ImageRotation" />
+            </Image.RenderTransform>
+        </Image>
+    </Canvas>
+</Window>

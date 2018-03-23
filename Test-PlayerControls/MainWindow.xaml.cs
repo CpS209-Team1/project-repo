@@ -33,27 +33,42 @@ namespace Test_PlayerControls
             timer.Start();
         }
 
+
+
         private void MovePlayer(object sender, EventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.S))
             {
-                y += 0.05;
-                Canvas.SetTop(Plr, y);
+                if (y + .05 <= 275) //275 is temp until we can figure out how to get the current viewport height
+                {
+                    y += 0.05;
+                    Canvas.SetTop(Plr, y);
+                }
+                
             }
             if(Keyboard.IsKeyDown(Key.W))
             {
-                y -= 0.05;
-                Canvas.SetTop(Plr, y);
+                if (y - 0.05 >= 0)
+                {
+                    y -= 0.05;
+                    Canvas.SetTop(Plr, y);
+                }
             }
             if (Keyboard.IsKeyDown(Key.A))
             {
-                x -= 0.05;
-                Canvas.SetLeft(Plr, x);
+                if (x - .05 >= 0)
+                {
+                    x -= 0.05;
+                    Canvas.SetLeft(Plr, x);
+                }
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
-                x += 0.05;
-                Canvas.SetLeft(Plr, x);
+                if (x + .05 <= 470) //275 is temp until we can figure out how to get the current viewport width
+                {
+                    x += 0.05;
+                    Canvas.SetLeft(Plr, x);
+                }
             }
         }
 
@@ -66,6 +81,14 @@ namespace Test_PlayerControls
             var angle = radians * 180 / Math.PI;
 
             Plr.RenderTransform = new RotateTransform(angle);
+        }
+
+        private void Windows_Loaded(object sender, RoutedEventArgs e)
+        {
+            y = 234;
+            x = 159;
+            Canvas.SetTop(Plr, y);
+            Canvas.SetLeft(Plr, x);
         }
     }
 }

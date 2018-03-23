@@ -33,7 +33,13 @@ namespace Test_PlayerControls
             timer.Start();
         }
 
-
+        private void Windows_Loaded(object sender, RoutedEventArgs e)
+        {
+            y = 234;
+            x = 159;
+            Canvas.SetTop(Plr, y);
+            Canvas.SetLeft(Plr, x);
+        }
 
         private void MovePlayer(object sender, EventArgs e)
         {
@@ -81,14 +87,6 @@ namespace Test_PlayerControls
             var angle = radians * 180 / Math.PI;
 
             Plr.RenderTransform = new RotateTransform(angle);
-        }
-
-        private void Windows_Loaded(object sender, RoutedEventArgs e)
-        {
-            y = 234;
-            x = 159;
-            Canvas.SetTop(Plr, y);
-            Canvas.SetLeft(Plr, x);
         }
     }
 }

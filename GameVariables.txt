@@ -1,0 +1,25 @@
+Layout:
+    datatype variableName
+    
+GUI Events:
+    -WASD Event
+        -On key press (when player is moving) call gamecontroller's or player's "MovePlayer" method (gamecontroller could have reference to a player method)
+    -Click attack event
+        -On click event call gamecontroller's or players "AttackPlayer" method (gamecontroller could have reference to a player method)
+
+class GameController:
+    -Player player
+    -Level level  (could be an int)
+    
+class Player:
+    -static
+    
+class Enemy:
+    -int Health
+    -Location loc {get; set} (like battleship)
+    -Factory method for creating enemies
+    -Methods
+        -Spawning
+        -Tracking
+        -Attack
+        -

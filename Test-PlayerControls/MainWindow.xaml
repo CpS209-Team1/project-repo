@@ -12,5 +12,6 @@
                 <RotateTransform x:Name="ImageRotation" />
             </Image.RenderTransform>
         </Image>
+        <Rectangle x:Name="Test" Width="30" Height="10" Fill="Black"/>
     </Canvas>
 </Window>

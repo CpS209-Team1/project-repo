@@ -1,5 +1,3 @@
-gita.sh test
-
 Layout:
     datatype variableName
     

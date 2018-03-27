@@ -19,7 +19,7 @@ namespace Test_PlayerControls
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
+
     public partial class MainWindow : Window
     {
         double x = 0;
@@ -50,9 +50,9 @@ namespace Test_PlayerControls
                     y += 0.05;
                     Canvas.SetTop(Plr, y);
                 }
-                
+
             }
-            if(Keyboard.IsKeyDown(Key.W))
+            if (Keyboard.IsKeyDown(Key.W))
             {
                 if (y - 0.05 >= 0)
                 {

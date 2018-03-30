@@ -10,8 +10,7 @@ namespace Model
     {
         public int Health { get; set; }
         public int Id { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public Location EnemyLoc;
         public string Image { get; set; }
 
         static int nextId;
@@ -20,15 +19,20 @@ namespace Model
 
         public abstract void UpdatePosition();
 
+        public abstract void RemoveEnemyHealth();
+
+        public abstract void AddEnemyHealth();
+
         public Enemy()
         {
             Health = 10;
-            X = 0;
-            Y = 0;
+            EnemyLoc.X = 0;
+            EnemyLoc.Y = 0;
             Image = "skeleton.png";
             Id = ++nextId;
         }
     }
+
 
     class Skeleton : Enemy
     {
@@ -36,11 +40,36 @@ namespace Model
         {
 
         }
+
+        /// <summary>
+        /// Returns entity kind
+        /// </summary>
+        /// <returns></returns>
         public override string GetKind()
         {
             return "Skeleton";
         }
+
+        /// <summary>
+        /// Updates entity position
+        /// </summary>
         public override void UpdatePosition()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Removes number from enemy's health
+        /// </summary>
+        public override void RemoveEnemyHealth()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Adds number to enemy's health
+        /// </summary>
+        public override void AddEnemyHealth()
         {
             throw new NotImplementedException();
         }

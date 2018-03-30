@@ -9,5 +9,42 @@ namespace Model
 {
     class Player
     {
+        public int Health;
+        public Location PlayerLoc;
+        private Player()
+        {
+            Health = 10;
+            PlayerLoc.X = 234;
+            PlayerLoc.Y = 159;
+        }
+
+        /// <summary>
+        /// Removes `ammount` from `Health`
+        /// </summary>
+        /// <param name="ammount"></param>
+        public void RemovePlayerHealth(int ammount)
+        {
+            
+        }
+
+
+        /// <summary>
+        /// Adds `ammount` to `Health`
+        /// </summary>
+        /// <param name="ammount"></param>
+        public void AddPlayerHealth(int ammount)
+        {
+
+        }
+
+        private static Player instance = new Player();
+
+        public static Player Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
     }
 }

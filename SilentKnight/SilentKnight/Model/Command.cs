@@ -11,9 +11,17 @@ namespace Model
         public abstract void Execute();
     }
 
+    /// <summary>
+    /// Creates new enemies
+    /// </summary>
     class DoCreate : Command
     {
         Enemy enemy;
+        /// <summary>
+        /// Takes `entType` to determine the Enemy type
+        /// This then creates a new Enemey entity
+        /// </summary>
+        /// <param name="entType"></param>
         public DoCreate(string entType)
         {
             switch(entType)
@@ -23,6 +31,9 @@ namespace Model
                     break;
             }
         }
+        /// <summary>
+        /// Adds the enemy to the list
+        /// </summary>
         public override void Execute()
         {
             World.Instance.Entities.Add(enemy);

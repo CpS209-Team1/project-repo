@@ -9,13 +9,40 @@ namespace Model
 {
     class Data
     {
-        public string PlayerName { get; set; }
-        public string Difficulty { get; set; }
-        public int Points { get; set; }
-        public int HighScore { get; set; }
-        public int Level { get; set; }
-        public int CurrentLevel { get; set; }
-        public List<Enemy> WorldEntities { get; set; }
+        public string PlayerName = null;
+        public string Difficulty = null;
+        public int Points = 0;
+        public int HighScore = 0;
+        public int Level = 0;
+        public int CurrentLevel = 0;
+        public List<string> WorldEntities = new List<string>{"null"};
+        
+        /// <summary>
+        /// Adds new player entry to a given filename
+        /// </summary>
+        /// <param name="plr"></param> <param name="filename"></param>
+        public void CreatePlayer(string plr,string filename)
+        {
+            string line;
+            using (StreamWriter file = new StreamWriter(filename))
+            {
+                using (StreamReader rd = new StreamReader(filename))
+                {
+                    while ((line = rd.ReadLine()) != null)
+                    {
+                        file.WriteLine(String.Format("{0} : {1} : {2} : {3} : {4} : {5}",
+                                                                                        PlayerName,
+                                                                                        Difficulty,
+                                                                                        Points.ToString(),
+                                                                                        HighScore.ToString(),
+                                                                                        Level.ToString(),
+                                                                                        CurrentLevel.ToString()));
+                        //WorldEntities.ForEach(file.WriteLine());
+                    }
+                }
+            }
+        }
+
 
         /// <summary>
         /// Loads player data from a given filename into
@@ -24,20 +51,21 @@ namespace Model
         /// <param name="filename"></param>
         public void Load(string filename)
         {
-            using (StreamReader file = new StreamReader(filename));
+            string line;
+            using (StreamReader file = new StreamReader(filename))
             {
                 while((line = file.ReadLine()) != null)  
-                {  
-                    string curLine = line.Split("\s:\s");
+                {
+                    string curLine = "string"; // line.Split(":");
                     // mbrun138 : medium : 450 : 200 : 2 : 2 : 3,skeleton,skeleton,skeleton
-                    if (curLine[0] == PlayerName)
+                    if (true)//curLine[0] == PlayerName)
                     {
-                        Diff = curLine[1];
-                        Points = Convert.ToInt32(curline[2]);
-                        HighScore = Convert.ToInt32(curline[3]);
+                        //Difficulty = curLine[1];
+                        Points = Convert.ToInt32(curLine[2]);
+                        HighScore = Convert.ToInt32(curLine[3]);
                         Level = Convert.ToInt32(curLine[4]);
-                        CurrentLevel = Convert.ToInt32(curline[5]);
-                        WorldEntities = curline[6].Split(",");
+                        CurrentLevel = Convert.ToInt32(curLine[5]);
+                       // WorldEntities = curLine[6].Split(",");
                     }
                 }
             }
@@ -49,24 +77,30 @@ namespace Model
         /// <param name="filename"></param>
         public void Save(string filename)
         {
+            string line;
             using (StreamWriter file = new StreamWriter(filename))
             {
-                while (line = file.ReadLine()) != null)
+                using (StreamReader rd = new StreamReader(filename))
                 {
-                    string curLine = line.Split("\s:\s");
-                    if (curline[0] == PlayerName)
+                    while ((line = rd.ReadLine()) != null)
                     {
-                        file.WriteLine(String.Format("{0} : {1} : {2} : {3} : {4} : {5}",
-                                                                                        PlayerName,
-                                                                                        Difficulty,
-                                                                                        Points.ToString(),
-                                                                                        HighScore.ToString(),
-                                                                                        Level.ToString(),
-                                                                                        CurrentLevel.ToString()));
-                        WorldEntities.ForEach(file.Write());
+                        string curLine = "string"; //"line.Split(" : ");
+                        if (curLine == PlayerName)//curLine[0] == PlayerName)
+                        {
+                            file.WriteLine(String.Format("{0} : {1} : {2} : {3} : {4} : {5}",
+                                                                                            PlayerName,
+                                                                                            Difficulty,
+                                                                                            Points.ToString(),
+                                                                                            HighScore.ToString(),
+                                                                                            Level.ToString(),
+                                                                                            CurrentLevel.ToString()));
+                            //WorldEntities.ForEach(file.Write());
+                        }
                     }
                 }
             }
         }
     }
 }
+
+

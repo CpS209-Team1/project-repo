@@ -20,6 +20,10 @@ namespace Model
 
         }
 
+        public Enemy GetEntityByID(int ID)
+        {
+            return Enemy;
+        }
         /// <summary>
         /// Removes enemy from `Entities` list
         /// </summary>

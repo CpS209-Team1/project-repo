@@ -22,7 +22,7 @@ namespace Model
         /// Removes `ammount` from `Health`
         /// </summary>
         /// <param name="ammount"></param>
-        public void RemovePlayerHealth(int ammount)
+        public void RemovePlayerHealth(int amount)
         {
             
         }
@@ -32,7 +32,7 @@ namespace Model
         /// Adds `ammount` to `Health`
         /// </summary>
         /// <param name="ammount"></param>
-        public void AddPlayerHealth(int ammount)
+        public void AddPlayerHealth(int amount)
         {
 
         }

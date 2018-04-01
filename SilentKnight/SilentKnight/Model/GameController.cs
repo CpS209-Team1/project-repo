@@ -8,7 +8,6 @@ namespace Model
 {
     class GameController
     {
-
         /// <summary>
         /// Updates the player's location
         /// 

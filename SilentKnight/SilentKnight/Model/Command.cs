@@ -22,8 +22,9 @@ namespace Model
         /// This then creates a new Enemey entity
         /// </summary>
         /// <param name="entType"></param>
-        public DoCreate(string entType)
+        public DoCreate()
         {
+            string entType = "Skeleton";
             switch(entType)
             {
                 case "Skeleton":
@@ -37,6 +38,19 @@ namespace Model
         public override void Execute()
         {
             World.Instance.Entities.Add(enemy);
+        }
+    }
+
+    class DoKill : Command
+    {
+        Enemy enemy;
+        public DoKill(int id)
+        {
+            enemy = World.Instance.Entities[World.Instance.GetEntityByID(id)];
+        }
+        public override void Execute()
+        {
+            throw new NotImplementedException();
         }
     }
 }

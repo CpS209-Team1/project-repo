@@ -37,7 +37,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Calculates the enemy's attack to see if attack was successfull
+        /// Calculates the enemy's attack to see if attack was successful
         /// </summary>
         public void ComputeEnemyAttack()
         {

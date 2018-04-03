@@ -53,6 +53,10 @@ namespace SilentKnight
             }
         }
 
+
+
+
+        //test
         private void MovePlayer(object sender, EventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.S))

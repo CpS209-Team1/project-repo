@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="350" Width="525">
-    <Canvas x:Name="canvas" Height="350" Width="525" >
+        Title="Silent Knight" Height="350" Width="525" Loaded="Windows_Loaded">
+    <Canvas x:Name="canvas"  >
         <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5" MouseLeftButtonDown="Plr_MouseLeftButtonDown">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ImageRotation" />

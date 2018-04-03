@@ -8,7 +8,6 @@ namespace Model
 {
     class GameController
     {
-
         /// <summary>
         /// Updates the player's location
         /// 
@@ -18,7 +17,8 @@ namespace Model
         /// <param name="y"></param>
         public void ComputePlayerMove(double x, double y)
         {
-           
+            Player.Instance.PlayerLoc.X = x;
+            Player.Instance.PlayerLoc.Y = y;
         }
 
         /// <summary>
@@ -38,9 +38,14 @@ namespace Model
         }
 
         /// <summary>
-        /// Calculates the enemy's attack to see if attack was successfull
+        /// Calculates the enemy's attack to see if attack was successful
         /// </summary>
         public void ComputeEnemyAttack()
+        {
+
+        }
+
+        public void SpawnEnemies()
         {
 
         }

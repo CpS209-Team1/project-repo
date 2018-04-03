@@ -46,8 +46,7 @@ namespace SilentKnight
         {
             if (Keyboard.IsKeyDown(Key.S))
             {
-                ctrl.ComputePlayerMove(0, .05);
-                if (y + .05 <= 275) //275 is temp until we can figure out how to get the current viewport height
+                if (y + .05 <= canvas.ActualHeight - Plr.ActualHeight)
                 {
                     y += 0.05;
                     Canvas.SetTop(Plr, y);
@@ -71,12 +70,13 @@ namespace SilentKnight
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
-                if (x + .05 <= 470) //275 is temp until we can figure out how to get the current viewport width
+                if (x + .05 <= canvas.ActualWidth - Plr.ActualWidth) //275 is temp until we can figure out how to get the current viewport width
                 {
                     x += 0.05;
                     Canvas.SetLeft(Plr, x);
                 }
             }
+            ctrl.ComputePlayerMove(x, y);
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)

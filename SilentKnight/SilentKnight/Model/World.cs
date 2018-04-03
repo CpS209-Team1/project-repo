@@ -20,6 +20,12 @@ namespace Model
 
         }
 
+        public Enemy GetEntityByID(int ID)
+        {
+            Enemy enemy;
+            enemy = new Skeleton();
+            return enemy;
+        }
         /// <summary>
         /// Removes enemy from `Entities` list
         /// </summary>

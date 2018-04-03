@@ -19,9 +19,9 @@ namespace Model
 
         public abstract void UpdatePosition();
 
-        public abstract void RemoveEnemyHealth();
+        public abstract void RemoveEnemyHealth(int amount);
 
-        public abstract void AddEnemyHealth();
+        public abstract void AddEnemyHealth(int amount);
 
         public Enemy()
         {
@@ -61,7 +61,7 @@ namespace Model
         /// <summary>
         /// Removes number from enemy's health
         /// </summary>
-        public override void RemoveEnemyHealth()
+        public override void RemoveEnemyHealth(int amount)
         {
             throw new NotImplementedException();
         }
@@ -69,9 +69,14 @@ namespace Model
         /// <summary>
         /// Adds number to enemy's health
         /// </summary>
-        public override void AddEnemyHealth()
+        public override void AddEnemyHealth(int amount)
         {
             throw new NotImplementedException();
         }
+    }
+
+    interface IEnemyObserver
+    {
+        void NotifyMove(Enemy enemy, double x, double y);
     }
 }

@@ -46,7 +46,7 @@ namespace Model
         Enemy enemy;
         public DoKill(int id)
         {
-            enemy = World.Instance.Entities[World.Instance.GetEntityByID(id)];
+
         }
         public override void Execute()
         {

@@ -22,7 +22,9 @@ namespace Model
 
         public Enemy GetEntityByID(int ID)
         {
-            return Enemy;
+            Enemy enemy;
+            enemy = new Skeleton();
+            return enemy;
         }
         /// <summary>
         /// Removes enemy from `Entities` list

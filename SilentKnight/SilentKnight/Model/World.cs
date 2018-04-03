@@ -10,10 +10,14 @@ namespace Model
     {
         public List<Enemy> Entities { get; set; }
         public List<EnemyControl> CanvasEntities { get; set; }
+
+        public double borderRight { get; set; }
+        public double borderBottom { get; set; }
         private World()
         {
             Entities = new List<Enemy>();
             CanvasEntities = new List<EnemyControl>();
+            borderBottom = 0;
         }
         private static World instance = new World();
         /// <summary>

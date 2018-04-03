@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\EnemyMove.cs" />
     <Compile Include="Model\SilentKnightTest.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -64,7 +65,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include=".\Model\**\*.cs" />
+    <Compile Include=".\Model\Data.cs" />
+    <Compile Include=".\Model\DataTest.cs" />
+    <Compile Include=".\Model\Enemy.cs" />
+    <Compile Include=".\Model\GameController.cs" />
+    <Compile Include=".\Model\HighScore.cs" />
+    <Compile Include=".\Model\HighScoreTest.cs" />
+    <Compile Include=".\Model\Player.cs" />
+    <Compile Include=".\Model\SilentKnightTest.cs" />
+    <Compile Include=".\Model\Spawn.cs" />
+    <Compile Include=".\Model\World.cs" />
     <Resource Include=".\Model\**\*.txt" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

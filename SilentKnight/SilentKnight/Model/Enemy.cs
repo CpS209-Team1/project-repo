@@ -17,12 +17,16 @@ namespace Model
 
         static int nextId;
 
+       static Random rand = new Random();
+
+        int choose = rand.Next(1, 6);
+
         public Enemy(IEnemyObserver observer, int x, int y)
         {
             this.observer = observer;
             Health = 10;
-            EnemyLoc.X = 0;
-            EnemyLoc.Y = 0;
+            EnemyLoc.X = x;
+            EnemyLoc.Y = y;
             Image = "skeleton.png";
             Id = ++nextId;
         }
@@ -31,8 +35,46 @@ namespace Model
 
         public void UpdatePosition()
         {
-            EnemyLoc.X += 1;
-            EnemyLoc.Y += 1;
+           
+            if (EnemyMove.Instance.Timer < 100)
+            {
+                if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
+                {
+                    EnemyMove.Instance.MoveRight(this);
+             
+                }
+                else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom)
+                {
+                    EnemyMove.Instance.MoveDown(this);
+                    
+                }
+                else if (choose == 3 && EnemyLoc.X - 1 > 0)
+                {
+                    EnemyMove.Instance.MoveLeft(this);
+                   
+                }
+                else if (choose == 4 && EnemyLoc.Y - 1 > 0)
+                {
+         
+                    EnemyMove.Instance.MoveUp(this);
+                }
+                else if (choose == 5 && EnemyLoc.Y - 1 > 0)
+                {
+
+                    EnemyMove.Instance.Stand();
+                }
+                else
+                {
+                    EnemyMove.Instance.Timer = 0;
+                    choose = rand.Next(1, 6);
+                }
+            }
+            else
+            {
+                EnemyMove.Instance.Timer = 0;
+                choose = rand.Next(1, 6);
+            }
+
             observer.NotifyMoved(this);
         }
 
@@ -45,7 +87,7 @@ namespace Model
 
     class Skeleton : Enemy
     {
-        public Skeleton(IEnemyObserver observer, int x, int y): base(observer, x, y)
+        public Skeleton(IEnemyObserver observer, int x, int y) : base(observer, x, y)
         {
 
         }

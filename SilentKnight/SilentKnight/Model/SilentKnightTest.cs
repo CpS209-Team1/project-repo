@@ -18,14 +18,6 @@ namespace Model
         }
 
         [TestMethod]
-        public void TestDoKill()
-        {
-            Command cmd = new DoKill(0);
-            cmd.Execute();
-            Assert.IsTrue(World.Instance.Entities.Count == 2);
-        }
-
-        [TestMethod]
         public void TestRemovePlayerHealth()
         {
             Player.Instance.RemovePlayerHealth(1);

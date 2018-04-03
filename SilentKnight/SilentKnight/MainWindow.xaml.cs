@@ -24,7 +24,6 @@ namespace SilentKnight
     {
         double x = 0;
         double y = 0;
-        EnemyControl blah;
         GameController ctrl = new GameController();
         public MainWindow()
         {
@@ -47,16 +46,26 @@ namespace SilentKnight
 
         void Spawning()
         {
-            foreach(EnemyControl i in World.Instance.CanvasEntities)
+            foreach (EnemyControl i in World.Instance.CanvasEntities)
             {
                 canvas.Children.Add(i);
             }
+            DispatcherTimer animate = new DispatcherTimer();
+            animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            animate.Tick += new EventHandler(AnimateEnemy);
+            animate.Start();
         }
 
+        private void AnimateEnemy(object sender, EventArgs e)
+        {
+            World.Instance.borderRight = canvas.ActualWidth - 50;
+            World.Instance.borderBottom = canvas.ActualHeight - 50;
+            foreach (Enemy i in World.Instance.Entities)
+            {
+                i.UpdatePosition();
+            }
+        }
 
-
-
-        //test
         private void MovePlayer(object sender, EventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.S))
@@ -64,6 +73,7 @@ namespace SilentKnight
                 if (y + .05 <= canvas.ActualHeight - Plr.ActualHeight)
                 {
                     y += 0.05;
+                    Canvas.SetTop(Plr, y);
                 }
             }
             if (Keyboard.IsKeyDown(Key.W))
@@ -84,7 +94,7 @@ namespace SilentKnight
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
-                if (x + .05 <= canvas.ActualWidth - Plr.ActualWidth) //275 is temp until we can figure out how to get the current viewport width
+                if (x + .05 <= canvas.ActualWidth - Plr.ActualWidth)
                 {
                     x += 0.05;
                     Canvas.SetLeft(Plr, x);

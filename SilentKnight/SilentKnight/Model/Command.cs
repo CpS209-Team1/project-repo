@@ -28,7 +28,7 @@ namespace Model
             switch(entType)
             {
                 case "Skeleton":
-                    enemy = new Skeleton();
+                    //enemy = new Skeleton();
                     break;
             }
         }

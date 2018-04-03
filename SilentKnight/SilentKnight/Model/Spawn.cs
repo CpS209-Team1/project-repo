@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -17,10 +19,23 @@ namespace Model
         /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
-            for(int i = 1; i < enemyCount; i++)
+            Random rand = new Random();
+            for (int i = 1; i <= enemyCount; i++)
             {
-                Command cmd = new DoCreate();
-                cmd.Execute();
+                var enemyControl = new EnemyControl();
+                enemyControl.Content = new Image()
+                {
+                    Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
+
+                };
+                enemyControl.Width = 50;
+                enemyControl.Height = 50;
+                Canvas.SetTop(enemyControl, rand.Next(0,300));
+                Canvas.SetLeft(enemyControl, rand.Next(0, 300));
+                World.Instance.CanvasEntities.Add(enemyControl);
+
+                var enemy = new Skeleton(enemyControl, 0, 0);
+                World.Instance.Entities.Add(enemy);
             }
         }
         public static Spawn Instance

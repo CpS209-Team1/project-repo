@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Model
 {
     abstract class Enemy
     {
+        public IEnemyObserver observer;
         public int Health { get; set; }
         public int Id { get; set; }
         public Location EnemyLoc;
@@ -15,28 +17,35 @@ namespace Model
 
         static int nextId;
 
-        public abstract string GetKind();
-
-        public abstract void UpdatePosition();
-
-        public abstract void RemoveEnemyHealth(int amount);
-
-        public abstract void AddEnemyHealth(int amount);
-
-        public Enemy()
+        public Enemy(IEnemyObserver observer, int x, int y)
         {
+            this.observer = observer;
             Health = 10;
             EnemyLoc.X = 0;
             EnemyLoc.Y = 0;
             Image = "skeleton.png";
             Id = ++nextId;
         }
+
+        public abstract string GetKind();
+
+        public void UpdatePosition()
+        {
+            EnemyLoc.X += 1;
+            EnemyLoc.Y += 1;
+            observer.NotifyMoved(this);
+        }
+
+        public abstract void RemoveEnemyHealth(int amount);
+
+        public abstract void AddEnemyHealth(int amount);
+
     }
 
 
     class Skeleton : Enemy
     {
-        public Skeleton()
+        public Skeleton(IEnemyObserver observer, int x, int y): base(observer, x, y)
         {
 
         }
@@ -48,14 +57,6 @@ namespace Model
         public override string GetKind()
         {
             return "Skeleton";
-        }
-
-        /// <summary>
-        /// Updates entity position
-        /// </summary>
-        public override void UpdatePosition()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -75,8 +76,17 @@ namespace Model
         }
     }
 
+    class EnemyControl : ContentControl, IEnemyObserver
+    {
+        public void NotifyMoved(Enemy enemy)
+        {
+            Canvas.SetTop(this, enemy.EnemyLoc.Y);
+            Canvas.SetLeft(this, enemy.EnemyLoc.X);
+        }
+    }
+
     interface IEnemyObserver
     {
-        void NotifyMove(Enemy enemy, double x, double y);
+        void NotifyMoved(Enemy enemy);
     }
 }

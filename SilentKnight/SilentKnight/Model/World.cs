@@ -9,8 +9,13 @@ namespace Model
     class World
     {
         public List<Enemy> Entities { get; set; }
-        private World() { }
-
+        public List<EnemyControl> CanvasEntities { get; set; }
+        private World()
+        {
+            Entities = new List<Enemy>();
+            CanvasEntities = new List<EnemyControl>();
+        }
+        private static World instance = new World();
         /// <summary>
         /// Adds enemy to `Entities` list
         /// </summary>
@@ -20,12 +25,12 @@ namespace Model
 
         }
 
-        public Enemy GetEntityByID(int ID)
-        {
-            Enemy enemy;
-            enemy = new Skeleton();
-            return enemy;
-        }
+       // public Enemy GetEntityByID(int ID)
+        //{
+            //Enemy enemy;
+            //enemy = new Skeleton();
+           // return enemy;
+        //}
         /// <summary>
         /// Removes enemy from `Entities` list
         /// </summary>
@@ -35,12 +40,11 @@ namespace Model
 
         }
 
-        private static World instance = new World();
         public static World Instance
         {
             get
             {
-                return Instance;
+                return instance;
             }
         }
     }

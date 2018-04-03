@@ -24,6 +24,7 @@ namespace SilentKnight
     {
         double x = 0;
         double y = 0;
+        EnemyControl blah;
         GameController ctrl = new GameController();
         public MainWindow()
         {
@@ -40,6 +41,16 @@ namespace SilentKnight
             x = 159;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
+            Spawn.Instance.DoSpawn(10);
+            Spawning();
+        }
+
+        void Spawning()
+        {
+            foreach(EnemyControl i in World.Instance.CanvasEntities)
+            {
+                canvas.Children.Add(i);
+            }
         }
 
         private void MovePlayer(object sender, EventArgs e)
@@ -49,7 +60,6 @@ namespace SilentKnight
                 if (y + .05 <= canvas.ActualHeight - Plr.ActualHeight)
                 {
                     y += 0.05;
-                    Canvas.SetTop(Plr, y);
                 }
             }
             if (Keyboard.IsKeyDown(Key.W))

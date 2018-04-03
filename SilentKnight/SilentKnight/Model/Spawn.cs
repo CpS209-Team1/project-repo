@@ -17,7 +17,11 @@ namespace Model
         /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
-
+            for(int i = 1; i < enemyCount; i++)
+            {
+                Command cmd = new DoCreate();
+                cmd.Execute();
+            }
         }
         public static Spawn Instance
         {

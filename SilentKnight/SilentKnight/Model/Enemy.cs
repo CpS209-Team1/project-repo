@@ -74,4 +74,9 @@ namespace Model
             throw new NotImplementedException();
         }
     }
+
+    interface IEnemyObserver
+    {
+        void NotifyMove(Enemy enemy, double x, double y);
+    }
 }

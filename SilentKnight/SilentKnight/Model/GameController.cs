@@ -17,7 +17,8 @@ namespace Model
         /// <param name="y"></param>
         public void ComputePlayerMove(double x, double y)
         {
-           
+            Player.Instance.PlayerLoc.X = x;
+            Player.Instance.PlayerLoc.Y = y;
         }
 
         /// <summary>
@@ -40,6 +41,11 @@ namespace Model
         /// Calculates the enemy's attack to see if attack was successful
         /// </summary>
         public void ComputeEnemyAttack()
+        {
+
+        }
+
+        public void SpawnEnemies()
         {
 
         }

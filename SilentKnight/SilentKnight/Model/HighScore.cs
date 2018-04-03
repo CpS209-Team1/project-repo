@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace Model
     class HighScore
     {
         public Dictionary<string, string> highScoreDictionary = new Dictionary<string, string>();
+
         /// <summary>
         /// Determines at the end of a game if the player's score is in the top "n" high scores 
         /// ("n" determined by maxEntries).  If so, it stores the player's score with the high scores.
@@ -38,7 +39,7 @@ namespace Model
 
             SaveIfHighScore(ref scoreList, ref highScoreDictionary, maxEntries, playersScore);
 
-            // Resort the list in descending order.
+            // Re-sort the list in descending order.
             scoreList.Sort();
             scoreList.Reverse();
 
@@ -46,7 +47,7 @@ namespace Model
             DisplayHighScores(highScoreDictionary, scoreList);
 
             // Write the score/playerName pairs into the text file.
-            WriteScores(highScoreDictionary, scoreList, fileName);
+            WriteScores(highScoreDictionary, fileName);
         }
 
         /// <summary>
@@ -82,13 +83,12 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Writes the score/playername pair values out to the HighScores.txt file, one per line
         /// </summary>
         /// <param name="highScoreDictionary">A dictionary accessible by the entire class where score/player 
         /// value pairs are kept.</param>
-        /// <param name="scoreList"></param>
-        /// <param name="outputFile"></param>
-        public void WriteScores(Dictionary<string, string> highScoreDictionary, List<string> scoreList, string fileName)
+        /// <param name="outputFile">The file where the high scores are kept.</param>
+        public void WriteScores(Dictionary<string, string> highScoreDictionary, string fileName)
         {
 
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
@@ -99,12 +99,12 @@ namespace Model
             }
         }
 
-         /// <summary>
-        /// 
+        /// <summary>
+        /// Saves the player's score in the HighScore.txt file if it fits in the top [maxEntries] scores.
         /// </summary>
-        /// <param name="scoreList"></param>
-        /// <param name="maxEntries"></param>
-        /// <param name="playersScore"></param>
+        /// <param name="scoreList">Contains the top scores.  Used for sorting the dictionary</param>
+        /// <param name="maxEntries">The number of top scores being maintained.</param>
+        /// <param name="playersScore">The score the player received for this game.</param>
         public void SaveIfHighScore(ref List<string> scoreList, ref Dictionary<string, string> highScoreDictionary, 
             int maxEntries, int playersScore)
         {
@@ -126,7 +126,7 @@ namespace Model
 
                     // Store storableScore and player name in the Dictionary
                     
-                     // Store this unique score into the Dictionary, 
+                    // Store this unique score into the Dictionary, 
                     // along with the player's name.                
                 }
                 // Display the HighScores screen

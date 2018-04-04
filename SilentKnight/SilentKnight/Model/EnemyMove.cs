@@ -58,6 +58,54 @@ namespace Model
             }
         }
 
+        public void Hit(Enemy enemy)
+        {
+            switch (Player.Instance.PlayerDirection)
+            {
+                case Direction.Down:
+                    if (enemy.EnemyLoc.Y + 50 < World.Instance.borderBottom)
+                    {
+                        enemy.EnemyLoc.Y += 50;
+                    }
+                    else
+                    {
+                        enemy.EnemyLoc.Y += World.Instance.borderBottom - enemy.EnemyLoc.Y;
+                    }
+                    break;
+                case Direction.Up:
+                    if (enemy.EnemyLoc.Y - 50 > 0)
+                    {
+                        enemy.EnemyLoc.Y -= 50;
+                    }
+                    else
+                    {
+                        enemy.EnemyLoc.Y -= enemy.EnemyLoc.Y;
+                    }
+                    break;
+                case Direction.Left:
+                    if (enemy.EnemyLoc.X - 50 > 0)
+                    {
+                        enemy.EnemyLoc.X -= 50;
+                    }
+                    else
+                    {
+                        enemy.EnemyLoc.X -= enemy.EnemyLoc.X;
+                    }
+                    break;
+                case Direction.Right:
+                    if (enemy.EnemyLoc.X + 50 < World.Instance.borderBottom)
+                    {
+                        enemy.EnemyLoc.X += 50;
+                    }
+                    else
+                    {
+                        enemy.EnemyLoc.X += World.Instance.borderRight - enemy.EnemyLoc.X;
+                    }
+                   
+                    break;
+            }
+        }
+
         public void Stand()
         {
             Timer += .1;

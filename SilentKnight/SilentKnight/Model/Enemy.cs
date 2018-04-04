@@ -16,13 +16,14 @@ namespace Model
         public string Image { get; set; }
 
         static int nextId;
-
+        public int CoolDown { get; set; }
         static Random rand = new Random();
 
         int choose = rand.Next(1, 6);
 
         public Enemy(IEnemyObserver observer, int x, int y)
         {
+            CoolDown = 0;
             this.observer = observer;
             Health = 10;
             EnemyLoc.X = x;

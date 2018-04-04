@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 namespace Model
 
 {
+    enum Direction { Up, Down, Left, Right};
     class Player : ISerializable
     {
         public int Health;
         public Location PlayerLoc;
+        public Direction PlayerDirection;
         private Player()
         {
-            Health = 10;
+            PlayerDirection = Direction.Down;
+            Health = 20;
             PlayerLoc.X = 234;
             PlayerLoc.Y = 159;
         }
@@ -24,7 +27,7 @@ namespace Model
         /// <param name="ammount"></param>
         public void RemovePlayerHealth(int amount)
         {
-            
+            Health -= amount;
         }
 
 

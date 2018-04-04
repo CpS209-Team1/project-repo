@@ -37,6 +37,16 @@ namespace Model
 
         }
 
+        public void Serialize(string filename)
+        {
+            
+        }
+
+        public void Deserialize(string filename)
+        {
+
+        }
+
         private static Player instance = new Player();
 
         public static Player Instance

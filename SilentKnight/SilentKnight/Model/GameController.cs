@@ -51,7 +51,6 @@ namespace Model
             {
                 i.KillEnemy();
             }
-
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace Model
 
         public void Load()
         {
-            
+
         }
     }
 

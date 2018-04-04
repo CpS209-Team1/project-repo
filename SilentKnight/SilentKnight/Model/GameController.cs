@@ -34,6 +34,23 @@ namespace Model
         /// </summary>
         public void ComputePlayerAttack()
         {
+            foreach (Enemy i in World.Instance.Entities)
+            {
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50)
+                {
+                    i.RemoveEnemyHealth(2);
+
+                }
+                if (i.Health <= 0)
+                {
+                    World.Instance.DeadEnemy.Add(i);
+                }
+            }
+            
+            foreach (Enemy i in World.Instance.DeadEnemy)
+            {
+                i.KillEnemy();
+            }
 
         }
 

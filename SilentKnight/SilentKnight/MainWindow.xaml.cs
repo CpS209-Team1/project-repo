@@ -122,6 +122,16 @@ namespace SilentKnight
         private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ctrl.ComputePlayerAttack();
+            KilledEnemy();
+        }
+
+        void KilledEnemy()
+        {
+            foreach(Enemy i in World.Instance.DeadEnemy)
+            {
+                canvas.Children.Remove((UIElement)i.observer);
+            }
+            World.Instance.DeadEnemy = new List<Enemy>();
         }
     }
 }

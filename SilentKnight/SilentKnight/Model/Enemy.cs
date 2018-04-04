@@ -82,6 +82,8 @@ namespace Model
 
         public abstract void AddEnemyHealth(int amount);
 
+        public abstract void KillEnemy();
+
     }
 
 
@@ -106,7 +108,7 @@ namespace Model
         /// </summary>
         public override void RemoveEnemyHealth(int amount)
         {
-            throw new NotImplementedException();
+            Health -= amount;
         }
 
         /// <summary>
@@ -114,8 +116,17 @@ namespace Model
         /// </summary>
         public override void AddEnemyHealth(int amount)
         {
-            throw new NotImplementedException();
+            Health += amount;
         }
+
+        public override void KillEnemy()
+        {
+            if(Health <= 0)
+            {
+                World.Instance.Entities.Remove(this);
+            }
+        }
+
     }
 
     class EnemyControl : ContentControl, IEnemyObserver

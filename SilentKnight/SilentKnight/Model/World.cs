@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SilentKnight;
 
 namespace Model
 {
@@ -10,14 +11,14 @@ namespace Model
     {
         public List<Enemy> Entities { get; set; }
         public List<Enemy> DeadEnemy { get; set; }
-        public List<EnemyControl> CanvasEntities { get; set; }
+        List<EnemyControl> CanvasEntities = new List<EnemyControl>();
         public double borderRight { get; set; }
         public double borderBottom { get; set; }
         private World()
         {
             Entities = new List<Enemy>();
-            CanvasEntities = new List<EnemyControl>();
             DeadEnemy = new List<Enemy>();
+            CanvasEntities = new List<EnemyControl>();
             borderBottom = 0;
         }
         private static World instance = new World();

@@ -132,17 +132,11 @@ namespace Model
 
     }
 
-    class EnemyControl : ContentControl, IEnemyObserver
-    {
-        public void NotifyMoved(Enemy enemy)
-        {
-            Canvas.SetTop(this, enemy.EnemyLoc.Y);
-            Canvas.SetLeft(this, enemy.EnemyLoc.X);
-        }
-    }
+
 
     interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
+        Enemy NotifySpawn();
     }
 }

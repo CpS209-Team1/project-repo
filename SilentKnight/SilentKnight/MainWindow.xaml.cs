@@ -25,6 +25,7 @@ namespace SilentKnight
         double x = 0;
         double y = 0;
         GameController ctrl = new GameController();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace SilentKnight
 
         void Spawning()
         {
-            foreach (EnemyControl i in World.Instance.CanvasEntities)
+            foreach(EnemyControl i in CanvasEntities)
             {
                 canvas.Children.Add(i);
             }
@@ -132,6 +133,32 @@ namespace SilentKnight
                 canvas.Children.Remove((UIElement)i.observer);
             }
             World.Instance.DeadEnemy = new List<Enemy>();
+        }
+    }
+    class EnemyControl : ContentControl, IEnemyObserver
+    {
+        public void NotifyMoved(Enemy enemy)
+        {
+            Canvas.SetTop(this, enemy.EnemyLoc.Y);
+            Canvas.SetLeft(this, enemy.EnemyLoc.X);
+        }
+
+        public Enemy NotifySpawn(Random rand)
+        {
+            var enemyControl = new EnemyControl();
+            enemyControl.Content = new Image()
+            {
+                Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
+
+            };
+            int x = rand.Next(0, 300);
+            int y = rand.Next(0, 300);
+            enemyControl.Width = 50;
+            enemyControl.Height = 50;
+            Canvas.SetTop(enemyControl, x);
+            Canvas.SetLeft(enemyControl, y);
+            World.Instance.CanvasEntities.Add(enemyControl);
+            return enemyControl;
         }
     }
 }

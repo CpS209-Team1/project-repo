@@ -10,6 +10,7 @@ namespace Model
 {
     class Spawn
     {
+        public IEnemyObserver observer;
         private Spawn() { }
         private static Spawn instance = new Spawn();
 

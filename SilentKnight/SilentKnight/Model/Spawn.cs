@@ -18,17 +18,18 @@ namespace Model
         /// Takes enemyCount and calls command's `DoCreate` to create `enemyCount` ammount of enemies
         /// </summary>
         /// <param name="enemyCount"></param>
-        public void DoSpawn(int enemyCount)
-        {
-            Random rand = new Random();
-            for (int i = 1; i <= enemyCount; i++)
-            {
-               
+        //public void DoSpawn(int enemyCount)
+        //{
+        //    Random rand = new Random();
+        //    for (int i = 1; i <= enemyCount; i++)
+        //    {
+        //        int x = rand.Next(0, (int)World.Instance.borderRight);
+        //        int y = rand.Next(0, (int)World.Instance.borderBottom);
 
-                var enemy = new Skeleton(enemyControl, x, y);
-                World.Instance.Entities.Add(enemy);
-            }
-        }
+        //        var enemy = new Skeleton(observer.NotifySpawn(x,y), x, y);
+        //        World.Instance.Entities.Add(enemy);
+        //    }
+        //}
         public static Spawn Instance
         {
             get

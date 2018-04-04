@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Model
 
 {
-    class Player
+    class Player : ISerializable
     {
         public int Health;
         public Location PlayerLoc;
@@ -33,6 +33,16 @@ namespace Model
         /// </summary>
         /// <param name="ammount"></param>
         public void AddPlayerHealth(int amount)
+        {
+
+        }
+
+        public void Serialize(string filename)
+        {
+            
+        }
+
+        public void Deserialize(string filename)
         {
 
         }

@@ -51,7 +51,6 @@ namespace Model
             {
                 i.KillEnemy();
             }
-
         }
 
         /// <summary>
@@ -63,6 +62,16 @@ namespace Model
         }
 
         public void SpawnEnemies()
+        {
+
+        }
+
+        public void Save()
+        {
+
+        }
+
+        public void Load()
         {
 
         }

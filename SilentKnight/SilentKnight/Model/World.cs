@@ -14,6 +14,7 @@ namespace Model
         List<EnemyControl> CanvasEntities = new List<EnemyControl>();
         public double borderRight { get; set; }
         public double borderBottom { get; set; }
+        
         private World()
         {
             Entities = new List<Enemy>();

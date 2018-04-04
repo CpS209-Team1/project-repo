@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Model
 {
-    abstract class Enemy
+    abstract class Enemy : ISerializable
     {
         public IEnemyObserver observer;
         public int Health { get; set; }
@@ -81,6 +81,16 @@ namespace Model
             observer.NotifyMoved(this);
         }
 
+        public void Serialize(string filename)
+        {
+
+        }
+
+        public void Deserialize(string filename)
+        {
+
+        }
+
         public abstract void RemoveEnemyHealth(int amount);
 
         public abstract void AddEnemyHealth(int amount);
@@ -128,6 +138,16 @@ namespace Model
             {
                 World.Instance.Entities.Remove(this);
             }
+        }
+
+        public void Serialize(string filename)
+        {
+
+        }
+
+        public void Deserialize(string filename)
+        {
+            
         }
 
     }

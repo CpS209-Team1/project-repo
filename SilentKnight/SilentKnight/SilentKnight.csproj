@@ -65,16 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include=".\Model\Data.cs" />
-    <Compile Include=".\Model\DataTest.cs" />
-    <Compile Include=".\Model\Enemy.cs" />
-    <Compile Include=".\Model\GameController.cs" />
-    <Compile Include=".\Model\HighScore.cs" />
-    <Compile Include=".\Model\HighScoreTest.cs" />
-    <Compile Include=".\Model\Player.cs" />
-    <Compile Include=".\Model\SilentKnightTest.cs" />
-    <Compile Include=".\Model\Spawn.cs" />
-    <Compile Include=".\Model\World.cs" />
+    <Compile Include=".\Model\**\*.cs" />
     <Resource Include=".\Model\**\*.txt" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

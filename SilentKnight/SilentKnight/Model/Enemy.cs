@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace Model
 {
-    abstract class Enemy
+    abstract class Enemy : ISerializable
     {
         public IEnemyObserver observer;
         public int Health { get; set; }

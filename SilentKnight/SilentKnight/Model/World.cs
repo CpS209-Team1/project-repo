@@ -13,6 +13,7 @@ namespace Model
         public List<EnemyControl> CanvasEntities { get; set; }
         public double borderRight { get; set; }
         public double borderBottom { get; set; }
+        
         private World()
         {
             Entities = new List<Enemy>();

@@ -23,19 +23,7 @@ namespace Model
             Random rand = new Random();
             for (int i = 1; i <= enemyCount; i++)
             {
-                var enemyControl = new EnemyControl();
-                enemyControl.Content = new Image()
-                {
-                    Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
-
-                };
-                int x = rand.Next(0, 300);
-                int y = rand.Next(0, 300);
-                enemyControl.Width = 50;
-                enemyControl.Height = 50;
-                Canvas.SetTop(enemyControl, x);
-                Canvas.SetLeft(enemyControl, y);
-                World.Instance.CanvasEntities.Add(enemyControl);
+               
 
                 var enemy = new Skeleton(enemyControl, x, y);
                 World.Instance.Entities.Add(enemy);

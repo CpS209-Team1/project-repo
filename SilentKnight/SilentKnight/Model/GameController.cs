@@ -66,6 +66,16 @@ namespace Model
         {
 
         }
+
+        public void Save()
+        {
+
+        }
+
+        public void Load()
+        {
+            
+        }
     }
 
     /// <summary>

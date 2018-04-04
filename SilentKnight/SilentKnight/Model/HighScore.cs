@@ -9,7 +9,7 @@ namespace Model
 {
     class HighScore
     {
-        public Dictionary<string, string> highScoreDictionary = new Dictionary<string, string>();
+        public List<Score> scoreList = new List<Score>();
 
         /// <summary>
         /// Determines at the end of a game if the player's score is in the top "n" high scores 
@@ -43,6 +43,10 @@ namespace Model
             scoreList.Sort();
             scoreList.Reverse();
 
+            // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object?
+            // utm_medium =organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+            //           objListOrder.Sort((x, y) => x.OrderDate.CompareTo(y.OrderDate));
+
             // Display the HighScores screen, omitting the scores' appended dashes and sequence numbers.
             DisplayHighScores(highScoreDictionary, scoreList);
 
@@ -59,7 +63,7 @@ namespace Model
         /// <param name="scoreList">A list accessible by the entire class that is used for sorting the 
         /// scoreDictionary scores. ReadScores() populates the list at the same time as the dictionary</param>
         /// <param name="inputFile"></param>
-        public void ReadScores(ref Dictionary<string, string> highScoreDictionary, ref List<string> scoreList, string fileName)
+        public void LoadScores(ref List<Score> scoreList, string fileName)
         {
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
             // file -system/how-to-write-to-a-text-file
@@ -105,7 +109,7 @@ namespace Model
         /// <param name="scoreList">Contains the top scores.  Used for sorting the dictionary</param>
         /// <param name="maxEntries">The number of top scores being maintained.</param>
         /// <param name="playersScore">The score the player received for this game.</param>
-        public void SaveIfHighScore(ref List<string> scoreList, ref Dictionary<string, string> highScoreDictionary, 
+        public void SaveIfHighScore(ref List<string> scoreList, ref Dictionary<string, string> highScoreDictionary,
             int maxEntries, int playersScore)
         {
             int lowestScore = Convert.ToInt32(scoreList[0].Substring(0, scoreList[0].IndexOf('-')));
@@ -125,7 +129,7 @@ namespace Model
                     // Display the HighScoreAchieved screen, prompting player for his name.   
 
                     // Store storableScore and player name in the Dictionary
-                    
+
                     // Store this unique score into the Dictionary, 
                     // along with the player's name.                
                 }
@@ -160,6 +164,28 @@ namespace Model
             string storableScore = "";
             return storableScore;
         }
+    }
+
+    class Score
+    {
+        private string name;
+        private int points;
+
+        public Score(string newName, int newPoints)
+        {
+            name = newName;
+            points = newPoints;
+        }
+
+        /// <summary>
+        /// The Name property for the Score object
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The Points property for the Score objec
+        /// </summary>
+        public int Points { get; set; }
     }
 
 

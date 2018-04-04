@@ -35,8 +35,11 @@ namespace Model
 
         public void UpdatePosition()
         {
-           
-            if (EnemyMove.Instance.Timer < 100)
+            if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - EnemyLoc.Y, 2)) < 150)
+            {
+                EnemyMove.Instance.Track(this);
+            }
+            else if (EnemyMove.Instance.Timer < 100)
             {
                 if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
                 {

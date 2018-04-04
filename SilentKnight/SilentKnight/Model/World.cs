@@ -11,7 +11,7 @@ namespace Model
     {
         public List<Enemy> Entities { get; set; }
         public List<Enemy> DeadEnemy { get; set; }
-        List<EnemyControl> CanvasEntities = new List<EnemyControl>();
+        public List<EnemyControl> CanvasEntities = new List<EnemyControl>();
         public double borderRight { get; set; }
         public double borderBottom { get; set; }
         

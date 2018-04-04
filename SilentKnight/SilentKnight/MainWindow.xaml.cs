@@ -45,12 +45,21 @@ namespace SilentKnight
             Spawning();
         }
 
+        void CheckLevelStatus(object sender, EventArgs e)
+        {
+            if (World.Instance.Entities.Count == 0)
+            {
+                DoSpawn(10);
+            }
+        }
+
         void Spawning()
         {
             DispatcherTimer animate = new DispatcherTimer();
             animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
             animate.Tick += new EventHandler(AnimateEnemy);
             animate.Tick += new EventHandler(EnemyAttack);
+            animate.Tick += new EventHandler(CheckLevelStatus);
             animate.Start();
         }
 

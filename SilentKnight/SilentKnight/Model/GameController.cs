@@ -33,9 +33,6 @@ namespace Model
                 case "D":
                     Player.Instance.PlayerDirection = Direction.Right;
                     break;
-                default:
-                    Player.Instance.PlayerDirection = Direction.Down;
-                    break;
             }
         }
 

@@ -19,8 +19,9 @@ namespace Model
         {
             Player.Instance.PlayerLoc.X = x;
             Player.Instance.PlayerLoc.Y = y;
-            switch(KeyPress)
+            switch(KeyPress)//Keypress is used to determine which direction the player was looking in when he/she attacked
             {
+                //Sets the player's direction to the appropriate direction
                 case "S":
                     Player.Instance.PlayerDirection = Direction.Down;
                     break;
@@ -55,11 +56,10 @@ namespace Model
                 {
                     i.RemoveEnemyHealth(2);
                     EnemyMove.Instance.Hit(i);
-
                 }
                 if (i.Health <= 0)
                 {
-                    World.Instance.DeadEnemy.Add(i);
+                    World.Instance.DeadEnemy.Add(i);// Once an enemy is removed from the Entities list, it is added to DeadEnemy for removal from the canvas
                 }
             }
             
@@ -86,20 +86,10 @@ namespace Model
                 {
                     if (i.CoolDown != 0)
                     {
-                        i.CoolDown -= 1;
+                        i.CoolDown -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
                     }
                 }
             }
-
-            foreach (Enemy i in World.Instance.DeadEnemy)
-            {
-                i.KillEnemy();
-            }
-        }
-
-        public void SpawnEnemies()
-        {
-
         }
 
         public void Save()

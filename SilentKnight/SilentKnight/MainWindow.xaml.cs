@@ -22,15 +22,15 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
-        double x = 0;
-        double y = 0;
+        double x = 0; //GUI Player's x
+        double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
 
         public MainWindow()
         {
+            //Timer for player movement
             InitializeComponent();
             DispatcherTimer timer = new DispatcherTimer();
-            //timer.Interval = new TimeSpan(0,0,0,0,0);
             timer.Tick += new EventHandler(MovePlayer);
             timer.Start();
         }
@@ -41,10 +41,15 @@ namespace SilentKnight
             x = 15;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
-            DoSpawn(10);
-            Spawning();
+            DoSpawn(10); //Spawns 10 enemies
+            EnemyEvents(); //Starts EnemyEvents timer
         }
 
+        /// <summary>
+        /// This method checks if the current wave of enemies is defeated. If so, then the game spawns in another wave.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void CheckLevelStatus(object sender, EventArgs e)
         {
             if (World.Instance.Entities.Count == 0)
@@ -53,19 +58,27 @@ namespace SilentKnight
             }
         }
 
-        void Spawning()
+        /// <summary>
+        /// Activates each 'animage.Tick' ever 10 mls
+        /// </summary>
+        void EnemyEvents()
         {
             DispatcherTimer animate = new DispatcherTimer();
             animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            animate.Tick += new EventHandler(AnimateEnemy);
-            animate.Tick += new EventHandler(EnemyAttack);
-            animate.Tick += new EventHandler(CheckLevelStatus);
+            animate.Tick += new EventHandler(AnimateEnemy); //Adds AnimateEnemy to the timer
+            animate.Tick += new EventHandler(EnemyAttack); //Adds EnemyAttack to the timer
+            animate.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
             animate.Start();
         }
 
+        /// <summary>
+        /// This method checks the right and left borders and then calls `UpdatePosition` to update each individual position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AnimateEnemy(object sender, EventArgs e)
         {
-            World.Instance.borderRight = canvas.ActualWidth - 50;
+            World.Instance.borderRight = canvas.ActualWidth - 50; //50 is the picture width
             World.Instance.borderBottom = canvas.ActualHeight - 50;
             foreach (Enemy i in World.Instance.Entities)
             {
@@ -127,7 +140,7 @@ namespace SilentKnight
         }
 
         /// <summary>
-        /// This method tests for player click
+        /// This method tests for player click (attack) then calls `ComputePlayerAttack` then  `KilledEnemy`
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -137,11 +150,20 @@ namespace SilentKnight
             KilledEnemy();
         }
 
+        /// <summary>
+        /// Enemy Attack calls `ComputeEnemyAttack`
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void EnemyAttack(object sender, EventArgs e)
         {
             ctrl.ComputeEnemyAttack();
         }
 
+        /// <summary>
+        /// This method loops through DeadEnemy and removes each instance from the canvas
+        /// DeadEnemy is reset to empty after all of the current dead enemies are removed
+        /// </summary>
         void KilledEnemy()
         {
             foreach (Enemy i in World.Instance.DeadEnemy)
@@ -151,8 +173,10 @@ namespace SilentKnight
             World.Instance.DeadEnemy = new List<Enemy>();
         }
 
-
-
+        /// <summary>
+        /// This method creates new enemies
+        /// </summary>
+        /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
             Random rand = new Random();
@@ -176,6 +200,10 @@ namespace SilentKnight
             }
         }
     }
+
+    /// <summary>
+    /// This class updates the enemy's position
+    /// </summary>
     class EnemyControl : ContentControl, IEnemyObserver
     {
         public void NotifyMoved(Enemy enemy)

@@ -23,6 +23,14 @@ namespace Model
             Health = 20;
         }
 
+        public void Login(string user)
+        {
+            Name = user;
+            Health = 10;
+            PlayerLoc.X = 0;
+            PlayerLoc.Y = 0;
+        }
+
         /// <summary>
         /// Removes `ammount` from `Health`
         /// </summary>

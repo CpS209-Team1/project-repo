@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using Model;
 class World
 {
     public List<Entity> ents = new List<Entity>();
+    public int plrAttributes = 2;
 
     private static World instance = new World();
     public static World Instance
@@ -37,7 +39,6 @@ class World
         }
     }
 
-    public int plrAttributes = 2;
     public void Load(string filename)
     {
         string line;
@@ -61,6 +62,32 @@ class World
                 }
             }
         }
+    }
+
+    public void Save(string filename)
+    {
+        string[] file = File.ReadAllText(filename).Split('\n');
+        List<string> contents = new List<string>(file);
+        bool found = false;
+        int ind = 0;
+        foreach(string line in contents)
+        {
+            string curline = line.Trim();
+            if (curline == String.Format("@{0}:",Player.Instance.Name))
+            {
+                //Console.WriteLine("FOUND");
+                found = true;
+            }
+            else if (curline.Contains("@") && found)
+            {
+                // Adds empty line to file entry
+                //Console.WriteLine("BREAK");
+                contents.Insert(ind,"\n");
+                break;
+            }
+            ++ind;
+        }
+        if (found) File.WriteAllLines("data.txt", contents.ToArray(), Encoding.UTF8);
     }
 
     public void Deserialize(StreamReader rd)

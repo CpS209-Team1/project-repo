@@ -1,4 +1,4 @@
-@Mike:
+﻿@Mike:
     - Player:
         Location: 2,3
         Health: 10
@@ -12,7 +12,7 @@
                 Location: 7,71
 @Sam:
     - Player:
-        Location: 5,6,
+        Location: 5,6
         Health: 6
     - World:
         Entities: 2
@@ -22,6 +22,21 @@
             Type: moose
                 Health: 100
                 Location: 23,3
-@Nick:
 
-    
+@Nick:
+    - Player:
+        Location: 0,0
+        Health: 3
+    - World:
+        Entities: 0
+
+
+
+
+
+
+
+
+
+
+

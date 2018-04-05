@@ -9,13 +9,18 @@ class Test
 {
     public static void Main()
     {
-        Player.Instance.Name = "Mike";
+        Player.Instance.Login("Mike");
         World.Instance.Load("data.txt");
         World.Instance.Print();
         World.Instance.ents.Clear();
 
-        Player.Instance.Name = "Sam";
+        Player.Instance.Login("Sam");
         World.Instance.Load("data.txt");
+        World.Instance.Print();
+        World.Instance.ents.Clear();
+
+        Player.Instance.Login("Nick");
+        World.Instance.Save("data.txt");
         World.Instance.Print();
         World.Instance.ents.Clear();
     }

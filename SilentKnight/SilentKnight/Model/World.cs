@@ -8,10 +8,10 @@ namespace Model
 {
     class World
     {
-        public List<Enemy> Entities { get; set; }
-        public List<Enemy> DeadEnemy { get; set; }
-        public double borderRight { get; set; }
-        public double borderBottom { get; set; }
+        public List<Enemy> Entities { get; set; }//This list is for storing all game entities
+        public List<Enemy> DeadEnemy { get; set; }//This list is for storing enemies that need to be removed from the canvas
+        public double borderRight { get; set; }//This is for border collision
+        public double borderBottom { get; set; }//This is for border collision
 
         private World()
         {

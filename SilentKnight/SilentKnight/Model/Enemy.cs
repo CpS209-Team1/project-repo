@@ -16,7 +16,7 @@ namespace Model
         public string Image { get; set; }
 
         static int nextId;
-        public int CoolDown { get; set; }
+        public int CoolDown { get; set; } //Enemy attack cooldown
 
         static Random rand = new Random();
 
@@ -35,12 +35,17 @@ namespace Model
 
         public abstract string GetKind();
 
+        /// <summary>
+        /// This method updates the enemy's position
+        /// </summary>
         public void UpdatePosition()
         {
+            //Checks if the enemy is within 150 px from the player, if so then it will call the Track method
             if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - EnemyLoc.Y, 2)) < 150)
             {
                 EnemyMove.Instance.Track(this);
             }
+            //If the enemy isn't near the player then the enemy will randomly go in a given position by calling one of the methods below
             else if (EnemyMove.Instance.Timer < 100)
             {
                 if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
@@ -74,6 +79,7 @@ namespace Model
                     choose = rand.Next(1, 6);
                 }
             }
+            // if the enemy runs into a wall then it will choose a new direction
             else
             {
                 EnemyMove.Instance.Timer = 0;
@@ -134,6 +140,7 @@ namespace Model
             Health += amount;
         }
 
+        //Removes enemy from Entities list
         public override void KillEnemy()
         {
             if (Health <= 0)
@@ -144,7 +151,7 @@ namespace Model
     }
 
 
-
+    // Oberver pattern
     interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);

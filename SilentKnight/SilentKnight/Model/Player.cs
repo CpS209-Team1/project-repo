@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Model
 
 {
-    enum Direction { Up, Down, Left, Right};
+    enum Direction { Up, Down, Left, Right}; //Used to determine the player's "viewing" direction
     class Player : ISerializable
     {
         public int Health;

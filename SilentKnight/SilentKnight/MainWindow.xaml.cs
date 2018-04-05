@@ -37,23 +37,29 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-            y = 234;
-            x = 159;
+            y = 20;
+            x = 15;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
-            Spawn.Instance.DoSpawn(10);
+            DoSpawn(10);
             Spawning();
+        }
+
+        void CheckLevelStatus(object sender, EventArgs e)
+        {
+            if (World.Instance.Entities.Count == 0)
+            {
+                DoSpawn(10);
+            }
         }
 
         void Spawning()
         {
-            foreach(EnemyControl i in CanvasEntities)
-            {
-                canvas.Children.Add(i);
-            }
             DispatcherTimer animate = new DispatcherTimer();
             animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
             animate.Tick += new EventHandler(AnimateEnemy);
+            animate.Tick += new EventHandler(EnemyAttack);
+            animate.Tick += new EventHandler(CheckLevelStatus);
             animate.Start();
         }
 
@@ -69,10 +75,12 @@ namespace SilentKnight
 
         private void MovePlayer(object sender, EventArgs e)
         {
+            string KeyPress = "";
             if (Keyboard.IsKeyDown(Key.S))
             {
                 if (y + .05 <= canvas.ActualHeight - Plr.ActualHeight)
                 {
+                    KeyPress = "S";
                     y += 0.05;
                     Canvas.SetTop(Plr, y);
                 }
@@ -81,6 +89,7 @@ namespace SilentKnight
             {
                 if (y - 0.05 >= 0)
                 {
+                    KeyPress = "W";
                     y -= 0.05;
                     Canvas.SetTop(Plr, y);
                 }
@@ -89,6 +98,7 @@ namespace SilentKnight
             {
                 if (x - .05 >= 0)
                 {
+                    KeyPress = "A";
                     x -= 0.05;
                     Canvas.SetLeft(Plr, x);
                 }
@@ -97,11 +107,12 @@ namespace SilentKnight
             {
                 if (x + .05 <= canvas.ActualWidth - Plr.ActualWidth)
                 {
+                    KeyPress = "D";
                     x += 0.05;
                     Canvas.SetLeft(Plr, x);
                 }
             }
-            ctrl.ComputePlayerMove(x, y);
+            ctrl.ComputePlayerMove(x, y, KeyPress);
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -126,13 +137,43 @@ namespace SilentKnight
             KilledEnemy();
         }
 
+        void EnemyAttack(object sender, EventArgs e)
+        {
+            ctrl.ComputeEnemyAttack();
+        }
+
         void KilledEnemy()
         {
-            foreach(Enemy i in World.Instance.DeadEnemy)
+            foreach (Enemy i in World.Instance.DeadEnemy)
             {
                 canvas.Children.Remove((UIElement)i.observer);
             }
             World.Instance.DeadEnemy = new List<Enemy>();
+        }
+
+
+
+        public void DoSpawn(int enemyCount)
+        {
+            Random rand = new Random();
+            for (int i = 1; i <= enemyCount; i++)
+            {
+                int x = rand.Next(0, (int)canvas.ActualWidth - 50);
+                int y = rand.Next((int)canvas.ActualHeight - 52, (int)canvas.ActualHeight - 50);
+                var enemyControl = new EnemyControl();
+                enemyControl.Content = new Image()
+                {
+                    Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
+
+                };
+                enemyControl.Width = 50;
+                enemyControl.Height = 50;
+                Canvas.SetTop(enemyControl, x);
+                Canvas.SetLeft(enemyControl, y);
+                canvas.Children.Add(enemyControl);
+                var enemy = new Skeleton(enemyControl, x, y);
+                World.Instance.Entities.Add(enemy);
+            }
         }
     }
     class EnemyControl : ContentControl, IEnemyObserver
@@ -141,24 +182,6 @@ namespace SilentKnight
         {
             Canvas.SetTop(this, enemy.EnemyLoc.Y);
             Canvas.SetLeft(this, enemy.EnemyLoc.X);
-        }
-
-        public Enemy NotifySpawn(Random rand)
-        {
-            var enemyControl = new EnemyControl();
-            enemyControl.Content = new Image()
-            {
-                Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
-
-            };
-            int x = rand.Next(0, 300);
-            int y = rand.Next(0, 300);
-            enemyControl.Width = 50;
-            enemyControl.Height = 50;
-            Canvas.SetTop(enemyControl, x);
-            Canvas.SetLeft(enemyControl, y);
-            World.Instance.CanvasEntities.Add(enemyControl);
-            return enemyControl;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Model
         [TestMethod]
         public void TestEnemySpawn()
         {
-            Spawn.Instance.DoSpawn(3);
+            
             Assert.IsTrue(World.Instance.Entities.Count == 3);
         }
 

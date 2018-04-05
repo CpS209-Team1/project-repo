@@ -16,6 +16,7 @@ namespace Model
         public string Image { get; set; }
 
         static int nextId;
+        public int CoolDown { get; set; }
 
         static Random rand = new Random();
 
@@ -23,6 +24,7 @@ namespace Model
 
         public Enemy(IEnemyObserver observer, int x, int y)
         {
+            CoolDown = 0;
             this.observer = observer;
             Health = 10;
             EnemyLoc.X = x;
@@ -44,21 +46,21 @@ namespace Model
                 if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
                 {
                     EnemyMove.Instance.MoveRight(this);
-             
+
                 }
                 else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom)
                 {
                     EnemyMove.Instance.MoveDown(this);
-                    
+
                 }
                 else if (choose == 3 && EnemyLoc.X - 1 > 0)
                 {
                     EnemyMove.Instance.MoveLeft(this);
-                   
+
                 }
                 else if (choose == 4 && EnemyLoc.Y - 1 > 0)
                 {
-         
+
                     EnemyMove.Instance.MoveUp(this);
                 }
                 else if (choose == 5 && EnemyLoc.Y - 1 > 0)
@@ -134,12 +136,11 @@ namespace Model
 
         public override void KillEnemy()
         {
-            if(Health <= 0)
+            if (Health <= 0)
             {
                 World.Instance.Entities.Remove(this);
             }
         }
-
     }
 
 
@@ -147,6 +148,5 @@ namespace Model
     interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
-        Enemy NotifySpawn();
     }
 }

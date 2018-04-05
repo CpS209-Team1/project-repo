@@ -15,10 +15,25 @@ namespace Model
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void ComputePlayerMove(double x, double y)
+        public void ComputePlayerMove(double x, double y, string KeyPress)
         {
             Player.Instance.PlayerLoc.X = x;
             Player.Instance.PlayerLoc.Y = y;
+            switch(KeyPress)
+            {
+                case "S":
+                    Player.Instance.PlayerDirection = Direction.Down;
+                    break;
+                case "A":
+                    Player.Instance.PlayerDirection = Direction.Left;
+                    break;
+                case "W":
+                    Player.Instance.PlayerDirection = Direction.Up;
+                    break;
+                case "D":
+                    Player.Instance.PlayerDirection = Direction.Right;
+                    break;
+            }
         }
 
         /// <summary>
@@ -39,6 +54,7 @@ namespace Model
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50)
                 {
                     i.RemoveEnemyHealth(2);
+                    EnemyMove.Instance.Hit(i);
 
                 }
                 if (i.Health <= 0)
@@ -58,7 +74,27 @@ namespace Model
         /// </summary>
         public void ComputeEnemyAttack()
         {
+            foreach (Enemy i in World.Instance.Entities)
+            {
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDown == 0)
+                {
+                    Player.Instance.RemovePlayerHealth(2);
+                    Console.WriteLine(Player.Instance.Health);
+                    i.CoolDown = 100;
+                }
+                else
+                {
+                    if (i.CoolDown != 0)
+                    {
+                        i.CoolDown -= 1;
+                    }
+                }
+            }
 
+            foreach (Enemy i in World.Instance.DeadEnemy)
+            {
+                i.KillEnemy();
+            }
         }
 
         public void SpawnEnemies()

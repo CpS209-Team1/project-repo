@@ -17,7 +17,7 @@ namespace Model
 
         static int nextId;
 
-       static Random rand = new Random();
+        static Random rand = new Random();
 
         int choose = rand.Next(1, 6);
 
@@ -138,16 +138,6 @@ namespace Model
             {
                 World.Instance.Entities.Remove(this);
             }
-        }
-
-        public void Serialize(string filename)
-        {
-
-        }
-
-        public void Deserialize(string filename)
-        {
-            
         }
 
     }

@@ -1,0 +1,27 @@
+@Mike:
+    - Player:
+        Location: 2,3
+        Health: 10
+    - World:
+        Entities: 2
+            Type: dog
+                Health: 10
+                Location: 4,1
+            Type: cat
+                Health: 6
+                Location: 7,71
+@Sam:
+    - Player:
+        Location: 5,6,
+        Health: 6
+    - World:
+        Entities: 2
+            Type: cat
+                Health: 10
+                Location: 5,23
+            Type: moose
+                Health: 100
+                Location: 23,3
+@Nick:
+
+    

@@ -121,7 +121,7 @@ namespace Model
                     }
                     break;
                 case Direction.Right:
-                    if (enemy.EnemyLoc.X + 50 < World.Instance.borderBottom)
+                    if (enemy.EnemyLoc.X + 50 < World.Instance.borderRight)
                     {
                         enemy.EnemyLoc.X += 50;
                     }

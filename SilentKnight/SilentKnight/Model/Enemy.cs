@@ -26,7 +26,21 @@ namespace Model
         {
             CoolDown = 0;
             this.observer = observer;
-            Health = 10;
+            switch(World.Instance.Difficulty)
+            {
+                case 1:
+                    Health = 5;
+                    break;
+                case 2:
+                    Health = 10;
+                    break;
+                case 3:
+                    Health = 20;
+                    break;
+                default:
+                    Health = 10;
+                    break;
+            }
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
             Image = "skeleton.png";

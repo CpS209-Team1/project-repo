@@ -12,12 +12,16 @@ namespace Model
         public List<Enemy> DeadEnemy { get; set; }//This list is for storing enemies that need to be removed from the canvas
         public double borderRight { get; set; }//This is for border collision
         public double borderBottom { get; set; }//This is for border collision
+        public int Difficulty { get; set; }
+        public bool CheatMode { get; set; }
 
         private World()
         {
             Entities = new List<Enemy>();
             DeadEnemy = new List<Enemy>();
             borderBottom = 0;
+            Difficulty = 2;
+            CheatMode = false;
         }
         private static World instance = new World();
         /// <summary>

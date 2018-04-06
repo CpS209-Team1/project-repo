@@ -28,7 +28,7 @@ namespace Model
             // At the end of the game, load the highScores dictionary from the HighScores.txt file while
             // simultaneously loading the scores into a scoresList.
 
-            ReadScores(ref highScoreDictionary, ref scoreList, fileName);
+            //ReadScores(ref highScoreDictionary, ref scoreList, fileName);
 
             // Sort the list in ascending order.
 
@@ -37,7 +37,7 @@ namespace Model
             // If ending score is greater than the lowest score in the list, drop the lowest score and add the new score
             // to the list.
 
-            SaveIfHighScore(ref scoreList, ref highScoreDictionary, maxEntries, playersScore);
+            // SaveIfHighScore(ref scoreList, ref highScoreDictionary, maxEntries, playersScore);
 
             // Re-sort the list in descending order.
             scoreList.Sort();
@@ -48,40 +48,33 @@ namespace Model
             //           objListOrder.Sort((x, y) => x.OrderDate.CompareTo(y.OrderDate));
 
             // Display the HighScores screen, omitting the scores' appended dashes and sequence numbers.
-            DisplayHighScores(highScoreDictionary, scoreList);
+            //DisplayHighScores(highScoreDictionary, scoreList);
 
             // Write the score/playerName pairs into the text file.
-            WriteScores(highScoreDictionary, fileName);
+            //WriteScores(highScoreDictionary, fileName);
         }
 
         /// <summary>
-        /// Reads in score/player value pairs from a .txt file and puts them in a dictionary.  At the same
-        /// time that it stores a line in the dictionary, it stores the score in a list.  
+        /// 
         /// </summary>
-        /// <param name="highScoreDictionary">A dictionary accessible by the entire class where score/player 
-        /// value pairs are kept.  ReadScores() populates the dictionary from a .txt file.</param>
-        /// <param name="scoreList">A list accessible by the entire class that is used for sorting the 
-        /// scoreDictionary scores. ReadScores() populates the list at the same time as the dictionary</param>
-        /// <param name="inputFile"></param>
-        public void LoadScores(ref List<Score> scoreList, string fileName)
+        /// <param name="scoreList"></param>
+        /// <param name="fileName"></param>
+        public void LoadScores(string fileName)
         {
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
             // file -system/how-to-write-to-a-text-file
-            string line;
-            int pipePosition;
-            string score;
+            string inputLine;
 
             using (StreamReader inputFile = new StreamReader(fileName))
             {
 
-
-                while ((line = inputFile.ReadLine()) != null)
+                inputLine = inputFile.ReadLine();
+                while (inputLine != null && inputLine != "")
                 {
-                    pipePosition = line.IndexOf('|');
-                    score = line.Substring(0, pipePosition);
-                    highScoreDictionary[score] = line.Substring(pipePosition + 1);
-
-                    scoreList.Add(score);
+                    string[] inputArray = inputLine.Split(' ');
+                    Score playerScore = new Score(inputArray[0], Convert.ToInt32(inputArray[1]));
+                    scoreList.Add(playerScore);
+                    inputLine = inputFile.ReadLine();
                 }
             }
         }

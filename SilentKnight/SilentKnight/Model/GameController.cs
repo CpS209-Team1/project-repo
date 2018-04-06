@@ -95,6 +95,14 @@ namespace Model
             return (false);
         }
 
+        public void KeepEnemyInBounds()
+        {
+            foreach(Enemy i in World.Instance.Entities)
+            {
+                EnemyMove.Instance.Teleport(i);
+            }
+        }
+
         public void Save()
         {
 

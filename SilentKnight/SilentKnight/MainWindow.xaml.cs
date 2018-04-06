@@ -260,6 +260,7 @@ namespace SilentKnight
             margin.Left = World.Instance.borderRight - 190;
             levelTxt.Margin = margin;
 
+            ctrl.KeepEnemyInBounds();
         }
     }
 

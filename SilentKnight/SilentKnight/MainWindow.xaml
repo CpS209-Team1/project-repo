@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" >
+        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="500" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" >
     <Canvas x:Name="canvas" SizeChanged="Canvas_SizeChanged">
        
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->

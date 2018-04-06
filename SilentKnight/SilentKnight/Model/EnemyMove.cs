@@ -63,7 +63,7 @@ namespace Model
         /// <param name="enemy"></param>
         public void Track(Enemy enemy)
         {
-            if(Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X)
+            if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X)
             {
                 enemy.EnemyLoc.X -= .5;
             }
@@ -129,7 +129,7 @@ namespace Model
                     {
                         enemy.EnemyLoc.X += World.Instance.borderRight - enemy.EnemyLoc.X;
                     }
-                   
+
                     break;
             }
         }
@@ -140,6 +140,18 @@ namespace Model
         public void Stand()
         {
             Timer += .1;
+        }
+
+        public void Teleport(Enemy enemy)
+        {
+            if (enemy.EnemyLoc.X > World.Instance.borderRight)
+            {
+                enemy.EnemyLoc.X = World.Instance.borderRight - 150;
+            }
+            if (enemy.EnemyLoc.Y > World.Instance.borderBottom)
+            {
+                enemy.EnemyLoc.Y = World.Instance.borderBottom - 150;
+            }
         }
 
         private static EnemyMove instance = new EnemyMove();

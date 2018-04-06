@@ -72,7 +72,7 @@ namespace Model
         /// <summary>
         /// Calculates the enemy's attack to see if attack was successful
         /// </summary>
-        public void ComputeEnemyAttack()
+        public bool ComputeEnemyAttack()
         {
             foreach (Enemy i in World.Instance.Entities)
             {
@@ -81,6 +81,7 @@ namespace Model
                     Player.Instance.RemovePlayerHealth(2);
                     Console.WriteLine(Player.Instance.Health);
                     i.CoolDown = 100;
+                    return (true);
                 }
                 else
                 {
@@ -88,8 +89,10 @@ namespace Model
                     {
                         i.CoolDown -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
                     }
+                    return (false);
                 }
             }
+            return (false);
         }
 
         public void Save()

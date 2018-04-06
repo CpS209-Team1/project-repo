@@ -14,14 +14,16 @@ namespace Model
         public double borderBottom { get; set; }//This is for border collision
         public int Difficulty { get; set; }
         public bool CheatMode { get; set; }
+        public int LevelCount { get; set; }
 
         private World()
         {
             Entities = new List<Enemy>();
             DeadEnemy = new List<Enemy>();
             borderBottom = 0;
-            Difficulty = 2;
+            Difficulty = 1;
             CheatMode = false;
+            LevelCount = 1;
         }
         private static World instance = new World();
         /// <summary>

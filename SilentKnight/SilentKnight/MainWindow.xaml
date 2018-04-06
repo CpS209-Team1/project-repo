@@ -30,6 +30,29 @@
                 </ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
+        <Image Source="/Assets/Level.png" Width="100" Margin="1250,0,0,0"/>
+        <Rectangle x:Name="levelNumber" Width="14" Height="33" Margin="1365,0,0,0">
+            <Rectangle.Fill>
+                <!--This is where you define the sprite sheet-->
+                <ImageBrush x:Name="levelNumberOffset" ImageSource="/Assets/Numbers.png"
+                            Stretch="None"
+                            AlignmentX="Left"
+                            AlignmentY="Top"
+                            Viewport="0,0,1920,1080"
+                            ViewportUnits="Absolute"
+                            >
+                    <!--Above. This method of using the sprite sheet will NOT work unless Viewport is set to the size of the whole sprite sheet-->
+                    <ImageBrush.Transform>
+                        <TransformGroup>
+                            <!--The offset is what is used to show certain parts of the sprite sheet, OFFSET MUST BE NEGATIVE-->
+                            <TranslateTransform x:Name="levelSheet" X="0" Y="0"/>
+                            <!--Resize image; x and y must be the same value-->
+                            <ScaleTransform ScaleX=".15" ScaleY=".15"/>
+                        </TransformGroup>
+                    </ImageBrush.Transform>
+                </ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ImageRotation" />

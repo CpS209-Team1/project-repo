@@ -110,5 +110,9 @@
   <ItemGroup>
     <Resource Include="Assets\HealthSheet.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Level.png" />
+    <Resource Include="Assets\Numbers.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

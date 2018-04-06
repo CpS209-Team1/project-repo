@@ -158,22 +158,30 @@ namespace SilentKnight
         /// <param name="e"></param>
         void EnemyAttack(object sender, EventArgs e)
         {
+            ctrl.ComputeEnemyAttack();
+            PlayerHealth();
+        }
+
+        /// <summary>
+        /// This method is used to display the player's health
+        /// </summary>
+        void PlayerHealth()
+        {
             int currentHealth = Player.Instance.Health;
             ctrl.ComputeEnemyAttack();
 
             if (currentHealth > Player.Instance.Health && Player.Instance.Health > 0)
             {
-                if(Player.Instance.Health > 2)
+                if (Player.Instance.Health > 2)
                 {
                     for (int i = 0; i < currentHealth - Player.Instance.Health; i++)
                     {
-                        if (healthLevel == 6)
+                        if (healthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
                         {
 
                             healthLevel = 1;
                             HealthSheet.X = 0;
                             HealthSheet.Y -= 67;
-                            Console.WriteLine(healthLevel);
                         }
                         HealthSheet.X -= 264;
                         healthLevel += 1;

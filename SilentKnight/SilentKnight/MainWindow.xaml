@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="Silent Knight" Height="800" Width="1440" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown">
     <Canvas x:Name="canvas">
+        <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
         <Rectangle x:Name="health" Width="130" Height="33">
             <Rectangle.Fill>
+                <!--This is where you define the sprite sheet-->
                 <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"
                             Stretch="None"
                             AlignmentX="Left"
@@ -16,10 +18,12 @@
                             Viewport="0,0,1920,1080"
                             ViewportUnits="Absolute"
                             >
-                   
+                    <!--Above. This method of using the sprite sheet will NOT work unless Viewport is set to the size of the whole sprite sheet-->
                     <ImageBrush.Transform>
                         <TransformGroup>
+                            <!--The offset is what is used to show certain parts of the sprite sheet, OFFSET MUST BE NEGATIVE-->
                             <TranslateTransform x:Name="HealthSheet" X="0" Y="0"/>
+                            <!--Resize image; x and y must be the same value-->
                             <ScaleTransform ScaleX=".5" ScaleY=".5"/>
                         </TransformGroup>
                     </ImageBrush.Transform>

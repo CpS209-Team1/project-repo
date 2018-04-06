@@ -9,8 +9,8 @@ namespace Model
 {
     interface ISerializable
     {
-        void Serialize(string);
-        void Deserialize(string);
+        //void Serialize(string);
+        //void Deserialize(string);
     }
 }
 

@@ -246,6 +246,21 @@ namespace SilentKnight
                 World.Instance.Entities.Add(enemy);
             }
         }
+
+        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            World.Instance.borderBottom = canvas.ActualHeight;
+            World.Instance.borderRight = canvas.ActualWidth;
+
+            Thickness margin = levelNumber.Margin;
+            margin.Left = World.Instance.borderRight - 75;
+            levelNumber.Margin = margin;
+            margin = levelTxt.Margin;
+            margin.Left = World.Instance.borderRight - 190;
+            levelTxt.Margin = margin;
+
+        }
     }
 
     /// <summary>

@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown">
-    <Canvas x:Name="canvas">
+        Title="Silent Knight" Height="800" Width="1440" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" >
+    <Canvas x:Name="canvas" SizeChanged="Canvas_SizeChanged">
+       
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
         <Rectangle x:Name="health" Width="130" Height="33">
             <Rectangle.Fill>
@@ -30,7 +31,7 @@
                 </ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Source="/Assets/Level.png" Width="100" Margin="1250,0,0,0"/>
+        <Image x:Name="levelTxt" Source="/Assets/Level.png" Width="100" Margin="1250,0,0,0"/>
         <Rectangle x:Name="levelNumber" Width="14" Height="33" Margin="1365,0,0,0">
             <Rectangle.Fill>
                 <!--This is where you define the sprite sheet-->

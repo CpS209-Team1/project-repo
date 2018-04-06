@@ -8,7 +8,7 @@ Class: Player (Singleton)
     Location PlayerLoc
     int PlayerScore (Goes with Highscore?)
     string PlayerName
-    int healthLevel
+    int HealthLevel
     
 Class: World (Singleton)
     List<Enemy> Entities

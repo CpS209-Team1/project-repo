@@ -1,1 +1,17 @@
-
+Class: Enemy
+    int Health
+    Location EnemyLoc
+    string Image (if we have multiple enemy types)
+    
+Class: Player (Singleton)
+    int Health
+    Location PlayerLoc
+    int PlayerScore (Goes with Highscore?)
+    string PlayerName
+    int healthLevel
+    
+Class: World (Singleton)
+    List<Enemy> Entities
+    int Difficulty
+    bool CheatMode
+    int LevelCount

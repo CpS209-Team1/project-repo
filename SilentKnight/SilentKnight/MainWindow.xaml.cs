@@ -22,6 +22,7 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
+        int healthLevel = 1;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
@@ -157,7 +158,33 @@ namespace SilentKnight
         /// <param name="e"></param>
         void EnemyAttack(object sender, EventArgs e)
         {
+            int currentHealth = Player.Instance.Health;
             ctrl.ComputeEnemyAttack();
+
+            if (currentHealth > Player.Instance.Health && Player.Instance.Health > 0)
+            {
+                if(Player.Instance.Health > 2)
+                {
+                    for (int i = 0; i < currentHealth - Player.Instance.Health; i++)
+                    {
+                        if (healthLevel == 6)
+                        {
+
+                            healthLevel = 1;
+                            HealthSheet.X = 0;
+                            HealthSheet.Y -= 67;
+                            Console.WriteLine(healthLevel);
+                        }
+                        HealthSheet.X -= 264;
+                        healthLevel += 1;
+                    }
+                }
+                else
+                {
+                    HealthSheet.X -= 264;
+                    healthLevel += 1;
+                }
+            }
         }
 
         /// <summary>

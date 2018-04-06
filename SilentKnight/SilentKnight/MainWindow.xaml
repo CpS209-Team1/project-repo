@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="350" Width="525" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown">
+        Title="Silent Knight" Height="800" Width="1440" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown">
     <Canvas x:Name="canvas">
+        <Rectangle x:Name="health" Width="130" Height="33">
+            <Rectangle.Fill>
+                <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"
+                            Stretch="None"
+                            AlignmentX="Left"
+                            AlignmentY="Top"
+                            Viewport="0,0,1920,1080"
+                            ViewportUnits="Absolute"
+                            >
+                   
+                    <ImageBrush.Transform>
+                        <TransformGroup>
+                            <TranslateTransform x:Name="HealthSheet" X="0" Y="0"/>
+                            <ScaleTransform ScaleX=".5" ScaleY=".5"/>
+                        </TransformGroup>
+                    </ImageBrush.Transform>
+                </ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ImageRotation" />

@@ -23,7 +23,7 @@ public class DataTest
         Assert.IsTrue(dat.HighScore == 200);
         Assert.IsTrue(dat.Level == 2);
         Assert.IsTrue(dat.CurrentLevel == 2);
-        List<string> val = new List<string>{"3,skeleton,skeleton,skeleton"};
+        List<string> val = new List<string> { "3,skeleton,skeleton,skeleton" };
         Assert.IsTrue(dat.WorldEntities.SequenceEqual(val));
     }
 

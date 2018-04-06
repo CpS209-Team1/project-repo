@@ -13,6 +13,8 @@ namespace Model
         public int Health;
         public Location PlayerLoc;
         public Direction PlayerDirection;
+        public int PlayerScoer;
+        public string PlayerName;
         private Player()
         {
             PlayerDirection = Direction.Down;

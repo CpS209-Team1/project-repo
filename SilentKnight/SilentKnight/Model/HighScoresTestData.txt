@@ -1,4 +1,4 @@
-1000-0 Susie
-40000-0 John
-12121-0 Bobby
-1000-1 Fred
+Susie 1000 
+John 40000 
+Bobby 12121 
+Fred 1000 

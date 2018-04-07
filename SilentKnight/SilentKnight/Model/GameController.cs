@@ -15,9 +15,19 @@ namespace Model
 
     class GameController
     {
-        public void AddTime()
+        int currentTime = 0;
+        public int AddTime()
         {
             World.Instance.Time += 1;
+            if(currentTime == 59)
+            {
+                currentTime = 0;
+            }
+            else
+            {
+                currentTime += 1;
+            }
+            return (currentTime);
         }
 
         public void CalculateScore()
@@ -137,14 +147,6 @@ namespace Model
                     Player.Instance.PlayerDirection = Direction.Right;
                     break;
             }
-        }
-
-        /// <summary>
-        /// Calls Enemy's `DoMove` method
-        /// </summary>
-        public void MoveEnemies()
-        {
-
         }
 
         /// <summary>

@@ -22,7 +22,6 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
-        int healthLevel = 1;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
@@ -171,9 +170,9 @@ namespace SilentKnight
         /// <param name="e"></param>
         void EnemyAttack(object sender, EventArgs e)
         {
-            bool playerHit = ctrl.ComputeEnemyAttack();
+            int playerHits = ctrl.ComputeEnemyAttack();
 
-            if (playerHit && Player.Instance.Health > 0)
+            if (playerHits > 0 && Player.Instance.Health > 0)
             {
                 PlayerHealth();
             }
@@ -188,21 +187,21 @@ namespace SilentKnight
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    if (healthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
+                    if (Player.Instance.HealthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
                     {
 
-                        healthLevel = 1;
+                        Player.Instance.HealthLevel = 1;
                         HealthSheet.X = 0;
                         HealthSheet.Y -= 67;
                     }
                     HealthSheet.X -= 264;
-                    healthLevel += 1;
+                    Player.Instance.HealthLevel += 1;
                 }
             }
             else
             {
                 HealthSheet.X -= 264;
-                healthLevel += 1;
+                Player.Instance.HealthLevel += 1;
             }
 
         }

@@ -23,7 +23,8 @@ class Test
 
         // Player.Instance.Login("Sam","data.txt");
         // World.Instance.RemovePlayerData("data.txt");
-        Entity ent1 = new Entity("moose",2,4);
+        World.Instance.ents.Clear();
+        Entity ent1 = new Entity("monster",2,4);
         World.Instance.AddEnt(ent1);
         Entity ent2 = new Entity("zebra",4,7);
         World.Instance.AddEnt(ent2);

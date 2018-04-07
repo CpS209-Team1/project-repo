@@ -21,14 +21,8 @@
 		Location: 5,6
 		Health: 6
 	- World:
-		Entities: 5
-			Type: cat
-				Health: 10
-				Location: 5,23
-			Type: moose
-				Health: 10
-				Location: 23,3
-			Type: moose
+		Entities: 3
+			Type: monster
 				Health: 10
 				Location: 2,4
 			Type: zebra

@@ -1,3 +1,1 @@
-csc /out:t.exe Entity.cs World.cs Main.cs Player.cs
-
-mono t.exe
+csc Entity.cs World.cs Main.cs Player.cs /out:t.exe && mono t.exe || echo "> An error has ocurred"

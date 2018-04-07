@@ -182,7 +182,6 @@ namespace Model
                     {
                         i.CoolDown -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
                     }
-
                 }
             }
             return (hit);
@@ -199,7 +198,6 @@ namespace Model
         public void Save(string filename)
         {
             RemovePlayerData(filename);
-            //Console.WriteLine("REMOVED");
             string[] file = File.ReadAllText(filename).Split('\n');
             List<string> contents = new List<string>(file);
             contents.RemoveAll(String.IsNullOrWhiteSpace);

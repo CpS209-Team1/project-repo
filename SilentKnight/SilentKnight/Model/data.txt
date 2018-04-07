@@ -1,20 +1,4 @@
-﻿@Bob:
-	- Player:
-		Health: 10
-		Location: 2,3
-		PlayerScore: 345
-		HealthLevel: 2
-	- World:
-		Attributes: 
-			Difficulty: 2
-			CheatMode: true
-			LevelCount: 5
-			Time: 1200
-		Entities: 1
-			Image: gecko.png
-				Health: 10
-				Location: 2,4
-@Mike:
+﻿@Mike:
 	- Player:
 		Health: 10
 		Location: 2,3
@@ -24,6 +8,19 @@
 		Attributes: 
 			Difficulty: 2
 			CheatMode: False
+			LevelCount: 5
+			Time: 1200
+		Entities: 0
+@Bob:
+	- Player:
+		Health: 10
+		Location: 2,3
+		PlayerScore: 345
+		HealthLevel: 2
+	- World:
+		Attributes: 
+			Difficulty: 2
+			CheatMode: True
 			LevelCount: 5
 			Time: 1200
 		Entities: 2

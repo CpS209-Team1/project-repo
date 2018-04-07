@@ -22,6 +22,7 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer gameTime;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
@@ -43,8 +44,32 @@ namespace SilentKnight
             Canvas.SetLeft(Plr, x);
             DoSpawn(10); //Spawns 10 enemies
             EnemyEvents(); //Starts EnemyEvents timer
+            GameTimer();
         }
 
+        private void GameTimer()
+        {
+            InitializeComponent();
+            gameTime = new DispatcherTimer();
+            gameTime.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            gameTime.Tick += new EventHandler(AddTime);
+            gameTime.Start();
+        }
+
+        private void AddTime(object sender, EventArgs e)
+        {
+            int time = ctrl.AddTime();
+            if (time < 60 && time > 0)
+            {
+                secondTxt.Text = time.ToString("D2");
+            }
+            else
+            {
+                int minute = Convert.ToInt32(minuteTxt.Text) + 1;
+                minuteTxt.Text = minute.ToString("D2");
+                secondTxt.Text = time.ToString("D2");
+            }
+        }
         /// <summary>
         /// This method checks if the current wave of enemies is defeated. If so, then the game spawns in another wave.
         /// </summary>
@@ -57,8 +82,7 @@ namespace SilentKnight
             {
                 if (World.Instance.LevelCount == 1)
                 {
-                    levelNumber.Width = 23;
-                    levelSheet.X -= 73;
+                    levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                     DoSpawn(10);
                     World.Instance.LevelCount += 1;
                 }
@@ -66,8 +90,15 @@ namespace SilentKnight
                 {
                     DoSpawn(10);
                     World.Instance.LevelCount += 1;
-                    levelSheet.X -= 131;
+                    levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
+            }
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
+            {
+                gameTime.Stop();
+                World.Instance.GameCompleted = true;
+                ctrl.CalculateScore();
+                scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
             }
         }
 
@@ -217,6 +248,8 @@ namespace SilentKnight
                 canvas.Children.Remove((UIElement)i.observer);
             }
             World.Instance.DeadEnemy = new List<Enemy>();
+            enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
+            scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
         }
 
         /// <summary>
@@ -241,9 +274,10 @@ namespace SilentKnight
                 Canvas.SetTop(enemyControl, x);
                 Canvas.SetLeft(enemyControl, y);
                 canvas.Children.Add(enemyControl);
-                var enemy = new Skeleton(enemyControl, x, y);
+                var enemy = new Skeleton(enemyControl, x, y, "skeleton");
                 World.Instance.Entities.Add(enemy);
             }
+            enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -252,13 +286,22 @@ namespace SilentKnight
             World.Instance.borderBottom = canvas.ActualHeight;
             World.Instance.borderRight = canvas.ActualWidth;
 
-            Thickness margin = levelNumber.Margin;
-            margin.Left = World.Instance.borderRight - 75;
-            levelNumber.Margin = margin;
-            margin = levelTxt.Margin;
-            margin.Left = World.Instance.borderRight - 190;
+            Thickness margin = levelTxt.Margin;
+            margin.Left = World.Instance.borderRight - 220;
             levelTxt.Margin = margin;
 
+            margin = enemyTxt.Margin;
+            margin.Left = World.Instance.borderRight - 220;
+            enemyTxt.Margin = margin;
+
+            margin = timeTxt.Margin;
+            margin.Left = World.Instance.borderRight/2 - 150;
+            timeTxt.Margin = margin;
+
+            margin = scoreTxt.Margin;
+            margin.Left = World.Instance.borderRight / 2 - 150;
+            scoreTxt.Margin = margin;
+            Console.WriteLine(World.Instance.borderRight);
             ctrl.KeepEnemyInBounds();
         }
     }
@@ -272,6 +315,10 @@ namespace SilentKnight
         {
             Canvas.SetTop(this, enemy.EnemyLoc.Y);
             Canvas.SetLeft(this, enemy.EnemyLoc.X);
+        }
+        public void NotifySpawn(int x, int y)
+        {
+
         }
     }
 }

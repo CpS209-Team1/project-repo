@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:SilentKnight"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="Pixel">
+            <Setter Property="TextElement.FontFamily"
+                    Value="/Fonts/#ArcadeClassic">
+                
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

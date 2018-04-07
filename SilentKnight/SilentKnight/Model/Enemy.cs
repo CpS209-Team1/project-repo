@@ -41,7 +41,6 @@ namespace Model
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
             Image = "skeleton.png";
-            Id = ++nextId;
         }
 
         public abstract string GetKind();

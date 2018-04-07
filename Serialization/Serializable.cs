@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.IO;
 
-interface ISerializable
+namespace Model
 {
-    void Serialize(string);
-    void Deserialize(string);
+    interface ISerializable
+    {
+        List<string> Serialize();
+        void Deserialize(StreamReader);
+    }
 }

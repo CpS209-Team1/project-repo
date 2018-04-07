@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Controls;
 
 namespace Model
@@ -19,7 +20,7 @@ namespace Model
 
         int choose = rand.Next(1, 6);
 
-        public Enemy(IEnemyObserver observer, int x, int y)
+        public Enemy(IEnemyObserver observer, double x, double y, string image)
         {
             CoolDown = 0;
             this.observer = observer;
@@ -40,7 +41,7 @@ namespace Model
             }
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
-            Image = "skeleton.png";
+            Image = image;
         }
 
         public abstract string GetKind();
@@ -99,12 +100,16 @@ namespace Model
             observer.NotifyMoved(this);
         }
 
-        public void Serialize(string filename)
+        public List<string> Serialize()
         {
-
+            List<string> world = new List<string>();
+            world.Add(String.Format("\t\t\tImage: {0}",Image));
+            world.Add(String.Format("\t\t\t\tHealth: {0}",Health));
+            world.Add(String.Format("\t\t\t\tLocation: {0},{1}",EnemyLoc.X,EnemyLoc.Y));
+            return world;
         }
 
-        public void Deserialize(string filename)
+        public void Deserialize(StreamReader filename)
         {
 
         }
@@ -120,7 +125,7 @@ namespace Model
 
     class Skeleton : Enemy
     {
-        public Skeleton(IEnemyObserver observer, int x, int y) : base(observer, x, y)
+        public Skeleton(IEnemyObserver observer, double x, double y, string image) : base(observer, x, y, image)
         {
 
         }
@@ -160,10 +165,10 @@ namespace Model
         }
     }
 
-
     // Oberver pattern
     interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
+        void NotifySpawn(int x, int y);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Model
 {
@@ -15,6 +16,7 @@ namespace Model
         public int Difficulty { get; set; }
         public bool CheatMode { get; set; }
         public int LevelCount { get; set; }
+        public int Time { get; set; }
 
         private World()
         {
@@ -25,14 +27,16 @@ namespace Model
             CheatMode = false;
             LevelCount = 1;
         }
+
         private static World instance = new World();
+
         /// <summary>
         /// Adds enemy to `Entities` list
         /// </summary>
         /// <param name="enemy"></param>
         public void AddEntity(Enemy enemy)
         {
-
+            Entities.Add(enemy);
         }
 
         // public Enemy GetEntityByID(int ID)
@@ -48,6 +52,45 @@ namespace Model
         public void RemoveEntity(int id)
         {
 
+        }
+
+        public List<string> Serialize()
+        {
+            List<string> world = new List<string>();
+            int entNum = World.Instance.Entities.Count();
+            world.Add("\t- World:");
+            world.Add("\t\tAttributes: ");
+            world.Add(String.Format("\t\t\tDifficulty: {0}",World.Instance.Difficulty));
+            world.Add(String.Format("\t\t\tCheatMode: {0}",World.Instance.CheatMode));
+            world.Add(String.Format("\t\t\tLevelCount: {0}",World.Instance.LevelCount));
+            world.Add(String.Format("\t\t\tTime: {0}",World.Instance.Time));
+            world.Add(String.Format("\t\tEntities: {0}",entNum));
+            foreach (Enemy ent in World.Instance.Entities)
+            {
+                List<string> attrs = ent.Serialize();
+                foreach(string attr in attrs) { world.Add(attr); }
+            }
+            return world;
+        }
+
+        public void Deserialize(StreamReader rd)
+        {
+            rd.ReadLine();
+            World.Instance.Difficulty = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            World.Instance.CheatMode = Boolean.Parse(rd.ReadLine().Trim().Split(' ')[1]);
+            World.Instance.LevelCount = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            World.Instance.Time = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            int numEnts = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            for (int i = 0; i < numEnts; ++i)
+            {
+                string image = rd.ReadLine().Trim().Split(' ')[1];
+                int health = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+                string[] loc = rd.ReadLine().Trim().Split(' ')[1].Split(',');
+                double x = Convert.ToDouble(loc[0]);
+                double y = Convert.ToDouble(loc[1]);
+                Skeleton ent = new Skeleton(Spawn.Instance.observer,x,y,image);
+                World.Instance.AddEntity(ent);
+            }
         }
 
         public static World Instance

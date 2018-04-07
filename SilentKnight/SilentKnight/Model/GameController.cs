@@ -3,11 +3,103 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Model
 {
+    interface ISerializable
+    {
+        List<string> Serialize();
+        void Deserialize(StreamReader rd);
+    }
+
     class GameController
     {
+        public List<string> Users = new List<string>();
+
+        /// <summary>
+        /// Validates whether a user exists in a specified text file.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="filename"></param>
+        public bool ValidateUser(string name,string filename)
+        {
+            string[] file = File.ReadAllText(filename).Split('\n');
+            List<string> contents = new List<string>(file);
+            foreach (string line in contents)
+            {
+                if (line.Contains("@"))
+                {
+                    Users.Add(line.Substring(1,line.IndexOf(":") - 1));
+                }
+            }
+            return Users.Contains(name);
+        }
+
+        /// <summary>
+        /// Displays player and all entities in World.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="filename"></param>
+        public void Print()
+        {
+            Console.WriteLine(String.Format("Player: {0} at ({1},{2})",
+                                                                    Player.Instance.PlayerName,
+                                                                    Player.Instance.PlayerLoc.X,
+                                                                    Player.Instance.PlayerLoc.Y));
+            Console.WriteLine(String.Format("World Entities:"));
+            foreach (Enemy ent in World.Instance.Entities)
+            {
+                Console.WriteLine(String.Format("\t-> {0} at ({1},{2})",
+                                                                    ent.Image,
+                                                                    ent.EnemyLoc.X,
+                                                                    ent.EnemyLoc.Y));
+            }
+        }
+
+        /// <summary>
+        /// Removes the current player's data from a given text file.
+        /// </summary>
+        /// <param name="filename"></param>
+        public void RemovePlayerData(string filename)
+        {
+            int startInd = 0;
+            int endInd = 0;
+            string[] file = File.ReadAllText(filename).Split('\n');
+            List<string> contents = new List<string>(file);
+            contents.RemoveAll(String.IsNullOrWhiteSpace);
+            List<string> outfile = contents;
+
+            int size = contents.Count();
+            bool found = false;
+            int ind = 0;
+            foreach(string line in contents)
+            {
+                string curline = line.Trim();
+                if (curline == String.Format("@{0}:",Player.Instance.PlayerName))
+                {
+                    startInd = ind;
+                    found = true;
+                }
+                else if (((curline.Contains("@") || (ind == contents.Count - 1)) && found))
+                {
+                    if (curline.Contains("@")) { endInd = ind - 1; }
+                    else { endInd = ind; }
+                    break;
+                }
+                ++ind;
+            }
+            if (found)
+            {
+                for (int i = startInd; i <= endInd; ++i)
+                {
+                    outfile.RemoveAt(startInd);
+                }
+                File.WriteAllLines(filename, outfile.ToArray(), Encoding.UTF8);
+            }
+            if (!found) Console.WriteLine("***USER NOT FOUND");
+        }
+
         /// <summary>
         /// Updates the player's location
         /// 
@@ -104,14 +196,43 @@ namespace Model
             }
         }
 
-        public void Save()
+        public void Save(string filename)
         {
-
+            RemovePlayerData(filename);
+            //Console.WriteLine("REMOVED");
+            string[] file = File.ReadAllText(filename).Split('\n');
+            List<string> contents = new List<string>(file);
+            contents.RemoveAll(String.IsNullOrWhiteSpace);
+            List <string> plr = Player.Instance.Serialize();
+            List <string> world = World.Instance.Serialize();
+            foreach(string attr in plr) { contents.Add(attr); }
+            foreach(string elem in world) { contents.Add(elem); }
+            File.WriteAllLines(filename, contents.ToArray(), Encoding.UTF8);
         }
 
-        public void Load()
+        public void Load(string filename)
         {
-
+            string line;
+            using (StreamReader rd = new StreamReader(filename))
+            {
+                while ((line = rd.ReadLine()) != null)
+                {
+                    if (line == String.Format("@{0}:",Player.Instance.PlayerName))
+                    {
+                        while(((line = rd.ReadLine()) != null) && (!line.Contains("@")))
+                        {
+                            if (line.Contains("- Player:"))
+                            {
+                                Player.Instance.Deserialize(rd);
+                            }
+                            else if (line.Contains("- World:"))
+                            {
+                                World.Instance.Deserialize(rd);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

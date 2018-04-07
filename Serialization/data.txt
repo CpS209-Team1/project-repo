@@ -3,31 +3,31 @@
 		Location: 2,3
 		Health: 10
 	- World:
-		Entities: 4
-			Type: dog
-				Health: 10
-				Location: 4,1
-			Type: cat
-				Health: 10
-				Location: 7,71
-			Type: moose
-				Health: 10
-				Location: 2,4
-			Type: moose
-				Health: 10
-				Location: 2,4
-@Sam:
-	- Player:
-		Location: 5,6
-		Health: 6
-	- World:
 		Entities: 3
 			Type: monster
 				Health: 10
 				Location: 2,4
-			Type: zebra
+			Type: zebro
 				Health: 10
 				Location: 4,7
 			Type: cow
 				Health: 10
 				Location: 5,2
+@Sam:
+	- Player:
+		Location: 5,6
+		Health: 6
+	- World:
+		Entities: 4
+			Type: cat
+				Health: 10
+				Location: 2,4
+			Type: zebro
+				Health: 10
+				Location: 4,7
+			Type: cow
+				Health: 10
+				Location: 5,2
+			Type: alien
+				Health: 10
+				Location: 9,25

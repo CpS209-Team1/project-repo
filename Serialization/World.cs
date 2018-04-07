@@ -24,7 +24,7 @@ class World
     {
         ents.Add(ent);
     }
-
+    
     public bool ValidateUser(string name,string filename)
     {
         string[] file = File.ReadAllText(filename).Split('\n');
@@ -106,9 +106,6 @@ class World
         contents.RemoveAll(String.IsNullOrWhiteSpace);
         List<string> outfile = contents;
 
-        //int x = 0;
-        //foreach(string str in contents) { Console.WriteLine(x.ToString() + ": " + str); ++x; }
-
         int size = contents.Count();
         bool found = false;
         int ind = 0;
@@ -159,6 +156,8 @@ class World
     {
         List<string> world = new List<string>();
         world.Add("\t- World:");
+        world.Add(String.Format("\t\tAttributes: ",entNum));
+        world.Add(String.Format("\t\t\tEntities: {0}",entNum));
         int entNum = World.Instance.ents.Count();
         world.Add(String.Format("\t\tEntities: {0}",entNum));
         foreach (Entity ent in World.Instance.ents)

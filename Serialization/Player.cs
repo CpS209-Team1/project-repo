@@ -23,12 +23,19 @@ namespace Model
             Health = 20;
         }
 
-        public void Login(string user)
+        public void Login(string user,string filename)
         {
-            Name = user;
-            Health = 10;
-            PlayerLoc.X = 0;
-            PlayerLoc.Y = 0;
+            if (World.Instance.ValidateUser(user,filename))
+            {
+                Name = user;
+                Health = 10;
+                PlayerLoc.X = 0;
+                PlayerLoc.Y = 0;
+            }
+            else
+            {
+                Console.WriteLine("**NO USER FOUND");
+            }
         }
 
         /// <summary>
@@ -50,9 +57,14 @@ namespace Model
 
         }
 
-        public void Serialize(string filename)
+        public List<string> Serialize()
         {
-            
+            List<string> player = new List<string>();
+            player.Add(String.Format("@{0}:",Player.Instance.Name));
+            player.Add("\t- Player:");
+            player.Add(String.Format("\t\tLocation: {0},{1}",Player.Instance.PlayerLoc.X,Player.Instance.PlayerLoc.Y));
+            player.Add(String.Format("\t\tHealth: {0}",Player.Instance.Health));   
+            return player;                                                                                                                      
         }
 
         public void Deserialize(StreamReader rd)

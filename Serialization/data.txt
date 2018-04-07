@@ -1,42 +1,39 @@
 ﻿@Mike:
-    - Player:
-        Location: 2,3
-        Health: 10
-    - World:
-        Entities: 2
-            Type: dog
-                Health: 10
-                Location: 4,1
-            Type: cat
-                Health: 6
-                Location: 7,71
+	- Player:
+		Location: 2,3
+		Health: 10
+	- World:
+		Entities: 4
+			Type: dog
+				Health: 10
+				Location: 4,1
+			Type: cat
+				Health: 10
+				Location: 7,71
+			Type: moose
+				Health: 10
+				Location: 2,4
+			Type: moose
+				Health: 10
+				Location: 2,4
 @Sam:
-    - Player:
-        Location: 5,6
-        Health: 6
-    - World:
-        Entities: 2
-            Type: cat
-                Health: 10
-                Location: 5,23
-            Type: moose
-                Health: 100
-                Location: 23,3
-
-@Nick:
-    - Player:
-        Location: 0,0
-        Health: 3
-    - World:
-        Entities: 0
-
-
-
-
-
-
-
-
-
-
-
+	- Player:
+		Location: 5,6
+		Health: 6
+	- World:
+		Entities: 5
+			Type: cat
+				Health: 10
+				Location: 5,23
+			Type: moose
+				Health: 10
+				Location: 23,3
+			Type: moose
+				Health: 10
+				Location: 2,4
+			Type: zebra
+				Health: 10
+				Location: 4,7
+			Type: cow
+				Health: 10
+				Location: 5,2

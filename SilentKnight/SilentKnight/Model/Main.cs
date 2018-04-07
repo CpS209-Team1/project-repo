@@ -12,11 +12,11 @@ class Test
         GameController ctrl = new GameController();
         Player.Instance.Login("Bob","data.txt",ctrl);
         ctrl.Load("data.txt");
-        World.Instance.Entities.Clear();
         ctrl.Print();
+        World.Instance.Entities.Clear();
         Skeleton ent1 = new Skeleton(Spawn.Instance.observer,2,4,"cat.png");
-        World.Instance.AddEntity(ent1);
         Skeleton ent2 = new Skeleton(Spawn.Instance.observer,2,4,"bat.png");
+        World.Instance.AddEntity(ent1);
         World.Instance.AddEntity(ent2);
         ctrl.Save("data.txt");
         ctrl.Print();

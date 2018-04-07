@@ -36,6 +36,15 @@ namespace Model
             return Users.Contains(name);
         }
 
+        public void CreateNewUser(string name, string filename,GameController ctrl)
+        {
+            if (!ctrl.ValidateUser(name,filename))
+            {
+                Player.Instance.PlayerName = name;
+                World.Instance.Entities.Clear();
+            }
+        }
+
         /// <summary>
         /// Displays player and all entities in World.
         /// </summary>

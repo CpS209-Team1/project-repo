@@ -5,18 +5,21 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
+using System;
+using System.Diagnostics;
 
 namespace SilentKnight.Model
 {
     [TestClass]
-    class HighScoreTest
+    public class HighScoreTest
     {
         [TestMethod]
         public void ReadScores_LoadScores_Success()
         {
             HighScore highscores = new HighScore();
             highscores.LoadScores("HighScoresTestData.txt");
-            Assert.IsTrue(highscores.scoreList[0].Name == "Susie");
+            Assert.IsTrue(highscores.scoreList[0].Name == "Susie");          
+            Assert.IsTrue(highscores.scoreList[2].Points == 12121);
         }
 
         [TestMethod]

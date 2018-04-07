@@ -19,7 +19,7 @@ namespace Model
         {
             Player.Instance.PlayerLoc.X = x;
             Player.Instance.PlayerLoc.Y = y;
-            switch(KeyPress)//Keypress is used to determine which direction the player was looking in when he/she attacked
+            switch (KeyPress)//Keypress is used to determine which direction the player was looking in when he/she attacked
             {
                 //Sets the player's direction to the appropriate direction
                 case "S":
@@ -62,7 +62,7 @@ namespace Model
                     World.Instance.DeadEnemy.Add(i);// Once an enemy is removed from the Entities list, it is added to DeadEnemy for removal from the canvas
                 }
             }
-            
+
             foreach (Enemy i in World.Instance.DeadEnemy)
             {
                 i.KillEnemy();
@@ -72,8 +72,9 @@ namespace Model
         /// <summary>
         /// Calculates the enemy's attack to see if attack was successful
         /// </summary>
-        public void ComputeEnemyAttack()
+        public int ComputeEnemyAttack()
         {
+            int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDown == 0 && World.Instance.CheatMode == false)
@@ -81,6 +82,7 @@ namespace Model
                     Player.Instance.RemovePlayerHealth(2);
                     Console.WriteLine(Player.Instance.Health);
                     i.CoolDown = 100;
+                    hit += 1;
                 }
                 else
                 {
@@ -88,7 +90,17 @@ namespace Model
                     {
                         i.CoolDown -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
                     }
+
                 }
+            }
+            return (hit);
+        }
+
+        public void KeepEnemyInBounds()
+        {
+            foreach (Enemy i in World.Instance.Entities)
+            {
+                EnemyMove.Instance.Teleport(i);
             }
         }
 

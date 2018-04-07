@@ -22,7 +22,6 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
-        int healthLevel = 1;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
@@ -53,9 +52,22 @@ namespace SilentKnight
         /// <param name="e"></param>
         void CheckLevelStatus(object sender, EventArgs e)
         {
-            if (World.Instance.Entities.Count == 0)
+
+            if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
             {
-                DoSpawn(10);
+                if (World.Instance.LevelCount == 1)
+                {
+                    levelNumber.Width = 23;
+                    levelSheet.X -= 73;
+                    DoSpawn(10);
+                    World.Instance.LevelCount += 1;
+                }
+                else
+                {
+                    DoSpawn(10);
+                    World.Instance.LevelCount += 1;
+                    levelSheet.X -= 131;
+                }
             }
         }
 
@@ -158,8 +170,12 @@ namespace SilentKnight
         /// <param name="e"></param>
         void EnemyAttack(object sender, EventArgs e)
         {
-            ctrl.ComputeEnemyAttack();
-            PlayerHealth();
+            int playerHits = ctrl.ComputeEnemyAttack();
+
+            if (playerHits > 0 && Player.Instance.Health > 0)
+            {
+                PlayerHealth();
+            }
         }
 
         /// <summary>
@@ -167,32 +183,27 @@ namespace SilentKnight
         /// </summary>
         void PlayerHealth()
         {
-            int currentHealth = Player.Instance.Health;
-            ctrl.ComputeEnemyAttack();
-
-            if (currentHealth > Player.Instance.Health && Player.Instance.Health > 0)
+            if (Player.Instance.Health > 2)
             {
-                if (Player.Instance.Health > 2)
+                for (int i = 0; i < 2; i++)
                 {
-                    for (int i = 0; i < currentHealth - Player.Instance.Health; i++)
+                    if (Player.Instance.HealthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
                     {
-                        if (healthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
-                        {
 
-                            healthLevel = 1;
-                            HealthSheet.X = 0;
-                            HealthSheet.Y -= 67;
-                        }
-                        HealthSheet.X -= 264;
-                        healthLevel += 1;
+                        Player.Instance.HealthLevel = 1;
+                        HealthSheet.X = 0;
+                        HealthSheet.Y -= 67;
                     }
-                }
-                else
-                {
                     HealthSheet.X -= 264;
-                    healthLevel += 1;
+                    Player.Instance.HealthLevel += 1;
                 }
             }
+            else
+            {
+                HealthSheet.X -= 264;
+                Player.Instance.HealthLevel += 1;
+            }
+
         }
 
         /// <summary>
@@ -233,6 +244,22 @@ namespace SilentKnight
                 var enemy = new Skeleton(enemyControl, x, y);
                 World.Instance.Entities.Add(enemy);
             }
+        }
+
+        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            World.Instance.borderBottom = canvas.ActualHeight;
+            World.Instance.borderRight = canvas.ActualWidth;
+
+            Thickness margin = levelNumber.Margin;
+            margin.Left = World.Instance.borderRight - 75;
+            levelNumber.Margin = margin;
+            margin = levelTxt.Margin;
+            margin.Left = World.Instance.borderRight - 190;
+            levelTxt.Margin = margin;
+
+            ctrl.KeepEnemyInBounds();
         }
     }
 

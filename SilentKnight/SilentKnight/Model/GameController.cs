@@ -15,6 +15,16 @@ namespace Model
 
     class GameController
     {
+        public void AddTime()
+        {
+            World.Instance.Time += 1;
+        }
+
+        public void CalculateScore()
+        {
+            Player.Instance.PlayerScore += (1000 / World.Instance.Time) + 100;
+        }
+
         public List<string> Users = new List<string>();
 
         /// <summary>
@@ -152,6 +162,7 @@ namespace Model
                 if (i.Health <= 0)
                 {
                     World.Instance.DeadEnemy.Add(i);// Once an enemy is removed from the Entities list, it is added to DeadEnemy for removal from the canvas
+                    Player.Instance.PlayerScore += 1;
                 }
             }
 
@@ -172,7 +183,7 @@ namespace Model
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDown == 0 && World.Instance.CheatMode == false)
                 {
                     Player.Instance.RemovePlayerHealth(2);
-                    Console.WriteLine(Player.Instance.Health);
+                    //Console.WriteLine(Player.Instance.Health);
                     i.CoolDown = 100;
                     hit += 1;
                 }

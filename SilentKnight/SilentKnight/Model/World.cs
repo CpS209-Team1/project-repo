@@ -17,7 +17,7 @@ namespace Model
         public bool CheatMode { get; set; }
         public int LevelCount { get; set; }
         public int Time { get; set; }
-
+        public bool GameCompleted { get; set; }
         private World()
         {
             Entities = new List<Enemy>();
@@ -26,6 +26,8 @@ namespace Model
             Difficulty = 1;
             CheatMode = false;
             LevelCount = 1;
+            Time = 0;
+            GameCompleted = false;
         }
 
         private static World instance = new World();

@@ -24,6 +24,7 @@ namespace Model
             PlayerLoc.X = 234;
             PlayerLoc.Y = 159;
             HealthLevel = 1;
+            PlayerScore = 0;
         }
 
         public void Login(string user,string filename, GameController ctrl)

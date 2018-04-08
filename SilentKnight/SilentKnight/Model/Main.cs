@@ -10,7 +10,7 @@ class Test
     public static void Main()
     {
         GameController ctrl = new GameController();
-        Player.Instance.Login("Bob","data.txt",ctrl);
+        Player.Instance.Login("Mike","data.txt",ctrl);
         ctrl.Load("data.txt");
         ctrl.Print();
         World.Instance.Entities.Clear();

@@ -29,14 +29,7 @@ namespace Model
 
         public void Login(string user,string filename, GameController ctrl)
         {
-            if (ctrl.ValidateUser(user,filename))
-            {
-                Player.Instance.PlayerName = user;
-            }
-            else
-            {
-                Console.WriteLine("**NO USER FOUND");
-            }
+            Player.Instance.PlayerName = user;
         }
 
         /// <summary>

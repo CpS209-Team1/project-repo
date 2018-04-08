@@ -44,7 +44,7 @@ namespace Model
         /// <param name="filename"></param>
         public bool ValidateUser(string name,string filename)
         {
-            string[] file = File.ReadAllText(filename).Split('\n');
+            string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
             List<string> contents = new List<string>(file);
             foreach (string line in contents)
             {
@@ -61,7 +61,6 @@ namespace Model
             if (!ctrl.ValidateUser(name,filename))
             {
                 Player.Instance.PlayerName = name;
-                World.Instance.Entities.Clear();
             }
         }
 
@@ -94,17 +93,18 @@ namespace Model
         {
             int startInd = 0;
             int endInd = 0;
-            string[] file = File.ReadAllText(filename).Split('\n');
+            string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
+            foreach(string fileline in file) { Console.WriteLine("line: " + fileline); }
             List<string> contents = new List<string>(file);
             contents.RemoveAll(String.IsNullOrWhiteSpace);
             List<string> outfile = contents;
 
-            int size = contents.Count();
             bool found = false;
             int ind = 0;
             foreach(string line in contents)
             {
                 string curline = line.Trim();
+                Console.WriteLine("->:" + line);
                 if (curline == String.Format("@{0}:",Player.Instance.PlayerName))
                 {
                     startInd = ind;
@@ -124,6 +124,7 @@ namespace Model
                 {
                     outfile.RemoveAt(startInd);
                 }
+                outfile.RemoveAll(String.IsNullOrWhiteSpace);
                 File.WriteAllLines(filename, outfile.ToArray(), Encoding.UTF8);
             }
             if (!found) Console.WriteLine("***USER NOT FOUND");
@@ -140,7 +141,7 @@ namespace Model
         {
             Player.Instance.PlayerLoc.X = x;
             Player.Instance.PlayerLoc.Y = y;
-            switch (KeyPress)//Keypress is used to determine which direction the player was looking in when he/she attacked
+            switch (KeyPress) //Keypress is used to determine which direction the player was looking in when he/she attacked
             {
                 //Sets the player's direction to the appropriate direction
                 case "S":
@@ -220,13 +221,16 @@ namespace Model
         public void Save(string filename)
         {
             RemovePlayerData(filename);
-            string[] file = File.ReadAllText(filename).Split('\n');
+            string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
             List<string> contents = new List<string>(file);
+            foreach(string str in contents) { Console.WriteLine("->: " + str); }
             contents.RemoveAll(String.IsNullOrWhiteSpace);
             List <string> plr = Player.Instance.Serialize();
             List <string> world = World.Instance.Serialize();
             foreach(string attr in plr) { contents.Add(attr); }
             foreach(string elem in world) { contents.Add(elem); }
+            contents.RemoveAll(String.IsNullOrWhiteSpace);
+            foreach(string str in contents) { Console.WriteLine("->: " + str); }
             File.WriteAllLines(filename, contents.ToArray(), Encoding.UTF8);
         }
 

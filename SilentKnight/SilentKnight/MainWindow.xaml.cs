@@ -304,6 +304,15 @@ namespace SilentKnight
             Console.WriteLine(World.Instance.borderRight);
             ctrl.KeepEnemyInBounds();
         }
+
+        private void btnClick_Save(object sender, RoutedEventArgs e)
+        {
+            string name = txtName.Text;
+            if (name == "Enter name here") return;
+            Player.Instance.Login(name, "data.txt", ctrl);
+            ctrl.Save("data.txt");
+            ctrl.Print();
+        }
     }
 
     /// <summary>

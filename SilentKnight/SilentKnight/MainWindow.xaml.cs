@@ -23,15 +23,21 @@ namespace SilentKnight
     public partial class MainWindow : Window
     {
         DispatcherTimer gameTime;
+        DispatcherTimer animate;
+        DispatcherTimer timer;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
-        GameController ctrl = new GameController();
+        public GameController ctrl = new GameController();
+        public GameController Controller
+        {
+            get { return ctrl; }
+        }
 
         public MainWindow()
         {
             //Timer for player movement
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
+            timer = new DispatcherTimer();
             timer.Tick += new EventHandler(MovePlayer);
             timer.Start();
         }
@@ -107,7 +113,7 @@ namespace SilentKnight
         /// </summary>
         void EnemyEvents()
         {
-            DispatcherTimer animate = new DispatcherTimer();
+            animate = new DispatcherTimer();
             animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
             animate.Tick += new EventHandler(AnimateEnemy); //Adds AnimateEnemy to the timer
             animate.Tick += new EventHandler(EnemyAttack); //Adds EnemyAttack to the timer
@@ -305,13 +311,19 @@ namespace SilentKnight
             ctrl.KeepEnemyInBounds();
         }
 
-        private void btnClick_Save(object sender, RoutedEventArgs e)
+        private void OnKeyUp(object sender, KeyEventArgs e)
         {
-            string name = txtName.Text;
-            if (name == "Enter name here") return;
-            Player.Instance.Login(name, "data.txt", ctrl);
-            ctrl.Save("data.txt");
-            ctrl.Print();
+            if (e.Key == Key.Escape)
+            {
+                timer.Stop();
+                animate.Stop();
+                gameTime.Stop();
+                PauseWindow pause = new PauseWindow();
+                pause.ShowDialog();
+                timer.Start();
+                animate.Start();
+                gameTime.Start();
+            }
         }
     }
 

@@ -13,7 +13,7 @@ namespace Model
         void Deserialize(StreamReader rd);
     }
 
-    class GameController
+    public class GameController
     {
         int currentTime = 0;
         public int AddTime()
@@ -94,7 +94,7 @@ namespace Model
             int startInd = 0;
             int endInd = 0;
             string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
-            foreach(string fileline in file) { Console.WriteLine("line: " + fileline); }
+ 
             List<string> contents = new List<string>(file);
             contents.RemoveAll(String.IsNullOrWhiteSpace);
             List<string> outfile = contents;
@@ -104,7 +104,7 @@ namespace Model
             foreach(string line in contents)
             {
                 string curline = line.Trim();
-                Console.WriteLine("->:" + line);
+
                 if (curline == String.Format("@{0}:",Player.Instance.PlayerName))
                 {
                     startInd = ind;
@@ -223,14 +223,12 @@ namespace Model
             RemovePlayerData(filename);
             string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
             List<string> contents = new List<string>(file);
-            foreach(string str in contents) { Console.WriteLine("->: " + str); }
             contents.RemoveAll(String.IsNullOrWhiteSpace);
             List <string> plr = Player.Instance.Serialize();
             List <string> world = World.Instance.Serialize();
             foreach(string attr in plr) { contents.Add(attr); }
             foreach(string elem in world) { contents.Add(elem); }
             contents.RemoveAll(String.IsNullOrWhiteSpace);
-            foreach(string str in contents) { Console.WriteLine("->: " + str); }
             File.WriteAllLines(filename, contents.ToArray(), Encoding.UTF8);
         }
 

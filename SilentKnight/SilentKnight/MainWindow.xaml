@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" >
+        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" >
     <Canvas x:Name="canvas" SizeChanged="Canvas_SizeChanged">
 
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
@@ -50,14 +50,10 @@
             <TextBlock x:Name="enemyTxt" Text="Enemies:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,50,0,0"/>
             <TextBlock x:Name="enemyNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="1,50,0,0"/>
         </StackPanel>
-
-
         <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="53" Canvas.Top="96">
             <Image.RenderTransform>
                 <RotateTransform x:Name="ImageRotation" />
             </Image.RenderTransform>
         </Image>
-        <Button x:Name="btnSave" Content="SAVE" Canvas.Left="974" Click="btnClick_Save" Canvas.Top="18" Width="72" Height="23"/>
-        <TextBox x:Name="txtName" Height="23" Canvas.Left="836" TextWrapping="Wrap" Text="Enter name here" Canvas.Top="18" Width="120"/>
     </Canvas>
 </Window>

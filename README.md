@@ -18,19 +18,19 @@ A link to your screen recording.
 </tr>
 
 <tr>
-<td>[Avinante](https://github.com/CpS209-Team1/project-repo.wiki.git)  </td>
-<td>x hours</td>
-<td>x Minutes</td>
+<td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Avinante-Journal">Avinante</a>  </td>
+<td>18 hours 35 minutes</td>
+<td>31 hours 25 minutes</td>
 </tr>
 <tr>
-<td>Bruno</td>
-<td>x hours</td>
-<td>x Minutes</td>
+<td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
+<td>12 hours</td>
+<td>38 hours</td>
 </tr>
 <tr>
-<td>Olson</td>
-<td>x hours</td>
-<td>x Minutes</td>
+<td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>
+<td>30 hours 57 minutes</td>
+<td>19 hours 03 minutes</td>
 </tr>
 
 <tr>

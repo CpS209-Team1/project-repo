@@ -18,7 +18,7 @@ A link to your screen recording.
 </tr>
 
 <tr>
-<td>[Avinante](https://github.com/CpS209-Team1/project-repo.wiki.git)  </td>
+  <td><a href="https://github.com/CpS209-Team1/project-repo.wiki.git">Avinante</a>  </td>
 <td>x hours</td>
 <td>x Minutes</td>
 </tr>

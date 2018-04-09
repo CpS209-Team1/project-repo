@@ -1,0 +1,15 @@
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                timer.Stop();
+                animate.Stop();
+                gameTime.Stop();
+                PauseWindow pause = new PauseWindow();
+                pause.ShowDialog();
+                timer.Start();
+                animate.Start();
+                gameTime.Start();
+            }
+        }
+    }

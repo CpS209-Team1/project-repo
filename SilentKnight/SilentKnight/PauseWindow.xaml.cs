@@ -25,15 +25,8 @@ namespace SilentKnight
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            closed = false;
-        }
-
         static MainWindow main = (MainWindow)Application.Current.MainWindow;
         GameController ctrl = main.Controller;
-
-        public bool closed;
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
@@ -43,12 +36,5 @@ namespace SilentKnight
             ctrl.Save("data.txt");
             ctrl.Print();
         }
-
-        private void MenuClosing(object sender, ContextMenuEventArgs e)
-        {
-            closed = true;
-        }
-
-
     }
 }

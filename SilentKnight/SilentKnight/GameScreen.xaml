@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1400"
-        Title="GameScreen" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" Background="White">
+        Title="GameScreen" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" Background="White">
     <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged">
 
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->

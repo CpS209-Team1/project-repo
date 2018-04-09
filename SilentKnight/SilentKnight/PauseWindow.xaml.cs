@@ -25,7 +25,7 @@ namespace SilentKnight
             InitializeComponent();
         }
 
-        static MainWindow main = (MainWindow)Application.Current.MainWindow;
+        static GameScreen main = (GameScreen)Application.Current.MainWindow;
         GameController ctrl = main.Controller;
 
         private void btnSaveClick(object sender, RoutedEventArgs e)

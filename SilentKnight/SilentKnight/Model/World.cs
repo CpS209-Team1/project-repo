@@ -62,6 +62,7 @@ namespace Model
             int entNum = World.Instance.Entities.Count();
             world.Add("\t- World:");
             world.Add("\t\tAttributes: ");
+            world.Add(String.Format("\t\t\tBorder: {0},{1}",World.Instance.borderRight,World.Instance.borderBottom));
             world.Add(String.Format("\t\t\tDifficulty: {0}",World.Instance.Difficulty));
             world.Add(String.Format("\t\t\tCheatMode: {0}",World.Instance.CheatMode));
             world.Add(String.Format("\t\t\tLevelCount: {0}",World.Instance.LevelCount));
@@ -78,6 +79,7 @@ namespace Model
         public void Deserialize(StreamReader rd)
         {
             rd.ReadLine();
+            World.Instance.borderRight = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.Difficulty = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.CheatMode = Boolean.Parse(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.LevelCount = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);

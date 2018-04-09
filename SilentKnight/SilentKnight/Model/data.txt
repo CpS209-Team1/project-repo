@@ -5,7 +5,8 @@
 		PlayerScore: 0
 		HealthLevel: 1
 	- World:
-		Attributes: 
+		Attributes:
+			Border: 855,500
 			Difficulty: 1
 			CheatMode: False
 			LevelCount: 1

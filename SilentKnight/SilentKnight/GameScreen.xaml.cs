@@ -24,10 +24,14 @@ namespace SilentKnight
     {
         DispatcherTimer gameTime;
         DispatcherTimer animate;
-        DispatcherTimer timer; 
+        DispatcherTimer timer;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
+        public GameController GameController
+        {
+            get { return ctrl; }
+        }
 
         public GameScreen()
         {
@@ -307,14 +311,15 @@ namespace SilentKnight
             ctrl.KeepEnemyInBounds();
         }
 
-        private void OnKeyUp(object sender, KeyEventArgs e)
+        public void OnKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape)
+            if (e.Key == Key.Escape && timer != null)
             {
+                Console.WriteLine("Pressed Escape!");
                 timer.Stop();
                 animate.Stop();
                 gameTime.Stop();
-                PauseWindow pause = new PauseWindow();
+                PauseWindow pause = new PauseWindow(ctrl);
                 pause.ShowDialog();
                 timer.Start();
                 animate.Start();
@@ -322,7 +327,6 @@ namespace SilentKnight
             }
         }
     }
-}
 
     /// <summary>
     /// This class updates the enemy's position

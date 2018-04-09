@@ -20,13 +20,12 @@ namespace SilentKnight
     /// </summary>
     public partial class PauseWindow : Window
     {
-        public PauseWindow()
+        GameController ctrl;
+        public PauseWindow(GameController c)
         {
             InitializeComponent();
+            ctrl = c;
         }
-
-        static GameScreen main = (GameScreen)Application.Current.MainWindow;
-        GameController ctrl = main.Controller;
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {

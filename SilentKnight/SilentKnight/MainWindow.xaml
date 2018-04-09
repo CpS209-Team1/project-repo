@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded">
+        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" KeyUp="btnKeyUp">
     <Canvas x:Name="mainWindowCanvas">
 
         <Button Content="Button" Canvas.Left="467" Canvas.Top="219" Width="75" Click="Button_Click_GameScreen"/>

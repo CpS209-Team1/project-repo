@@ -22,6 +22,7 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
+        GameScreen gs = new GameScreen();
 
         public MainWindow()
         {
@@ -35,7 +36,13 @@ namespace SilentKnight
 
         private void Button_Click_GameScreen(object sender, RoutedEventArgs e)
         {
-            Main.Content = new GameScreen();
+            Main.Content = gs;
+        }
+
+        private void btnKeyUp(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(e);
+            gs.OnKeyUp(sender,e);
         }
     }
 }

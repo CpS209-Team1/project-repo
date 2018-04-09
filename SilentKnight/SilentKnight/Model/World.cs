@@ -9,10 +9,10 @@ namespace Model
 {
     class World
     {
-        public List<Enemy> Entities { get; set; }//This list is for storing all game entities
-        public List<Enemy> DeadEnemy { get; set; }//This list is for storing enemies that need to be removed from the canvas
-        public double borderRight { get; set; }//This is for border collision
-        public double borderBottom { get; set; }//This is for border collision
+        public List<Enemy> Entities { get; set; } //This list is for storing all game entities
+        public List<Enemy> DeadEnemy { get; set; } //This list is for storing enemies that need to be removed from the canvas
+        public double borderRight { get; set; } //This is for border collision
+        public double borderBottom { get; set; } //This is for border collision
         public int Difficulty { get; set; }
         public bool CheatMode { get; set; }
         public int LevelCount { get; set; }
@@ -79,7 +79,9 @@ namespace Model
         public void Deserialize(StreamReader rd)
         {
             rd.ReadLine();
-            World.Instance.borderRight = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            string[] border = rd.ReadLine().Trim().Split(' ')[1].Split(',');
+            World.Instance.borderRight = Convert.ToInt32(border[0]);
+            World.Instance.borderBottom = Convert.ToInt32(border[1]);
             World.Instance.Difficulty = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.CheatMode = Boolean.Parse(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.LevelCount = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);

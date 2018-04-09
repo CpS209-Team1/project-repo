@@ -120,6 +120,7 @@ namespace Model
             }
             if (found)
             {
+                if (endInd == 0) { endInd = startInd; }
                 for (int i = startInd; i <= endInd; ++i)
                 {
                     outfile.RemoveAt(startInd);

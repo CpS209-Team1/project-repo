@@ -29,8 +29,8 @@ A link to your screen recording.
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>
-<td>29 hours 35 minutes</td>
-<td>20 hours 25 minutes</td>
+<td>30 hours 57 minutes</td>
+<td>19 hours 03 minutes</td>
 </tr>
 
 <tr>

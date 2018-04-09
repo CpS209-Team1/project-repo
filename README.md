@@ -9,7 +9,6 @@ List any major issues.
 # Recording
 A link to your screen recording.
 # Expenses
-Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
 
 <table>
 <tr>
@@ -17,8 +16,9 @@ Provide a table showing how many hours each team member has invested to this poi
 <th>Time Invested</th>
 <th>Time Remaining</th>
 </tr>
+
 <tr>
-<td>Avinante</td>
+<td>[Avinante](https://github.com/CpS209-Team1/project-repo.wiki.git)  </td>
 <td>x hours</td>
 <td>x Minutes</td>
 </tr>

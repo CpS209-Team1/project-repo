@@ -1,59 +1,15 @@
-﻿<Window x:Class="SilentKnight.MainWindow"
+<Window x:Class="SilentKnight.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" >
-    <Canvas x:Name="canvas" SizeChanged="Canvas_SizeChanged">
+        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded">
+    <Canvas x:Name="mainWindowCanvas">
 
-        <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
-        <Rectangle x:Name="health" Width="130" Height="33" Canvas.Left="22" Canvas.Top="10">
-            <Rectangle.Fill>
-                <!--This is where you define the sprite sheet-->
-                <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"
-                            Stretch="None"
-                            AlignmentX="Left"
-                            AlignmentY="Top"
-                            Viewport="0,0,1920,1080"
-                            ViewportUnits="Absolute"
-                            >
-                    <!--Above. This method of using the sprite sheet will NOT work unless Viewport is set to the size of the whole sprite sheet-->
-                    <ImageBrush.Transform>
-                        <TransformGroup>
-                            <!--The offset is what is used to show certain parts of the sprite sheet, OFFSET MUST BE NEGATIVE-->
-                            <TranslateTransform x:Name="HealthSheet" X="0" Y="0"/>
-                            <!--Resize image; x and y must be the same value-->
-                            <ScaleTransform ScaleX=".5" ScaleY=".5"/>
-                        </TransformGroup>
-                    </ImageBrush.Transform>
-                </ImageBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock x:Name="timeTxt" Text="Time:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,0,0,0"/>
-            <TextBlock x:Name="minuteTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0"/>
-            <TextBlock x:Name="collonTxt" Text=":" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0"/>
-            <TextBlock x:Name="secondTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="scoreTxt" Text="Score:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,50,0,0"/>
-            <TextBlock x:Name="scoreNum" Text="0" FontSize="40" Style="{StaticResource Pixel}" Margin="10,50,0,0"/>
-        </StackPanel>
+        <Button Content="Button" Canvas.Left="467" Canvas.Top="219" Width="75" Click="Button_Click_GameScreen"/>
 
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="levelTxt" Text="Level:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,0,0,0"/>
-            <TextBlock x:Name="levelNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="enemyTxt" Text="Enemies:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,50,0,0"/>
-            <TextBlock x:Name="enemyNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="1,50,0,0"/>
-        </StackPanel>
-        <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="53" Canvas.Top="96">
-            <Image.RenderTransform>
-                <RotateTransform x:Name="ImageRotation" />
-            </Image.RenderTransform>
-        </Image>
-    </Canvas>
+        <Frame x:Name="Main" Margin="0" Height="800" Width="1440"></Frame>
+     </Canvas>
 </Window>

@@ -18,7 +18,8 @@ A link to your screen recording.
 </tr>
 
 <tr>
-  <td><a href="https://github.com/CpS209-Team1/project-repo.wiki.git">Avinante</a>  </td>
+  
+  <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Avinante-Journal">Avinante</a>  </td>
 <td>x hours</td>
 <td>x Minutes</td>
 </tr>

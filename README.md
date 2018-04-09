@@ -24,8 +24,8 @@ A link to your screen recording.
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
-<td>x hours</td>
-<td>x Minutes</td>
+<td>12 hours</td>
+<td>38 hours</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>

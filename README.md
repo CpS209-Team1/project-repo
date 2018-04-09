@@ -16,8 +16,9 @@ A link to your screen recording.
 <th>Time Invested</th>
 <th>Time Remaining</th>
 </tr>
+
 <tr>
-<td>Avinante</td>
+<td>[Avinante](https://github.com/CpS209-Team1/project-repo.wiki.git)  </td>
 <td>x hours</td>
 <td>x Minutes</td>
 </tr>

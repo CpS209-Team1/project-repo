@@ -10,3 +10,32 @@ List any major issues.
 A link to your screen recording.
 # Expenses
 Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
+
+<table>
+<tr>
+<th>Developer</th>
+<th>Time Invested</th>
+<th>Time Remaining</th>
+</tr>
+<tr>
+<td>Avinante</td>
+<td>x hours</td>
+<td>x Minutes</td>
+</tr>
+<tr>
+<td>Bruno</td>
+<td>x hours</td>
+<td>x Minutes</td>
+</tr>
+<tr>
+<td>Olson</td>
+<td>x hours</td>
+<td>x Minutes</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>

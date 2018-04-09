@@ -23,7 +23,7 @@ A link to your screen recording.
 <td>32 hours 25 Minutes</td>
 </tr>
 <tr>
-<td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Bruno-Journal">Bruno</a>  </td>
+<td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
 <td>x hours</td>
 <td>x Minutes</td>
 </tr>

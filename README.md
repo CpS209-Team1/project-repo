@@ -20,7 +20,7 @@ A link to your screen recording.
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Avinante-Journal">Avinante</a>  </td>
 <td>18 hours 35 minutes</td>
-<td>32 hours 25 Minutes</td>
+<td>31 hours 25 minutes</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
@@ -29,8 +29,8 @@ A link to your screen recording.
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>
-<td>x hours</td>
-<td>x Minutes</td>
+<td>29 hours 35 minutes</td>
+<td>20 hours 25 minutes</td>
 </tr>
 
 <tr>

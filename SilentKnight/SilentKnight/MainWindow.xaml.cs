@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Media;
 using Model;
 
 namespace SilentKnight
@@ -24,6 +23,8 @@ namespace SilentKnight
     public partial class MainWindow : Window
     {
         GameScreen gs = new GameScreen();
+        HelpScreen hs = new HelpScreen();
+        AboutScreen aboutscreen = new AboutScreen();
 
         public MainWindow()
         {
@@ -40,16 +41,20 @@ namespace SilentKnight
             Main.Content = gs;
         }
 
+        private void Button_Click_HelpScreen(object sender, RoutedEventArgs e)
+        {
+            Main.Content = hs;
+        }
+
+        private void Button_Click_AboutScreen(object sender, RoutedEventArgs e)
+        {
+            Main.Content = aboutscreen;
+        }
+
         private void btnKeyUp(object sender, KeyEventArgs e)
         {
             Console.WriteLine(e);
             gs.OnKeyUp(sender,e);
-        }
-
-        private void MouseButton_Down(object sender, MouseButtonEventArgs e)
-        {
-            // SoundPlayer soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
-            // soundPlayer.PlaySync();
         }
     }
 }

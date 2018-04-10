@@ -24,6 +24,7 @@ namespace SilentKnight
     {
         GameScreen gs = new GameScreen();
         HelpScreen hs = new HelpScreen();
+        HighScoresScreen highscoresscreen = new HighScoresScreen();
         AboutScreen aboutscreen = new AboutScreen();
 
         public MainWindow()
@@ -49,6 +50,11 @@ namespace SilentKnight
         private void Button_Click_AboutScreen(object sender, RoutedEventArgs e)
         {
             Main.Content = aboutscreen;
+        }
+
+        private void Button_Click_HighScoresScreen(object sender, RoutedEventArgs e)
+        {
+            Main.Content = highscoresscreen;
         }
 
         private void btnKeyUp(object sender, KeyEventArgs e)

@@ -61,6 +61,9 @@
     <Compile Include="HelpScreen.xaml.cs">
       <DependentUpon>HelpScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HighScoresScreen.xaml.cs">
+      <DependentUpon>HighScoresScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PauseWindow.xaml.cs">
       <DependentUpon>PauseWindow.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,10 @@
     <Page Include="HelpScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HighScoresScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +154,7 @@
     <Resource Include="Assets\knight.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\HighScoresLogo.png" />
     <Content Include="Model\data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -166,6 +174,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Sound\sword_swing.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AboutLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\HelpLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,33 +13,6 @@ namespace Model
         public List<Score> scoreList = new List<Score>();
         public int maxEntries = 10;
 
-        public void ProcessPlayersScore(int playersScore)
-        {
-            scoreList.Sort();
-            scoreList.Reverse(); // sort in descending order
-
-
-            // SaveIfHighScore(ref scoreList, ref highScoreDictionary, maxEntries, playersScore);
-
-            // Re-sort the list in descending order.
-            scoreList.Sort();
-
-            // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object?
-            // utm_medium =organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-            //           objListOrder.Sort((x, y) => x.OrderDate.CompareTo(y.OrderDate));
-
-            // Display the HighScores screen, omitting the scores' appended dashes and sequence numbers.
-            //DisplayHighScores(highScoreDictionary, scoreList);
-
-            // Write the score/playerName pairs into the text file.
-            //WriteScores(highScoreDictionary, fileName);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="scoreList"></param>
-        /// <param name="fileName"></param>
         public void LoadScores(string fileName)
         {
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
@@ -74,64 +47,65 @@ namespace Model
             {
                 for(int i = 0; i < scoreList.Count; i++)
                 {
-                    Console.WriteLine(scoreList[i].Name + " " + scoreList[i].Points);
+                    outputFile.WriteLine(scoreList[i].Name + " " + scoreList[i].Points);
                 }
             }
         }
 
-        //public void SaveIfHighScore(int maxEntries, int playersScore)
-        //{
-        //    int lowestScore = Convert.ToInt32(scoreList[0].Substring(0, scoreList[0].IndexOf('-')));
-
-        //    if (Convert.ToInt32(playersScore) > lowestScore)
-        //    {
-        //        string storableScore = MakeStorableScore(playersScore);
-        //        if (scoreList.Count >= maxEntries)
-        //        {
-        //            scoreList[0] = storableScore.ToString();
-        //            // remove lowestScore from Dictionary
-        //            // add scoreList[0]
-        //        }
-        //        else
-        //        {
-        //            scoreList.Add(storableScore);
-        //            // Display the HighScoreAchieved screen, prompting player for his name.   
-
-        //            // Store storableScore and player name in the Dictionary
-
-        //            // Store this unique score into the Dictionary, 
-        //            // along with the player's name.                
-        //        }
-        //        // Display the HighScores screen
-        //    }
-        //}
-
-        /// <summary>
-        /// Looks through the highScoreDictionary to find any existing occurrences of the current score.  If any exist, 
-        /// increments the highest appended sequence number by one, and appends it to the player's score, 
-        /// separated by a hyphen. If no other occurrence of the score exists, a zero is appended to the score.
-        /// </summary>
-        /// <param name="playersScore">The "raw" score of the player (the actual score before a sequence number is added).</param>
-        /// <returns></returns>
-        public string MakeStorableScore(int playersScore)
+        public void SaveIfHighScore()
         {
-            // still needs to be finished
-            string storableScore = "";
-            return storableScore;
+            //Score playerScore = new Score(Player.Instance.PlayerName, Player.Instance.PlayerScore);
+
+            Score playerScore = new Score("Danny", 30000);
+            scoreList.Add(playerScore);
+
+            // Sort the list into decreasing order, using selection sort
+            for (int lastPlace = scoreList.Count - 1; lastPlace > 0; lastPlace--)
+            { // Find the smallest item  in the list
+              // and move it into position lastPlace 
+              // by swapping it with the number that is currently 
+              // in position lastPlace.
+                int minLoc = 0; // Location of smallest item seen so far.
+                for (int j = 1; j <= lastPlace; j++)
+                {
+                    if (scoreList[j].Points < scoreList[minLoc].Points)
+                    { // Since the list[j] is smaller than the minimum we've seen
+                      // so far, j is the new location of the minimum value 
+                      // we've seen so far. 
+                      minLoc = j;
+                    }
+                }
+                // Swap largest item with scoreLIst[lastPlace].
+                int tempPoints = scoreList[minLoc].Points;  
+                string tempName = scoreList[minLoc].Name;
+                scoreList[minLoc].Points = scoreList[lastPlace].Points;
+                scoreList[minLoc].Name = scoreList[lastPlace].Name;
+
+                scoreList[lastPlace].Points = tempPoints;
+                scoreList[lastPlace].Name = tempName;
+            } // end of for loop
+            if (scoreList.Count > maxEntries)
+            {
+                scoreList.RemoveAt(scoreList.Count - 1);
+            }
+            
+
+       }
+        public void Reset()
+        {
+            using (StreamWriter outputFile = new StreamWriter("HighScoresTestData.txt"))
+            {
+                outputFile.WriteLine("Susie 1000");
+                outputFile.WriteLine("John 40000");
+                outputFile.WriteLine("Bobby 12121");
+                outputFile.WriteLine("Fred 1000");
+            }
         }
 
-        /// <summary>
-        /// Displays the HighScores screen, showing the top [maxEntries] scores along with the scoring players' names.
-        /// </summary>
-        /// <param name="highScoreDictionary">A dictionary accessible by the entire class where score/player 
-        /// value pairs are kept.</param>
-        /// <param name="scoreList">A list accessible by the entire class that is used for sorting the 
-        /// scoreDictionary scores.</param>
-        /// <returns></returns>
-        public string DisplayHighScores(Dictionary<string, string> highScoreDictionary, List<string> scoreList)
+
+        public void DisplayHighScores()
         {
-            string storableScore = "";
-            return storableScore;
+            
         }
     }
 
@@ -157,3 +131,6 @@ namespace Model
 
 
 }
+
+
+

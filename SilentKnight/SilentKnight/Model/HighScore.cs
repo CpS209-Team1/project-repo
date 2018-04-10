@@ -47,7 +47,7 @@ namespace Model
             {
                 for(int i = 0; i < scoreList.Count; i++)
                 {
-                    Console.WriteLine(scoreList[i].Name + " " + scoreList[i].Points);
+                    outputFile.WriteLine(scoreList[i].Name + " " + scoreList[i].Points);
                 }
             }
         }
@@ -84,11 +84,23 @@ namespace Model
                 scoreList[lastPlace].Points = tempPoints;
                 scoreList[lastPlace].Name = tempName;
             } // end of for loop
-
-            scoreList.RemoveAt(scoreList.Count - 1);
+            if (scoreList.Count > maxEntries)
+            {
+                scoreList.RemoveAt(scoreList.Count - 1);
+            }
             
 
        }
+        public void Reset()
+        {
+            using (StreamWriter outputFile = new StreamWriter("HighScoresTestData.txt"))
+            {
+                outputFile.WriteLine("Susie 1000");
+                outputFile.WriteLine("John 40000");
+                outputFile.WriteLine("Bobby 12121");
+                outputFile.WriteLine("Fred 1000");
+            }
+        }
 
 
         public void DisplayHighScores()
@@ -119,3 +131,6 @@ namespace Model
 
 
 }
+
+
+

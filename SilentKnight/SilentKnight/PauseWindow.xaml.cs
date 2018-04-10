@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 using Model;
 
 namespace SilentKnight
@@ -30,8 +31,7 @@ namespace SilentKnight
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
             string name = txtName.Text;
-            if (name == "Enter name here") return;
-            Player.Instance.Login(name, "data.txt", ctrl);
+            Player.Instance.Login(name,"data.txt", ctrl);
             ctrl.Save("data.txt");
             ctrl.Print();
         }

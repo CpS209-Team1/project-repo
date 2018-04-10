@@ -22,6 +22,8 @@ namespace SilentKnight
     /// </summary>
     public partial class GameScreen : Page
     {
+        MediaPlayer media_player = new MediaPlayer();
+
         DispatcherTimer gameTime;
         DispatcherTimer animate;
         DispatcherTimer timer;
@@ -35,7 +37,6 @@ namespace SilentKnight
 
         public GameScreen()
         {
-            //Timer for player movement
             InitializeComponent();
         }
 
@@ -76,6 +77,7 @@ namespace SilentKnight
                 secondTxt.Text = time.ToString("D2");
             }
         }
+
         /// <summary>
         /// This method checks if the current wave of enemies is defeated. If so, then the game spawns in another wave.
         /// </summary>
@@ -196,6 +198,11 @@ namespace SilentKnight
         /// <param name="e"></param>
         private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+
+            Console.WriteLine("Swinging sword!");
+            SoundPlayer soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
+            Task.Run(()=> soundPlayer.PlaySync());
+
             ctrl.ComputePlayerAttack();
             KilledEnemy();
         }

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Model;
+using System.Media;
 
 namespace SilentKnight
 {

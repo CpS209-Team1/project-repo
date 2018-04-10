@@ -167,5 +167,11 @@
   <ItemGroup>
     <None Include="Sound\sword_swing.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AboutLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\HelpLogo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

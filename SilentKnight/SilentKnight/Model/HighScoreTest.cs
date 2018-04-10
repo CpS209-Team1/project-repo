@@ -23,10 +23,29 @@ namespace SilentKnight.Model
         }
 
         [TestMethod]
-        public void HighScore_ScoreSaved_Success()
+
+        public void HighScore_ListSort_Success()
         {
+            HighScore highscores = new HighScore();
+            highscores.LoadScores("HighScoresTestData.txt");
+            Assert.IsTrue(highscores.scoreList[0].Name == "Susie");
+            Assert.IsTrue(highscores.scoreList[2].Points == 12121);
         }
-    }
-}
+
+        [TestMethod]
+
+        public void HighScore_SaveIfHighScore_Success()
+        {
+            HighScore highscores = new HighScore();
+            highscores.LoadScores("HighScoresTestData.txt");
+            Player.Instance.PlayerName = "Danny";
+            Player.Instance.PlayerScore = 30000;
+            highscores.SaveIfHighScore();
+            Assert.IsTrue(highscores.scoreList[1].Name == "Danny");
+            Assert.IsTrue(highscores.scoreList[2].Points == 12121);
+        }
+   }
+ }
+
 
 

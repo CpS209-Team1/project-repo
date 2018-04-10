@@ -54,11 +54,42 @@ namespace Model
 
         public void SaveIfHighScore()
         {
-            int playersScore = Player.Instance.PlayerScore;
-            scoreList = scoreList.OrderByDescending(o => o.Points).ToList();
+            //Score playerScore = new Score(Player.Instance.PlayerName, Player.Instance.PlayerScore);
 
+            Score playerScore = new Score("Danny", 30000);
+            scoreList.Add(playerScore);
 
-        }
+            // Sort the list into decreasing order, using selection sort
+            for (int lastPlace = scoreList.Count - 1; lastPlace > 0; lastPlace--)
+            { // Find the smallest item  in the list
+              // and move it into position lastPlace 
+              // by swapping it with the number that is currently 
+              // in position lastPlace.
+                int minLoc = 0; // Location of smallest item seen so far.
+                for (int j = 1; j <= lastPlace; j++)
+                {
+                    if (scoreList[j].Points < scoreList[minLoc].Points)
+                    { // Since the list[j] is smaller than the minimum we've seen
+                      // so far, j is the new location of the minimum value 
+                      // we've seen so far. 
+                      minLoc = j;
+                    }
+                }
+                // Swap largest item with scoreLIst[lastPlace].
+                int tempPoints = scoreList[minLoc].Points;  
+                string tempName = scoreList[minLoc].Name;
+                scoreList[minLoc].Points = scoreList[lastPlace].Points;
+                scoreList[minLoc].Name = scoreList[lastPlace].Name;
+
+                scoreList[lastPlace].Points = tempPoints;
+                scoreList[lastPlace].Name = tempName;
+            } // end of for loop
+
+            scoreList.RemoveAt(scoreList.Count - 1);
+            
+
+       }
+
 
         public void DisplayHighScores()
         {

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Media;
 using Model;
 
 namespace SilentKnight
@@ -43,6 +44,13 @@ namespace SilentKnight
         {
             Console.WriteLine(e);
             gs.OnKeyUp(sender,e);
+        }
+
+        private void MouseButton_Down(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("Playing sound?");
+            SoundPlayer soundPlayer = new SoundPlayer(@"Sound/sword_swing.mp3");
+            soundPlayer.PlaySync();
         }
     }
 }

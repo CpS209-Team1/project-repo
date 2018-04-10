@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Media;
 using Model;
 
 namespace SilentKnight
@@ -22,9 +23,12 @@ namespace SilentKnight
     /// </summary>
     public partial class GameScreen : Page
     {
+        MediaPlayer media_player = new MediaPlayer();
+        
         DispatcherTimer gameTime;
         DispatcherTimer animate;
         DispatcherTimer timer;
+
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
@@ -38,6 +42,8 @@ namespace SilentKnight
             //Timer for player movement
             InitializeComponent();
         }
+
+
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
@@ -196,6 +202,11 @@ namespace SilentKnight
         /// <param name="e"></param>
         private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            Console.WriteLine("Swinging sword!");
+            SoundPlayer soundPlayer = new SoundPlayer(@"Sound/sword_swing.mp3");
+            soundPlayer.PlaySync();
+            media_player.Open(new Uri(@"Sound/sword_swing.mp3",UriKind.Relative));
+            media_player.Play();
             ctrl.ComputePlayerAttack();
             KilledEnemy();
         }

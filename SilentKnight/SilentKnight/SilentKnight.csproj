@@ -133,6 +133,9 @@
     <Resource Include="Assets\knight.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Sound\sword_swing.mp3" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Assets\skeleton.png" />
   </ItemGroup>
   <ItemGroup>

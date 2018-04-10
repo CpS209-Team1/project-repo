@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" KeyUp="btnKeyUp" MouseLeftButtonDown="MouseButton_Down">
     <Canvas x:Name="mainWindowCanvas">
+        <StackPanel Background="#FF7B9191" Height="759">
+            <Image Source="/Assets/TitleScreenName.png" Height="100" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
+            <Button Content="New Game" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_GameScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Button Content="Button" Canvas.Left="467" Canvas.Top="219" Width="75" Click="Button_Click_GameScreen"/>
+        </StackPanel>
+        <Frame x:Name="Main" Margin="0" Height="800" Width="1440" RenderTransformOrigin="1.116,0.536"></Frame>
 
-        <Frame x:Name="Main" Margin="0" Height="800" Width="1440"></Frame>
-     </Canvas>
+    </Canvas>
 </Window>

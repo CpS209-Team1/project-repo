@@ -72,7 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-        <Page Include="GameScreen.xaml">
+    <Page Include="GameScreen.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -144,6 +144,9 @@
   <ItemGroup>
     <Resource Include="Assets\Level.png" />
     <Resource Include="Assets\Numbers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\TitleScreenName.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

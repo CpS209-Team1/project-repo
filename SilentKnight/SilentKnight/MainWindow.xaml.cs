@@ -56,5 +56,11 @@ namespace SilentKnight
             Console.WriteLine(e);
             gs.OnKeyUp(sender,e);
         }
+
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Main.Width = World.Instance.borderRight;
+            Main.Height = World.Instance.borderBottom;
+        }
     }
 }

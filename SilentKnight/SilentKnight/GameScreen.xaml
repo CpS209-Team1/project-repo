@@ -1,4 +1,4 @@
-<Page x:Class="SilentKnight.GameScreen"
+<Page x:Class="SilentKnight.GameScreen" x:Name="gameScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1400"
-        Title="GameScreen" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" Background="White">
+        Title="GameScreen" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" Background="White" ShowsNavigationUI="False">
     <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged">
 
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
-        <Rectangle x:Name="health" Width="130" Height="33" Canvas.Left="22" Canvas.Top="10">
+        <Rectangle x:Name="health" Width="130" Height="33" Margin="0,22,0,0">
             <Rectangle.Fill>
                 <!--This is where you define the sprite sheet-->
                 <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"

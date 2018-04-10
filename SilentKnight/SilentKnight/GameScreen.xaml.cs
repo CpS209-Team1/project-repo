@@ -43,6 +43,8 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            gameScreen.Width = World.Instance.borderRight;
+            Console.WriteLine(World.Instance.borderRight);
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(MovePlayer);
             timer.Start();
@@ -132,8 +134,8 @@ namespace SilentKnight
         /// <param name="e"></param>
         private void AnimateEnemy(object sender, EventArgs e)
         {
-            World.Instance.borderRight = gameScreenCanvas.ActualWidth - 50; //50 is the picture width
-            World.Instance.borderBottom = gameScreenCanvas.ActualHeight - 50;
+            World.Instance.borderRight = gameScreen.ActualWidth - 50; //50 is the picture width
+            World.Instance.borderBottom = gameScreen.ActualHeight - 50;
             foreach (Enemy i in World.Instance.Entities)
             {
                 i.UpdatePosition();
@@ -297,10 +299,6 @@ namespace SilentKnight
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-
-            World.Instance.borderBottom = gameScreenCanvas.ActualHeight;
-            World.Instance.borderRight = gameScreenCanvas.ActualWidth;
-
             Thickness margin = levelTxt.Margin;
             margin.Left = World.Instance.borderRight - 220;
             levelTxt.Margin = margin;

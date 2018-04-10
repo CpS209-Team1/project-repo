@@ -54,13 +54,24 @@ namespace SilentKnight
         private void btnKeyUp(object sender, KeyEventArgs e)
         {
             Console.WriteLine(e);
-            gs.OnKeyUp(sender,e);
+            gs.OnKeyUp(sender, e);
         }
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            World.Instance.borderRight = mainWindowCanvas.ActualWidth;
+            World.Instance.borderBottom = mainWindowCanvas.ActualHeight;
+
             Main.Width = World.Instance.borderRight;
             Main.Height = World.Instance.borderBottom;
+
+            gs.gameScreen.Width = World.Instance.borderRight;
+            gs.gameScreen.Height = World.Instance.borderBottom;
+
+            Main.VerticalContentAlignment = (VerticalAlignment)Stretch.Fill;
+
+            Menu.Width = World.Instance.borderRight;
+            Menu.Height = World.Instance.borderBottom;
         }
     }
 }

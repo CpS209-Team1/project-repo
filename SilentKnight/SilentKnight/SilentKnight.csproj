@@ -133,7 +133,9 @@
     <Resource Include="Assets\knight.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Sound\sword_swing.mp3" />
+    <Resource Include="Sound\sword_swing.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\skeleton.png" />
@@ -147,6 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\TitleScreenName.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Sound\sword_swing.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

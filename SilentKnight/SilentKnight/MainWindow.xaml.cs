@@ -48,9 +48,8 @@ namespace SilentKnight
 
         private void MouseButton_Down(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Playing sound?");
-            SoundPlayer soundPlayer = new SoundPlayer(@"Sound/sword_swing.mp3");
-            soundPlayer.PlaySync();
+            // SoundPlayer soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
+            // soundPlayer.PlaySync();
         }
     }
 }

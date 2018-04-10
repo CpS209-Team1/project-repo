@@ -203,10 +203,10 @@ namespace SilentKnight
         private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Console.WriteLine("Swinging sword!");
-            SoundPlayer soundPlayer = new SoundPlayer(@"Sound/sword_swing.mp3");
+            SoundPlayer soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
             soundPlayer.PlaySync();
-            media_player.Open(new Uri(@"Sound/sword_swing.mp3",UriKind.Relative));
-            media_player.Play();
+            //media_player.Open(new Uri(@"Sound/sword_swing.mp3",UriKind.Relative));
+            //media_player.Play();
             ctrl.ComputePlayerAttack();
             KilledEnemy();
         }

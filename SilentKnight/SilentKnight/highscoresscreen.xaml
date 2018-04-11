@@ -5,15 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SilentKnight"
       mc:Ignorable="d"
-      Title="HighScoresScreen" Height="762" Width="1512">
+      Title="HighScoresScreen" Height="762" Width="1512" Loaded="Windows_Loaded">
 
     <Canvas x:Name="highScoreCanvas" Margin="0,0,-1209,-453">
         <StackPanel Background="#FF7B9191" Height="759">
             <Image Source="/Assets/HighScoresLogo.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
-            <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="NamesAndScores" Canvas.Left="538" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="186" Height="335" Width="822" FontSize="50" FontWeight="ExtraBlack"  TextAlignment="Center" FontFamily="Tempus Sans ITC"/>
+            <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="35" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </StackPanel>
-        <Frame x:Name="Main" Margin="0" Height="800" Width="1528" RenderTransformOrigin="1.116,0.536" Navigated="Main_Navigated"></Frame>
+        <Frame x:Name="Main" Margin="0" Height="800" Width="1528" RenderTransformOrigin="1.116,0.536" Navigated="Main_Navigated"/>
 
     </Canvas>
 </Page>

@@ -20,8 +20,10 @@ namespace SilentKnight
     /// </summary>
     public partial class AboutScreen : Page
     {
-        public AboutScreen()
+        MainWindow wn;
+        public AboutScreen(MainWindow t)
         {
+            wn = t;
             InitializeComponent();
         }
 
@@ -29,6 +31,11 @@ namespace SilentKnight
         private void Main_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            wn.Main.Content = null;
         }
     }
 }

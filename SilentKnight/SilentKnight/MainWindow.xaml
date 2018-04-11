@@ -15,7 +15,7 @@
             <Button Content="Help" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_HelpScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </StackPanel>
-        <Frame x:Name="Main"></Frame>
+        <Frame x:Name="Main" NavigationUIVisibility="Hidden"></Frame>
 
     </Canvas>
 </Window>

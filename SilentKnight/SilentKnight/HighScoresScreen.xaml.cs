@@ -24,8 +24,6 @@ namespace SilentKnight
         HighScore highScores = new HighScore();
         public HighScoresScreen()
         {
-            NamesAndScores.Text = " ";
-            DisplayHighScores();
             InitializeComponent();
        }
         private void Main_Navigated(object sender, NavigationEventArgs e)
@@ -34,6 +32,7 @@ namespace SilentKnight
         }
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            NamesAndScores.Text = " ";
             DisplayHighScores();
         }
 

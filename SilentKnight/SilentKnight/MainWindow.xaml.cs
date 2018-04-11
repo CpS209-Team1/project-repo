@@ -23,9 +23,9 @@ namespace SilentKnight
     public partial class MainWindow : Window
     {
         GameScreen gs = new GameScreen();
-        HelpScreen hs = new HelpScreen();
+        HelpScreen hs;
         HighScoresScreen highscoresscreen = new HighScoresScreen();
-        AboutScreen aboutscreen = new AboutScreen();
+        AboutScreen aboutscreen;
 
         public MainWindow()
         {
@@ -34,7 +34,8 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-
+            hs = new HelpScreen(this);
+            aboutscreen = new AboutScreen(this);
         }
 
         private void Button_Click_GameScreen(object sender, RoutedEventArgs e)

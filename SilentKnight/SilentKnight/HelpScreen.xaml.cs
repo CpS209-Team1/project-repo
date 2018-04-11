@@ -20,12 +20,25 @@ namespace SilentKnight
     /// </summary>
     public partial class HelpScreen : Page
     {
-        public HelpScreen()
+        MainWindow wn;
+        public HelpScreen(MainWindow t)
         {
+            wn = t;
             InitializeComponent();
         }
 
         private void Main_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            wn.Main.Content = null;
+        }
+
+        private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
 
         }

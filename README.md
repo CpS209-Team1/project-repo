@@ -1,13 +1,13 @@
 # Description
 This is a project with the goal of developing a top-down style survival game. This will be implemented using a C#, WPF project in Visual Studio.
 # Instructions
-Brief instructions on how to play your game.
+Press new game to start a new game.  Click to attack skeletons.  Use WASD keys to move.
 # Work Completed
 List work completed.
 # Known Issues
 List any major issues.
 # Recording
-A link to your screen recording <a href = "https://drive.google.com/open?id=1_8tOB-uq3fyQ0OdMXds2dzywhC21oq7f">here</a>.
+A link to your screen recording <a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
 # Expenses
 
 <table>
@@ -24,8 +24,8 @@ A link to your screen recording <a href = "https://drive.google.com/open?id=1_8t
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
-<td>23 hours</td>
-<td>27 hours</td>
+<td>18 hours</td>
+<td>32 hours</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>

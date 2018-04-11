@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
 using Model;
-using System.Media;
 
 namespace SilentKnight
 {
@@ -32,7 +31,7 @@ namespace SilentKnight
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
         GameController ctrl = new GameController();
-        public GameController GameController
+        public GameController Controller
         {
             get { return ctrl; }
         }
@@ -263,7 +262,7 @@ namespace SilentKnight
         {
             foreach (Enemy i in World.Instance.DeadEnemy)
             {
-                gameScreenCanvas.Children.Remove((UIElement)i.observer);
+                gameScreenCanvas.Children.Remove((UIElement)i.Observer);
             }
             World.Instance.DeadEnemy = new List<Enemy>();
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
@@ -334,6 +333,7 @@ namespace SilentKnight
                 gameTime.Start();
             }
         }
+
     }
 
     /// <summary>

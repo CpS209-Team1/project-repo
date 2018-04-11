@@ -79,5 +79,13 @@ namespace SilentKnight
             Menu.Width = World.Instance.borderRight;
             Menu.Height = World.Instance.borderBottom;
         }
+
+        private void Button_Click_LoadScreen(object sender, RoutedEventArgs e)
+        {
+            LoadWindow lw = new LoadWindow(gs.Controller);
+            Console.WriteLine("Is it null?");
+            lw.Show();
+            Console.WriteLine("Maybe it is...");
+        }
     }
 }

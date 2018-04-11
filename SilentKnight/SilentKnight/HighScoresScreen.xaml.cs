@@ -22,8 +22,10 @@ namespace SilentKnight
     public partial class HighScoresScreen : Page
     {
         HighScore highScores = new HighScore();
-        public HighScoresScreen()
+        MainWindow wn;
+        public HighScoresScreen(MainWindow t)
         {
+            wn = t;
             InitializeComponent();
        }
         private void Main_Navigated(object sender, NavigationEventArgs e)
@@ -46,6 +48,10 @@ namespace SilentKnight
                     NamesAndScores.Text += score + "\n";
                 }
             }
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            wn.Main.Content = null;
         }
     }
 }

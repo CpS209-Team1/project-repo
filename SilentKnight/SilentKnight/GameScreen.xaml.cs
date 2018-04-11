@@ -107,7 +107,7 @@ namespace SilentKnight
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
             }
-            else if (World.Instance.Entities.Count == 9 && World.Instance.LevelCount == 1 && World.Instance.GameCompleted == false)
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
             {
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;

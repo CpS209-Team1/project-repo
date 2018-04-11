@@ -13,7 +13,7 @@ namespace Model
         public List<Enemy> DeadEnemy { get; set; } //This list is for storing enemies that need to be removed from the canvas
         public double borderRight { get; set; } //This is for border collision
         public double borderBottom { get; set; } //This is for border collision
-        public int Difficulty { get; set; }
+        public int Difficulty { get; set; } //Ranges from 1 to 3
         public bool CheatMode { get; set; }
         public int LevelCount { get; set; }
         public int Time { get; set; }
@@ -23,7 +23,7 @@ namespace Model
             Entities = new List<Enemy>();
             DeadEnemy = new List<Enemy>();
             borderBottom = 0;
-            Difficulty = 1;
+            Difficulty = 1; 
             CheatMode = false;
             LevelCount = 1;
             Time = 0;

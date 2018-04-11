@@ -264,7 +264,7 @@ namespace Model
     /// <summary>
     /// Contains enemy and player locations
     /// </summary>
-    struct Location
+    public struct Location
     {
         public double X { get; set; }
         public double Y { get; set; }

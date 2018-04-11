@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Model
 {
-    abstract class Enemy : ISerializable
+    public abstract class Enemy : ISerializable
     {
         public IEnemyObserver Observer;
         public int Health { get; set; }
@@ -166,7 +166,7 @@ namespace Model
     }
 
     // Oberver pattern
-    interface IEnemyObserver
+    public interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
         void NotifySpawn(int x, int y);

@@ -275,26 +275,46 @@ namespace SilentKnight
         /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
-            Random rand = new Random();
-            for (int i = 1; i <= enemyCount; i++)
+            Console.WriteLine("Creating new enemies...");
+            if (World.Instance.Entities.Count == 0)
             {
-                int x = rand.Next(0, (int)gameScreenCanvas.ActualWidth - 50);
-                int y = rand.Next((int)gameScreenCanvas.ActualHeight - 52, (int)gameScreenCanvas.ActualHeight - 50);
-                var enemyControl = new EnemyControl();
-                enemyControl.Content = new Image()
+                Random rand = new Random();
+                for (int i = 1; i <= enemyCount; i++)
                 {
-                    Source = new BitmapImage(new Uri("/Assets/skeleton.png", UriKind.Relative))
-
-                };
-                enemyControl.Width = 50;
-                enemyControl.Height = 50;
-                Canvas.SetTop(enemyControl, x);
-                Canvas.SetLeft(enemyControl, y);
-                gameScreenCanvas.Children.Add(enemyControl);
-                var enemy = new Skeleton(enemyControl, x, y, "skeleton");
-                World.Instance.Entities.Add(enemy);
+                    int x = rand.Next(0, (int)gameScreenCanvas.ActualWidth - 50);
+                    int y = rand.Next((int)gameScreenCanvas.ActualHeight - 52, (int)gameScreenCanvas.ActualHeight - 50);
+                    var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
+                    var enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                    World.Instance.Entities.Add(enemy);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Loading in previous enemies...");
+                foreach (Enemy ent in World.Instance.Entities)
+                {
+                    Location loc = ent.EnemyLoc;
+                    double x = loc.X;
+                    double y = loc.Y;
+                    var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
+                }
             }
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
+        }
+
+        public EnemyControl CreateEnemyControl(string filename,double x, double y)
+        {
+            var enemyControl = new EnemyControl();
+            enemyControl.Content = new Image()
+            {
+                Source = new BitmapImage(new Uri(filename, UriKind.Relative))
+            };
+            enemyControl.Width = 50;
+            enemyControl.Height = 50;
+            Canvas.SetTop(enemyControl, x);
+            Canvas.SetLeft(enemyControl, y);
+            gameScreenCanvas.Children.Add(enemyControl);
+            return enemyControl;
         }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -339,7 +359,7 @@ namespace SilentKnight
     /// <summary>
     /// This class updates the enemy's position
     /// </summary>
-    class EnemyControl : ContentControl, IEnemyObserver
+    public class EnemyControl : ContentControl, IEnemyObserver
     {
         public void NotifyMoved(Enemy enemy)
         {

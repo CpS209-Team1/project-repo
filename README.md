@@ -11,7 +11,7 @@ All ALPHA features, excluding the view elements of saving and high scores screen
 * No (De)serialization unit tests added.    
 * High-scores screen's button to return to the Main Menu not implemented.   
 # Recording
-A link to the screen recording found <a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1_8tOB-uq3fyQ0OdMXds2dzywhC21oq7f/view">here</a> (fixed link).
 # Expenses
 
 <table>

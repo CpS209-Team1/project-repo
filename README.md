@@ -29,8 +29,8 @@ A link to your screen recording <a href = "https://drive.google.com/drive/u/0/my
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>
-<td>30 hours 57 minutes</td>
-<td>19 hours 03 minutes</td>
+<td>41 hours 37 minutes</td>
+<td>8 hours 23 minutes</td>
 </tr>
 
 <tr>

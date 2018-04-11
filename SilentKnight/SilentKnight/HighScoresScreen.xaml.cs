@@ -43,7 +43,7 @@ namespace SilentKnight
             {
                 foreach (Score score in highScores.scoreList)
                 {
-                    NamesAndScores.Text += score;
+                    NamesAndScores.Text += score + "\n";
                 }
             }
         }

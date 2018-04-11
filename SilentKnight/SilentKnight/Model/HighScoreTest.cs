@@ -48,8 +48,8 @@ namespace SilentKnight.Model
             Assert.IsTrue(highscores.scoreList[1].Name == "Danny");
             Assert.IsTrue(highscores.scoreList[2].Points == 12121);
         }
-   }
- }
+    }
+}
 
 
 

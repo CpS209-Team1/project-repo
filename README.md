@@ -1,13 +1,17 @@
 # Description
 This is a project with the goal of developing a top-down style survival game. This will be implemented using a C#, WPF project in Visual Studio.
 # Instructions
-Press new game to start a new game.  Click to attack skeletons.  Use WASD keys to move.
+Press new game to start a new game.  
+Use WASD keys to move.  
+Click to attack skeletons.  
 # Work Completed
-List work completed.
+All ALPHA features, excluding the view elements of saving and high scores screen return button, have been implemented.
 # Known Issues
-List any major issues.
+* Cannot currently load previous user data through the Menu screen.   
+* No (De)serialization unit tests added.    
+* High-scores screen's button to return to the Main Menu not implemented.   
 # Recording
-A link to your screen recording <a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
+A link to the screen recording found <a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
 # Expenses
 
 <table>

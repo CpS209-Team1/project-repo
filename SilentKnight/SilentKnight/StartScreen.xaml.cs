@@ -22,8 +22,10 @@ namespace SilentKnight
     public partial class StartScreen : Page
     {
         MainWindow mw;
-        public StartScreen(MainWindow t)
+        GameScreen gs;
+        public StartScreen(MainWindow t, GameScreen g)
         {
+            gs = g;
             mw = t;
             InitializeComponent();
         }
@@ -67,7 +69,7 @@ namespace SilentKnight
         private void start_Click(object sender, RoutedEventArgs e)
         {
             Player.Instance.PlayerName = username.Text;
-            mw.Main.Content = new GameScreen();
+            mw.Main.Content = gs;
         }
     }
 }

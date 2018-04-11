@@ -30,6 +30,17 @@ namespace Model
             GameCompleted = false;
         }
 
+        public void ResetWorld()
+        {
+            Entities = new List<Enemy>();
+            DeadEnemy = new List<Enemy>();
+            Difficulty = 1;
+            CheatMode = false;
+            LevelCount = 1;
+            Time = 0;
+            GameCompleted = false;
+        }
+
         private static World instance = new World();
 
         /// <summary>

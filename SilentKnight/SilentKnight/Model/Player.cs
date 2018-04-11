@@ -27,6 +27,16 @@ namespace Model
             PlayerScore = 0;
         }
 
+        public void ResetPlayer()
+        {
+            PlayerDirection = Direction.Down;
+            Health = 20;
+            PlayerLoc.X = 234;
+            PlayerLoc.Y = 159;
+            HealthLevel = 1;
+            PlayerScore = 0;
+        }
+
         public void Login(string user,string filename, GameController ctrl)
         {
             Player.Instance.PlayerName = user;

@@ -44,6 +44,7 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("HI");
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = World.Instance.borderRight;
             Console.WriteLine(World.Instance.borderRight);
@@ -94,6 +95,7 @@ namespace SilentKnight
 
             if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
             {
+                Console.WriteLine("test");
                 if (World.Instance.LevelCount == 1)
                 {
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
@@ -109,11 +111,15 @@ namespace SilentKnight
             }
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
             {
+                animate.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
                 mw.ShowHighScoreScreen();
+               World.Instance.ResetWorld();
+                Player.Instance.ResetPlayer();
+                Console.WriteLine("Blah");
             }
         }
 

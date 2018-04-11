@@ -26,6 +26,7 @@ namespace SilentKnight
         HelpScreen hs = new HelpScreen();
         HighScoresScreen highscoresscreen = new HighScoresScreen();
         AboutScreen aboutscreen = new AboutScreen();
+        HighScore highScores = new HighScore();
 
         public MainWindow()
         {
@@ -79,5 +80,13 @@ namespace SilentKnight
             Menu.Width = World.Instance.borderRight;
             Menu.Height = World.Instance.borderBottom;
         }
+
+
+        public void ShowHighScoreScreen()
+        {
+            Main.Content = highscoresscreen;
+        }
+
+
     }
 }

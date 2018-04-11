@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace SilentKnight
 {
@@ -20,14 +21,22 @@ namespace SilentKnight
     /// </summary>
     public partial class HighScoresScreen : Page
     {
+        HighScore highScores = new HighScore();
         public HighScoresScreen()
         {
+            DisplayHighScores();
             InitializeComponent();
+            
         }
 
-        private void Main_Navigated(object sender, NavigationEventArgs e)
+        public void DisplayHighScores()
         {
+            highScores.LoadScores("HighScoresTestData.txt");
 
+            foreach (Score score in highScores.scoreList)
+            {
+                NamesAndScores.Text += score;
+            }
         }
     }
 }

@@ -59,6 +59,10 @@ namespace Model
             Score playerScore = new Score("Danny", 30000);
             scoreList.Add(playerScore);
 
+            // This sort algorithm is derived from the selection sort in the textbook:
+            // An Introduction to Computer Science with C# Spring 2012 Edition
+            // by David J Eck and Stephen Schaub 
+
             // Sort the list into decreasing order, using selection sort
             for (int lastPlace = scoreList.Count - 1; lastPlace > 0; lastPlace--)
             { // Find the smallest item  in the list
@@ -84,13 +88,15 @@ namespace Model
                 scoreList[lastPlace].Points = tempPoints;
                 scoreList[lastPlace].Name = tempName;
             } // end of for loop
-            if (scoreList.Count > maxEntries)
+
+            // Remove any high scores entries beyond the set
+            // maximum number of entries 
+            while (scoreList.Count > maxEntries)
             {
                 scoreList.RemoveAt(scoreList.Count - 1);
             }
-            
+        }
 
-       }
         public void Reset()
         {
             using (StreamWriter outputFile = new StreamWriter("HighScoresTestData.txt"))
@@ -101,12 +107,7 @@ namespace Model
                 outputFile.WriteLine("Fred 1000");
             }
         }
-
-
-        public void DisplayHighScores()
-        {
-            
-        }
+        
     }
 
     public class Score
@@ -127,6 +128,11 @@ namespace Model
         /// The Points property for the Score objec
         /// </summary>
         public int Points { get; set; }
+
+        override public string ToString()
+        {
+            return String.Format("{0}—{1}", Name, Points);
+        }
     }
 
 

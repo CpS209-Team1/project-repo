@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SilentKnight"
       mc:Ignorable="d"
-      Title="HighScoresScreen" Height="762" Width="1512" >
+      Title="HighScoresScreen" Height="762" Width="1512" Loaded="Windows_Loaded">
 
     <Canvas x:Name="highScoreCanvas" Margin="0,0,-1209,-453">
         <StackPanel Background="#FF7B9191" Height="759">

@@ -24,18 +24,28 @@ namespace SilentKnight
         HighScore highScores = new HighScore();
         public HighScoresScreen()
         {
+            NamesAndScores.Text = " ";
             DisplayHighScores();
             InitializeComponent();
-            
+       }
+        private void Main_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+        private void Windows_Loaded(object sender, RoutedEventArgs e)
+        {
+            DisplayHighScores();
         }
 
         public void DisplayHighScores()
         {
             highScores.LoadScores("HighScoresTestData.txt");
-
-            foreach (Score score in highScores.scoreList)
+            if (highScores.scoreList.Count > 0)
             {
-                NamesAndScores.Text += score;
+                foreach (Score score in highScores.scoreList)
+                {
+                    NamesAndScores.Text += score;
+                }
             }
         }
     }

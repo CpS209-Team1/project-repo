@@ -24,8 +24,8 @@ A link to your screen recording <a href = "https://drive.google.com/drive/u/0/my
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
-<td>18 hours</td>
-<td>32 hours</td>
+<td>23 hours</td>
+<td>27 hours</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>

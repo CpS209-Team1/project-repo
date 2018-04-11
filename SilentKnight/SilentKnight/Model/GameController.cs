@@ -50,7 +50,9 @@ namespace Model
             {
                 if (line.Contains("@"))
                 {
-                    Users.Add(line.Substring(1,line.IndexOf(":") - 1));
+                    string user = line.Substring(1, line.IndexOf(":") - 1);
+                    Console.WriteLine(user);
+                    Users.Add(user);
                 }
             }
             return Users.Contains(name);

@@ -10,7 +10,7 @@
         <StackPanel x:Name="Menu" Background="#FF7B9191" Height="800" Width="1440">
             <Image Source="/Assets/TitleScreenName.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
             <Button Content="New Game" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_GameScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Content="Load Game" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_GameScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Load Game" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_LoadScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Content="About" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_AboutScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Content="Help" Margin="30px" Canvas.Left="596" Canvas.Top="258" Width="312" Click="Button_Click_HelpScreen" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 

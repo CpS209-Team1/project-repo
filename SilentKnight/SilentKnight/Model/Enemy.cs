@@ -10,7 +10,7 @@ namespace Model
 {
     abstract class Enemy : ISerializable
     {
-        public IEnemyObserver observer;
+        public IEnemyObserver Observer;
         public int Health { get; set; }
         public Location EnemyLoc;
         public string Image { get; set; }
@@ -23,7 +23,7 @@ namespace Model
         public Enemy(IEnemyObserver observer, double x, double y, string image)
         {
             CoolDown = 0;
-            this.observer = observer;
+            Observer = observer;
             switch(World.Instance.Difficulty)
             {
                 case 1:
@@ -97,7 +97,7 @@ namespace Model
                 choose = rand.Next(1, 6);
             }
 
-            observer.NotifyMoved(this);
+            Observer.NotifyMoved(this);
         }
 
         public List<string> Serialize()

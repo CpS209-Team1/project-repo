@@ -7,7 +7,7 @@ List work completed.
 # Known Issues
 List any major issues.
 # Recording
-A link to your screen recording<a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
+A link to your screen recording <a href = "https://drive.google.com/drive/u/0/my-drive">here</a>.
 # Expenses
 
 <table>

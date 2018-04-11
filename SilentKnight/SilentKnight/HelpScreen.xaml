@@ -20,7 +20,7 @@
             <TextBlock Text="Attack: Left Click" FontSize="20" Margin="700,0,0,0"/>
 
             <TextBlock Text="How to Play" FontSize="40" Margin="670,40,0,0"/>
-            <TextBlock Text="The player starts off in the dungeon with the first wave of enemies starting off at ten. The amount of enemies increases by 5 until the final round. Enemies will attack the player when they are within 20 pixels from the player. The player deals 2 damage per swing. Enemeis have 10 health and the player has 20 health." FontSize="20" TextWrapping="Wrap" Margin="00,0,0,0" Height="227" Width="392"/>
+            <TextBlock Text="The player starts off in the dungeon with the first wave of enemies starting off at ten. The amount of enemies increases by 5 until the final round. Enemies will attack the player when they are within 20 pixels from the player. The player deals 2 damage per swing. Enemies have 10 health and the player has 20 health." FontSize="20" TextWrapping="Wrap" Margin="00,0,0,0" Height="227" Width="392"/>
 
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
             </StackPanel>

@@ -24,6 +24,7 @@ namespace SilentKnight
     /// </summary>
     public partial class GameScreen : Page
     {
+        MainWindow mw;
         MediaPlayer media_player = new MediaPlayer();
         SoundPlayer soundPlayer;
         DispatcherTimer gameTime;
@@ -44,6 +45,7 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = World.Instance.borderRight;
             Console.WriteLine(World.Instance.borderRight);
             timer = new DispatcherTimer();
@@ -106,12 +108,13 @@ namespace SilentKnight
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
             }
-            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
+            else if (World.Instance.Entities.Count == 9 && World.Instance.LevelCount == 1 && World.Instance.GameCompleted == false)
             {
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
+                mw.ShowHighScoreScreen();
             }
         }
 

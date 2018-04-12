@@ -31,6 +31,7 @@ namespace SilentKnight
         DispatcherTimer timer;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
+
         GameController ctrl = new GameController();
         public GameController Controller
         {
@@ -44,6 +45,7 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+
             Console.WriteLine("HI");
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = World.Instance.borderRight;
@@ -109,18 +111,17 @@ namespace SilentKnight
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
             }
-            else if (World.Instance.Entities.Count == 9 && World.Instance.LevelCount == 1 && World.Instance.GameCompleted == false)
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
             {
+
                 animate.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
-
+                Console.WriteLine(Player.Instance.PlayerScore);
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
+
                 mw.ShowHighScoreScreen();
-                World.Instance.ResetWorld();
-                Player.Instance.ResetPlayer();
-                Console.WriteLine("Blah");
             }
         }
 
@@ -215,7 +216,7 @@ namespace SilentKnight
 
             Console.WriteLine("Swinging sword!");
 
-            Task.Run(()=> soundPlayer.PlaySync());
+            Task.Run(() => soundPlayer.PlaySync());
 
             ctrl.ComputePlayerAttack();
             KilledEnemy();
@@ -312,7 +313,7 @@ namespace SilentKnight
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }
 
-        public EnemyControl CreateEnemyControl(string filename,double x, double y)
+        public EnemyControl CreateEnemyControl(string filename, double x, double y)
         {
             var enemyControl = new EnemyControl();
             enemyControl.Content = new Image()

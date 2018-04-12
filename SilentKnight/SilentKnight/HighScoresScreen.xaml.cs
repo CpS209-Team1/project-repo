@@ -25,7 +25,7 @@ namespace SilentKnight
         MainWindow wn;
         public HighScoresScreen(MainWindow t, HighScore h)
         {
-            highScores = new HighScore();
+            highScores = h;
             wn = t;
             InitializeComponent();
        }
@@ -35,15 +35,30 @@ namespace SilentKnight
         }
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            foreach(Score i in highScores.scoreList)
+            {
+                Console.WriteLine(i.Name);
+            }
+            Console.WriteLine();
             highScores.SaveIfHighScore();
+            foreach (Score i in highScores.scoreList)
+            {
+                Console.WriteLine(i.Name);
+            }
+            Console.WriteLine();
             highScores.WriteScores("HighScoresTestData.txt");
+            foreach (Score i in highScores.scoreList)
+            {
+                Console.WriteLine(i.Name);
+            }
+            Console.WriteLine();
             NamesAndScores.Text = " ";
             DisplayHighScores();
         }
 
         public void DisplayHighScores()
         {
-            highScores.LoadScores("HighScoresTestData.txt");
+            NamesAndScores.Text = "";
             if (highScores.scoreList.Count > 0)
             {
                 foreach (Score score in highScores.scoreList)
@@ -51,6 +66,8 @@ namespace SilentKnight
                     NamesAndScores.Text += score + "\n";
                 }
             }
+            World.Instance.ResetWorld();
+            Player.Instance.ResetPlayer();
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {

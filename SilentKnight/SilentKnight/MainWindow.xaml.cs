@@ -42,6 +42,10 @@ namespace SilentKnight
             hs = new HelpScreen(this);
             aboutscreen = new AboutScreen(this);
             topScore.LoadScores("HighScoresTestData.txt");
+            foreach(Score i in topScore.scoreList)
+            {
+                Console.WriteLine(i.Name);
+            }
         }
 
         private void Button_Click_GameScreen(object sender, RoutedEventArgs e)

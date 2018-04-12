@@ -21,10 +21,11 @@ namespace SilentKnight
     /// </summary>
     public partial class HighScoresScreen : Page
     {
-        HighScore highScores = new HighScore();
+        HighScore highScores;
         MainWindow wn;
-        public HighScoresScreen(MainWindow t)
+        public HighScoresScreen(MainWindow t, HighScore h)
         {
+            highScores = new HighScore();
             wn = t;
             InitializeComponent();
        }
@@ -34,6 +35,8 @@ namespace SilentKnight
         }
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            highScores.SaveIfHighScore();
+            highScores.WriteScores("HighScoresTestData.txt");
             NamesAndScores.Text = " ";
             DisplayHighScores();
         }

@@ -22,6 +22,7 @@ namespace SilentKnight
     /// </summary>
     public partial class MainWindow : Window
     {
+        HighScore topScore;
         GameScreen gs = new GameScreen();
         HelpScreen hs;
         HighScoresScreen highscoresscreen;
@@ -35,10 +36,12 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            topScore = new HighScore();
             startScreen = new StartScreen(this, gs);
-            highscoresscreen = new HighScoresScreen(this);
+            highscoresscreen = new HighScoresScreen(this, topScore);
             hs = new HelpScreen(this);
             aboutscreen = new AboutScreen(this);
+            topScore.LoadScores("HighScoresTestData.txt");
         }
 
         private void Button_Click_GameScreen(object sender, RoutedEventArgs e)

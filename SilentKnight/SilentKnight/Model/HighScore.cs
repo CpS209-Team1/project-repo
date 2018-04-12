@@ -54,9 +54,8 @@ namespace Model
 
         public void SaveIfHighScore()
         {
-            //Score playerScore = new Score(Player.Instance.PlayerName, Player.Instance.PlayerScore);
+            Score playerScore = new Score(Player.Instance.PlayerName, Player.Instance.PlayerScore);
 
-            Score playerScore = new Score("Danny", 30000);
             scoreList.Add(playerScore);
 
             // This sort algorithm is derived from the selection sort in the textbook:

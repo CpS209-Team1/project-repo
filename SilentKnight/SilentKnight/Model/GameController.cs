@@ -171,7 +171,7 @@ namespace Model
             {
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50)
                 {
-                    i.RemoveEnemyHealth(10);
+                    i.RemoveEnemyHealth(2);
                     EnemyMove.Instance.Hit(i);
                 }
                 if (i.Health <= 0)

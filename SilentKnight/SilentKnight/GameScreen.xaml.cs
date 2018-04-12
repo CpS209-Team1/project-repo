@@ -45,8 +45,12 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            minuteTxt.Text = "00";
+            secondTxt.Text = "00";
+            scoreNum.Text = "0";
+            enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
+            levelNum.Text = "1";
 
-            Console.WriteLine("HI");
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = World.Instance.borderRight;
             Console.WriteLine(World.Instance.borderRight);

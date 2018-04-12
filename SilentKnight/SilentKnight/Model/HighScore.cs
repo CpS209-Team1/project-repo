@@ -18,7 +18,10 @@ namespace Model
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
             // file -system/how-to-write-to-a-text-file
             string inputLine;
-
+            if(! File.Exists(fileName))
+            {
+                using (StreamWriter w = File.AppendText(fileName));
+            }
             using (StreamReader inputFile = new StreamReader(fileName))
             {
                 int ctr = 0;

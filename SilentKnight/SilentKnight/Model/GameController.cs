@@ -32,7 +32,7 @@ namespace Model
 
         public void CalculateScore()
         {
-            Player.Instance.PlayerScore += (1000 / World.Instance.Time) + 100;
+            Player.Instance.PlayerScore += (1000 / (World.Instance.Time / Player.Instance.Health)) + 100;
         }
 
         public List<string> Users = new List<string>();
@@ -169,10 +169,23 @@ namespace Model
         {
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50 && Player.Instance.PlayerCoolDown == 0 && World.Instance.CheatMode == false)
                 {
+                    Player.Instance.PlayerCoolDown = 50;
                     i.RemoveEnemyHealth(2);
                     EnemyMove.Instance.Hit(i);
+                }
+                else if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50 && Player.Instance.PlayerCoolDown == 0 && World.Instance.CheatMode == true)
+                {
+                    i.RemoveEnemyHealth(i.Health);
+                    EnemyMove.Instance.Hit(i);
+                }
+                else
+                {
+                    if(Player.Instance.PlayerCoolDown != 0)
+                    {
+                        Player.Instance.PlayerCoolDown -= 1;
+                    }
                 }
                 if (i.Health <= 0)
                 {
@@ -197,7 +210,8 @@ namespace Model
             {
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDown == 0 && World.Instance.CheatMode == false)
                 {
-                    Player.Instance.RemovePlayerHealth(2);
+                    Player.Instance.RemovePlayerHealth(i.AttackDamage);
+                    Console.WriteLine(i.Health);
                     //Console.WriteLine(Player.Instance.Health);
                     i.CoolDown = 100;
                     hit += 1;

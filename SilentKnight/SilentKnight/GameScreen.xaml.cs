@@ -123,12 +123,12 @@ namespace SilentKnight
                 if (World.Instance.LevelCount == 1)
                 {
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
-                    DoSpawn(10);
+                    DoSpawn(10 + World.Instance.LevelCount);
                     World.Instance.LevelCount += 1;
                 }
                 else
                 {
-                    DoSpawn(10);
+                    DoSpawn(10 + World.Instance.LevelCount);
                     World.Instance.LevelCount += 1;
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }

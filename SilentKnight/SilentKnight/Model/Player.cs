@@ -16,6 +16,7 @@ namespace Model
         public int PlayerScore { get; set; }
         public string PlayerName { get; set; }
         public int HealthLevel { get; set; }
+        public int PlayerCoolDown { get; set; }
 
         private Player()
         {
@@ -25,6 +26,7 @@ namespace Model
             PlayerLoc.Y = 159;
             HealthLevel = 1;
             PlayerScore = 0;
+            PlayerCoolDown = 0;
         }
 
         public void ResetPlayer()

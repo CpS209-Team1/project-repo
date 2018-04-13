@@ -15,7 +15,7 @@ namespace Model
         public Location EnemyLoc;
         public string Image { get; set; }
         public int CoolDown { get; set; } //Enemy attack cooldown
-
+        public int AttackDamage { get; set; }
         static Random rand = new Random();
 
         int choose = rand.Next(1, 6);
@@ -24,21 +24,6 @@ namespace Model
         {
             CoolDown = 0;
             Observer = observer;
-            switch(World.Instance.Difficulty)
-            {
-                case 1:
-                    Health = 5;
-                    break;
-                case 2:
-                    Health = 10;
-                    break;
-                case 3:
-                    Health = 20;
-                    break;
-                default:
-                    Health = 10;
-                    break;
-            }
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
             Image = image;
@@ -125,9 +110,32 @@ namespace Model
 
     class Skeleton : Enemy
     {
-        public Skeleton(IEnemyObserver observer, double x, double y, string image) : base(observer, x, y, image)
+        public Skeleton(IEnemyObserver observer, double x, double y, string image ) : base(observer, x, y, image)
         {
-
+            switch(World.Instance.Difficulty)
+            {
+                case 1:
+                    AttackDamage = 2;
+                    break;
+                case 2:
+                    AttackDamage = 4;
+                    break;
+                case 3:
+                    AttackDamage = 6;
+                    break;
+            }
+            switch (World.Instance.Difficulty)
+            {
+                case 1:
+                    Health = 5 + World.Instance.LevelCount * World.Instance.Difficulty;
+                    break;
+                case 2:
+                    Health = 10 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+                case 3:
+                    Health = 20 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+            }
         }
 
         /// <summary>

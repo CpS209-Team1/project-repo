@@ -172,7 +172,7 @@ namespace Model
             {
                 int randNum = rand.Next(0, 10);
                 double enemyDistance = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2));
-                if ( enemyDistance < 50 && World.Instance.CheatMode == false)
+                if ( enemyDistance < 50 && World.Instance.CheatMode == false && Player.Instance.PlayerCoolDown == 0)
                 {
                     if (Player.Instance.PlayerDirection == Direction.Left && i.EnemyLoc.X < Player.Instance.PlayerLoc.X)
                     {
@@ -195,7 +195,7 @@ namespace Model
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
                     }
-                    Player.Instance.PlayerCoolDown = 50;
+                    Player.Instance.PlayerCoolDown = 25;
 
                 }
                 else if  (enemyDistance < 50 && World.Instance.CheatMode == true)

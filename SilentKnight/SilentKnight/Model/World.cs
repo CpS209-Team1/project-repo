@@ -18,6 +18,8 @@ namespace Model
         public int LevelCount { get; set; }
         public int Time { get; set; }
         public bool GameCompleted { get; set; }
+        public List<Enemy> EntitiesLoad { get; set; }
+        public bool Load { get; set; }
         private World()
         {
             Entities = new List<Enemy>();
@@ -28,6 +30,8 @@ namespace Model
             LevelCount = 1;
             Time = 0;
             GameCompleted = false;
+            EntitiesLoad = new List<Enemy>();
+            Load = false;
         }
 
         public void ResetWorld()
@@ -89,6 +93,7 @@ namespace Model
 
         public void Deserialize(StreamReader rd)
         {
+            Instance.Load = true;
             rd.ReadLine();
             string[] border = rd.ReadLine().Trim().Split(' ')[1].Split(',');
             World.Instance.borderRight = Convert.ToInt32(border[0]);
@@ -106,8 +111,9 @@ namespace Model
                 double x = Convert.ToDouble(loc[0]);
                 double y = Convert.ToDouble(loc[1]);
                 Skeleton ent = new Skeleton(Spawn.Instance.observer,x,y,image);
-                World.Instance.AddEntity(ent);
+                World.Instance.EntitiesLoad.Add(ent);
             }
+            
         }
 
         public static World Instance

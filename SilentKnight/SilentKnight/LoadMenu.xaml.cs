@@ -33,6 +33,7 @@ namespace SilentKnight
 
         private void btnLoadClick(object sender, RoutedEventArgs e)
         {
+            World.Instance.Load = true;
             Console.WriteLine("Loading..");
             string name = txtName.Text;
             if (ctrl.ValidateUser(name, "data.txt"))

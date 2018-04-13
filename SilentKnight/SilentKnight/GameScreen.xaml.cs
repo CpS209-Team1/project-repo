@@ -290,7 +290,7 @@ namespace SilentKnight
         public void DoSpawn(int enemyCount)
         {
             Console.WriteLine("Creating new enemies...");
-            if (World.Instance.Entities.Count == 0)
+            if (World.Instance.Entities.Count == 0 && World.Instance.Load == false)
             {
                 Random rand = new Random();
                 for (int i = 1; i <= enemyCount; i++)
@@ -305,12 +305,14 @@ namespace SilentKnight
             else
             {
                 Console.WriteLine("Loading in previous enemies...");
-                foreach (Enemy ent in World.Instance.Entities)
+                foreach (Enemy ent in World.Instance.EntitiesLoad)
                 {
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
                     var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
+                    var enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                    World.Instance.Entities.Add(enemy);
                 }
             }
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);

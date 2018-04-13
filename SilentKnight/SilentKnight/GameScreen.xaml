@@ -10,23 +10,23 @@
     <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged">
 
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
-        <Rectangle x:Name="health" Width="130" Height="33" Margin="0,22,0,0">
+        <Rectangle x:Name="health" Width="130" Height="31.5" Margin="0,22,0,0">
             <Rectangle.Fill>
                 <!--This is where you define the sprite sheet-->
                 <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"
                             Stretch="None"
                             AlignmentX="Left"
                             AlignmentY="Top"
-                            Viewport="0,0,1920,1080"
+                            Viewport="0,0,1920,7874"
                             ViewportUnits="Absolute"
                             >
                     <!--Above. This method of using the sprite sheet will NOT work unless Viewport is set to the size of the whole sprite sheet-->
                     <ImageBrush.Transform>
                         <TransformGroup>
                             <!--The offset is what is used to show certain parts of the sprite sheet, OFFSET MUST BE NEGATIVE-->
-                            <TranslateTransform x:Name="HealthSheet" X="0" Y="0"/>
+                            <TranslateTransform x:Name="HealthSheet" X="0" Y="-7500"/>
                             <!--Resize image; x and y must be the same value-->
-                            <ScaleTransform ScaleX=".5" ScaleY=".5"/>
+                            <ScaleTransform ScaleX=".083" ScaleY=".084"/>
                         </TransformGroup>
                     </ImageBrush.Transform>
                 </ImageBrush>

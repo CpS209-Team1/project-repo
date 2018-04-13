@@ -27,7 +27,7 @@ namespace SilentKnight
         MediaPlayer media_player = new MediaPlayer();
         SoundPlayer soundPlayer;
         DispatcherTimer gameTime;
-        DispatcherTimer animate;
+        DispatcherTimer enemyEvent;
         DispatcherTimer timer;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
@@ -50,7 +50,7 @@ namespace SilentKnight
             scoreNum.Text = "0";
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             levelNum.Text = "1";
-
+            PlayerHealth();
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = mw.ActualWidth;
             Console.WriteLine(World.Instance.borderRight);
@@ -67,6 +67,10 @@ namespace SilentKnight
             soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
         }
 
+
+
+        //TIMERS AND LOGIC LINES 74 - 149
+
         private void GameTimer()
         {
             InitializeComponent();
@@ -75,6 +79,20 @@ namespace SilentKnight
             gameTime.Tick += new EventHandler(AddTime);
             gameTime.Start();
         }
+
+        /// <summary>
+        /// Activates each 'animage.Tick' ever 10 mls
+        /// </summary>
+        void EnemyEvents()
+        {
+            enemyEvent = new DispatcherTimer();
+            enemyEvent.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            enemyEvent.Tick += new EventHandler(AnimateEnemy); //Adds AnimateEnemy to the timer
+            enemyEvent.Tick += new EventHandler(EnemyAttack); //Adds EnemyAttack to the timer
+            enemyEvent.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
+            enemyEvent.Start();
+        }
+
 
         private void AddTime(object sender, EventArgs e)
         {
@@ -118,7 +136,7 @@ namespace SilentKnight
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
             {
 
-                animate.Stop();
+                enemyEvent.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
@@ -129,33 +147,8 @@ namespace SilentKnight
             }
         }
 
-        /// <summary>
-        /// Activates each 'animage.Tick' ever 10 mls
-        /// </summary>
-        void EnemyEvents()
-        {
-            animate = new DispatcherTimer();
-            animate.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            animate.Tick += new EventHandler(AnimateEnemy); //Adds AnimateEnemy to the timer
-            animate.Tick += new EventHandler(EnemyAttack); //Adds EnemyAttack to the timer
-            animate.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
-            animate.Start();
-        }
 
-        /// <summary>
-        /// This method checks the right and left borders and then calls `UpdatePosition` to update each individual position
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AnimateEnemy(object sender, EventArgs e)
-        {
-            World.Instance.borderRight = gameScreen.ActualWidth - 50; //50 is the picture width
-            World.Instance.borderBottom = gameScreen.ActualHeight - 50;
-            foreach (Enemy i in World.Instance.Entities)
-            {
-                i.UpdatePosition();
-            }
-        }
+        //KEY PRESS AND PLAYER MOVEMENT
 
         private void MovePlayer(object sender, EventArgs e)
         {
@@ -226,6 +219,9 @@ namespace SilentKnight
             KilledEnemy();
         }
 
+        
+        //ATTACK AND HEALTH LOGIC
+
         /// <summary>
         /// Enemy Attack calls `ComputeEnemyAttack`
         /// </summary>
@@ -246,27 +242,14 @@ namespace SilentKnight
         /// </summary>
         void PlayerHealth()
         {
-            if (Player.Instance.Health > 2)
+            if (Player.Instance.Health > 0)
             {
-                for (int i = 0; i < 2; i++)
-                {
-                    if (Player.Instance.HealthLevel == 6) //This number is the amount of sprites per row on the sprite sheet
-                    {
-
-                        Player.Instance.HealthLevel = 1;
-                        HealthSheet.X = 0;
-                        HealthSheet.Y -= 67;
-                    }
-                    HealthSheet.X -= 264;
-                    Player.Instance.HealthLevel += 1;
-                }
+                HealthSheet.Y = -(Player.Instance.Health * 375);
             }
             else
             {
-                HealthSheet.X -= 264;
-                Player.Instance.HealthLevel += 1;
+                HealthSheet.Y = 0;
             }
-
         }
 
         /// <summary>
@@ -283,6 +266,10 @@ namespace SilentKnight
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
         }
+
+
+
+        //ENEMY LOGIC LINES 276 - 333
 
         /// <summary>
         /// This method creates new enemies
@@ -332,6 +319,24 @@ namespace SilentKnight
             return enemyControl;
         }
 
+        /// <summary>
+        /// This method checks the right and left borders and then calls `UpdatePosition` to update each individual position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AnimateEnemy(object sender, EventArgs e)
+        {
+            World.Instance.borderRight = gameScreen.ActualWidth - 50; //50 is the picture width
+            World.Instance.borderBottom = gameScreen.ActualHeight - 50;
+            foreach (Enemy i in World.Instance.Entities)
+            {
+                i.UpdatePosition();
+            }
+        }
+
+
+        //DYNAMIC MATH LINES 338 - 357
+
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Thickness margin = levelTxt.Margin;
@@ -353,18 +358,21 @@ namespace SilentKnight
             ctrl.KeepEnemyInBounds();
         }
 
+
+        // PAUSE MENU
+
         public void OnKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape && timer != null)
             {
                 Console.WriteLine("Pressed Escape!");
                 timer.Stop();
-                animate.Stop();
+                enemyEvent.Stop();
                 gameTime.Stop();
                 PauseWindow pause = new PauseWindow(ctrl);
                 pause.ShowDialog();
                 timer.Start();
-                animate.Start();
+                enemyEvent.Start();
                 gameTime.Start();
             }
         }

@@ -52,7 +52,7 @@ namespace SilentKnight
             levelNum.Text = "1";
 
             mw = (MainWindow)Application.Current.MainWindow;
-            gameScreen.Width = World.Instance.borderRight;
+            gameScreen.Width = mw.ActualWidth;
             Console.WriteLine(World.Instance.borderRight);
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(MovePlayer);

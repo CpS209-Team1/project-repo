@@ -10,7 +10,9 @@
     <Canvas x:Name="highScoreCanvas" Margin="0,0,-1209,-453">
         <StackPanel Background="#FF7B9191" Height="759">
             <Image Source="/Assets/HighScoresLogo.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
-            <TextBlock x:Name="NamesAndScores" Canvas.Left="538" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="186" Height="335" Width="822" FontSize="50" FontWeight="ExtraBlack"  TextAlignment="Center" FontFamily="Tempus Sans ITC"/>
+            <ScrollViewer  HorizontalScrollBarVisibility="Hidden" Height="335">
+                <TextBlock x:Name="NamesAndScores" Canvas.Left="538" TextWrapping="Wrap" Text="TextBlock" Canvas.Top="186" Width="822" FontSize="50" FontWeight="ExtraBlack"  TextAlignment="Center" FontFamily="Tempus Sans ITC"/>
+            </ScrollViewer>
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="35" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
 
         </StackPanel>

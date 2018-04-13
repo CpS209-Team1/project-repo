@@ -21,9 +21,9 @@ namespace Model
         ///This method takes `enemy` and removes .25 from its X value
         /// </summary>
         /// <param name="enemy"></param>
-        public void MoveLeft(Enemy enemy)
+        public void MoveLeft(Enemy enemy, double speed)
         {
-            enemy.EnemyLoc.X -= .25;
+            enemy.EnemyLoc.X -= speed;
             Timer += 1;
         }
 
@@ -31,9 +31,9 @@ namespace Model
         /// This method takes `enemy` and adds .25 to its X value
         /// </summary>
         /// <param name="enemy"></param>
-        public void MoveRight(Enemy enemy)
+        public void MoveRight(Enemy enemy, double speed)
         {
-            enemy.EnemyLoc.X += .25;
+            enemy.EnemyLoc.X += speed;
             Timer += 1;
         }
 
@@ -41,9 +41,9 @@ namespace Model
         /// This method takes `enemy` and removes .25 from its Y value
         /// </summary>
         /// <param name="enemy"></param>
-        public void MoveUp(Enemy enemy)
+        public void MoveUp(Enemy enemy, double speed)
         {
-            enemy.EnemyLoc.Y -= .25;
+            enemy.EnemyLoc.Y -= speed;
             Timer += 1;
         }
 
@@ -51,9 +51,9 @@ namespace Model
         /// This method takes `enemy` and adds .25 to its Y value
         /// </summary>
         /// <param name="enemy"></param>
-        public void MoveDown(Enemy enemy)
+        public void MoveDown(Enemy enemy, double speed)
         {
-            enemy.EnemyLoc.Y += .25;
+            enemy.EnemyLoc.Y += speed;
             Timer += 1;
         }
 

@@ -17,7 +17,7 @@ namespace Model
         public int CoolDown { get; set; } //Enemy attack cooldown
         public int AttackDamage { get; set; }
         static Random rand = new Random();
-
+        public double EnemySpeed { get; set; }
         int choose = rand.Next(1, 6);
 
         public Enemy(IEnemyObserver observer, double x, double y, string image)
@@ -46,23 +46,23 @@ namespace Model
             {
                 if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
                 {
-                    EnemyMove.Instance.MoveRight(this);
+                    EnemyMove.Instance.MoveRight(this, EnemySpeed);
 
                 }
                 else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom)
                 {
-                    EnemyMove.Instance.MoveDown(this);
+                    EnemyMove.Instance.MoveDown(this, EnemySpeed);
 
                 }
                 else if (choose == 3 && EnemyLoc.X - 1 > 0)
                 {
-                    EnemyMove.Instance.MoveLeft(this);
+                    EnemyMove.Instance.MoveLeft(this, EnemySpeed);
 
                 }
                 else if (choose == 4 && EnemyLoc.Y - 1 > 0)
                 {
 
-                    EnemyMove.Instance.MoveUp(this);
+                    EnemyMove.Instance.MoveUp(this, EnemySpeed);
                 }
                 else if (choose == 5 && EnemyLoc.Y - 1 > 0)
                 {
@@ -136,6 +136,7 @@ namespace Model
                     Health = 20 + World.Instance.LevelCount * World.Instance.Difficulty; ;
                     break;
             }
+            EnemySpeed = .5;
         }
 
         /// <summary>
@@ -145,6 +146,72 @@ namespace Model
         public override string GetKind()
         {
             return "Skeleton";
+        }
+
+        /// <summary>
+        /// Removes number from enemy's health
+        /// </summary>
+        public override void RemoveEnemyHealth(int amount)
+        {
+            Health -= amount;
+        }
+
+        /// <summary>
+        /// Adds number to enemy's health
+        /// </summary>
+        public override void AddEnemyHealth(int amount)
+        {
+            Health += amount;
+        }
+
+        //Removes enemy from Entities list
+        public override void KillEnemy()
+        {
+            if (Health <= 0)
+            {
+                World.Instance.Entities.Remove(this);
+            }
+        }
+    }
+
+    class Troll : Enemy
+    {
+        public Troll(IEnemyObserver observer, double x, double y, string image) : base(observer, x, y, image)
+        {
+            switch (World.Instance.Difficulty)
+            {
+                case 1:
+                    AttackDamage = 1;
+                    break;
+                case 2:
+                    AttackDamage = 3;
+                    break;
+                case 3:
+                    AttackDamage = 5;
+                    break;
+            }
+            switch (World.Instance.Difficulty)
+            {
+                case 1:
+                    Health = 2 + World.Instance.LevelCount * World.Instance.Difficulty;
+                    break;
+                case 2:
+                    Health = 5 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+                case 3:
+                    Health = 8 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+            }
+            EnemySpeed = .8;
+        }
+
+        /// <summary>
+        /// Returns entity kind
+        /// </summary>
+        /// <returns></returns>
+        public override string GetKind()
+        {
+            return "Troll";
         }
 
         /// <summary>

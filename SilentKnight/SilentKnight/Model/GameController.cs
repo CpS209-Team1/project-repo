@@ -167,8 +167,10 @@ namespace Model
         /// </summary>
         public void ComputePlayerAttack()
         {
+            Random rand = new Random();
             foreach (Enemy i in World.Instance.Entities)
             {
+                int randNum = rand.Next(0, 10);
                 double enemyDistance = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2));
                 if ( enemyDistance < 50 && World.Instance.CheatMode == false)
                 {
@@ -205,6 +207,11 @@ namespace Model
                 {
                     World.Instance.DeadEnemy.Add(i);// Once an enemy is removed from the Entities list, it is added to DeadEnemy for removal from the canvas
                     Player.Instance.PlayerScore += 1;
+                    if(randNum == 7)
+                    {
+                        randNum = rand.Next(1, 5);
+                        Player.Instance.Health += randNum;
+                    }
                 }
             }
 

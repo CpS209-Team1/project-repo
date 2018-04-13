@@ -172,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\HighScoresLogo.png" />
+    <Resource Include="Assets\HealthPotion.png" />
+    <Resource Include="Assets\troll.png" />
     <Content Include="data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

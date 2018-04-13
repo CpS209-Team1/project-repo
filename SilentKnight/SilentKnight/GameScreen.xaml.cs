@@ -289,31 +289,46 @@ namespace SilentKnight
         /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
+            Enemy enemy;
+            Random randEnt = new Random();
             Console.WriteLine("Creating new enemies...");
             if (World.Instance.Entities.Count == 0 && World.Instance.Load == false)
             {
                 Random rand = new Random();
                 for (int i = 1; i <= enemyCount; i++)
                 {
+                    int entType = randEnt.Next(0, 2);
                     int x = rand.Next(0, (int)gameScreenCanvas.ActualWidth - 50);
                     int y = rand.Next((int)gameScreenCanvas.ActualHeight - 52, (int)gameScreenCanvas.ActualHeight - 50);
-                    var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
-                    var enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                    var enemyControl = CreateEnemyControl("/Assets/"+ World.Instance.EnemyTypes[entType] + ".png", x, y);
+                    switch (entType)
+                    {
+                        case 0:
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                            break;
+                        case 1:
+                            enemy = new Troll(enemyControl, x, y, "troll");
+                            break;
+                        default:
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                            break;
+                    }
+                    Console.WriteLine(enemy);
                     World.Instance.Entities.Add(enemy);
                 }
             }
             else
             {
                 Console.WriteLine("Loading in previous enemies...");
-                foreach (Enemy ent in World.Instance.EntitiesLoad)
+                foreach (Enemy ent in World.Instance.Entities)
                 {
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
                     var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
-                    var enemy = new Skeleton(enemyControl, x, y, "skeleton");
-                    World.Instance.Entities.Add(enemy);
+                    ent.Observer = enemyControl;
                 }
+                World.Instance.Load = false;
             }
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }

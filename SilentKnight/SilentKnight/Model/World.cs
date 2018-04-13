@@ -20,6 +20,7 @@ namespace Model
         public bool GameCompleted { get; set; }
         public List<Enemy> EntitiesLoad { get; set; }
         public bool Load { get; set; }
+        public List<string> EnemyTypes {get;set;}
         private World()
         {
             Entities = new List<Enemy>();
@@ -32,6 +33,7 @@ namespace Model
             GameCompleted = false;
             EntitiesLoad = new List<Enemy>();
             Load = false;
+            EnemyTypes = new List<string> { "skeleton", "troll" };
         }
 
         public void ResetWorld()
@@ -111,7 +113,7 @@ namespace Model
                 double x = Convert.ToDouble(loc[0]);
                 double y = Convert.ToDouble(loc[1]);
                 Skeleton ent = new Skeleton(Spawn.Instance.observer,x,y,image);
-                World.Instance.EntitiesLoad.Add(ent);
+                World.Instance.Entities.Add(ent);
             }
             
         }

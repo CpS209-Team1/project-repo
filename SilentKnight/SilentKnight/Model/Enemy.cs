@@ -14,7 +14,8 @@ namespace Model
         public int Health { get; set; }
         public Location EnemyLoc;
         public string Image { get; set; }
-        public int CoolDown { get; set; } //Enemy attack cooldown
+        public int CoolDownTimer { get; set; } //Enemy attack cooldown
+        public int CoolDown { get; set; }
         public int AttackDamage { get; set; }
         static Random rand = new Random();
         public double EnemySpeed { get; set; }
@@ -22,7 +23,7 @@ namespace Model
 
         public Enemy(IEnemyObserver observer, double x, double y, string image)
         {
-            CoolDown = 0;
+            CoolDownTimer = 0;
             Observer = observer;
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
@@ -137,6 +138,7 @@ namespace Model
                     break;
             }
             EnemySpeed = .5;
+            CoolDown = 100;
         }
 
         /// <summary>
@@ -203,6 +205,7 @@ namespace Model
                     break;
             }
             EnemySpeed = .8;
+            CoolDown = 50;
         }
 
         /// <summary>

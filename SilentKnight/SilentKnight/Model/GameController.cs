@@ -229,19 +229,19 @@ namespace Model
             int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDown == 0 && World.Instance.CheatMode == false)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 25 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);
                     Console.WriteLine(i.Health);
                     //Console.WriteLine(Player.Instance.Health);
-                    i.CoolDown = 100;
+                    i.CoolDownTimer = i.CoolDown ;
                     hit += 1;
                 }
                 else
                 {
-                    if (i.CoolDown != 0)
+                    if (i.CoolDownTimer != 0)
                     {
-                        i.CoolDown -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
+                        i.CoolDownTimer -= 1; //This method causes enemy's to have a 100 tick cooldown before being able to injure the player again
                     }
                 }
             }

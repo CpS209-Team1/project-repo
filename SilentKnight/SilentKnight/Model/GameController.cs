@@ -175,17 +175,10 @@ namespace Model
                     i.RemoveEnemyHealth(2);
                     EnemyMove.Instance.Hit(i);
                 }
-                else if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50 && Player.Instance.PlayerCoolDown == 0 && World.Instance.CheatMode == true)
+                else if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2)) < 50 && World.Instance.CheatMode == true)
                 {
                     i.RemoveEnemyHealth(i.Health);
                     EnemyMove.Instance.Hit(i);
-                }
-                else
-                {
-                    if(Player.Instance.PlayerCoolDown != 0)
-                    {
-                        Player.Instance.PlayerCoolDown -= 1;
-                    }
                 }
                 if (i.Health <= 0)
                 {

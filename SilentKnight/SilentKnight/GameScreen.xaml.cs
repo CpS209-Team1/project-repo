@@ -45,6 +45,7 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
+            enemyCanvas.Children.Clear();
             minuteTxt.Text = "00";
             secondTxt.Text = "00";
             scoreNum.Text = "0";
@@ -57,8 +58,8 @@ namespace SilentKnight
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(MovePlayer);
             timer.Start();
-            y = 20;
-            x = 15;
+            y = Player.Instance.PlayerLoc.Y;
+            x = Player.Instance.PlayerLoc.X;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
             DoSpawn(10); //Spawns 10 enemies
@@ -116,8 +117,17 @@ namespace SilentKnight
         /// <param name="e"></param>
         void CheckLevelStatus(object sender, EventArgs e)
         {
+            if(Player.Instance.PlayerIsDead == true)
+            {
+                enemyEvent.Stop();
+                gameTime.Stop();
+                World.Instance.GameCompleted = true;
+                Console.WriteLine(Player.Instance.PlayerScore);
+                scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
 
-            if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
+                mw.ShowHighScoreScreen();
+            }
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
             {
                 Console.WriteLine("test");
                 if (World.Instance.LevelCount == 1)
@@ -144,6 +154,10 @@ namespace SilentKnight
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
 
                 mw.ShowHighScoreScreen();
+            }
+            if(Player.Instance.PlayerCoolDown != 0)
+            {
+                Player.Instance.PlayerCoolDown -= 1;
             }
         }
 
@@ -231,10 +245,7 @@ namespace SilentKnight
         {
             int playerHits = ctrl.ComputeEnemyAttack();
 
-            if (playerHits > 0 && Player.Instance.Health > 0)
-            {
-                PlayerHealth();
-            }
+            PlayerHealth();
         }
 
         /// <summary>
@@ -249,6 +260,7 @@ namespace SilentKnight
             else
             {
                 HealthSheet.Y = 0;
+                Player.Instance.PlayerIsDead = true;
             }
         }
 
@@ -260,7 +272,7 @@ namespace SilentKnight
         {
             foreach (Enemy i in World.Instance.DeadEnemy)
             {
-                gameScreenCanvas.Children.Remove((UIElement)i.Observer);
+                enemyCanvas.Children.Remove((UIElement)i.Observer);
             }
             World.Instance.DeadEnemy = new List<Enemy>();
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
@@ -315,7 +327,7 @@ namespace SilentKnight
             enemyControl.Height = 50;
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
-            gameScreenCanvas.Children.Add(enemyControl);
+            enemyCanvas.Children.Add(enemyControl);
             return enemyControl;
         }
 

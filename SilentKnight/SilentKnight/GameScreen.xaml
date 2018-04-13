@@ -8,7 +8,7 @@
       d:DesignHeight="800" d:DesignWidth="1400"
         Title="GameScreen" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" Background="White" ShowsNavigationUI="False">
     <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged">
-
+        <Canvas x:Name="enemyCanvas"></Canvas>
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
         <Rectangle x:Name="health" Width="130" Height="31.5" Margin="0,22,0,0">
             <Rectangle.Fill>

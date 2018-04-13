@@ -68,8 +68,11 @@ namespace SilentKnight
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            Player.Instance.PlayerName = username.Text;
-            mw.Main.Content = gs;
+            if (username.Text != "")
+            {
+                Player.Instance.PlayerName = username.Text;
+                mw.Main.Content = gs;
+            }
         }
     }
 }

@@ -17,9 +17,24 @@ namespace Model
         public string PlayerName { get; set; }
         public int HealthLevel { get; set; }
         public int PlayerCoolDown { get; set; }
+        public bool PlayerIsDead { get; set; }
 
         private Player()
         {
+            PlayerName = "";
+            PlayerDirection = Direction.Down;
+            Health = 20;
+            PlayerLoc.X = World.Instance.borderRight / 2;
+            PlayerLoc.Y = World.Instance.borderBottom / 2;
+            HealthLevel = 1;
+            PlayerScore = 0;
+            PlayerCoolDown = 0;
+            PlayerIsDead = false;
+        }
+
+        public void ResetPlayer()
+        {
+            PlayerName = "";
             PlayerDirection = Direction.Down;
             Health = 20;
             PlayerLoc.X = 234;
@@ -27,16 +42,7 @@ namespace Model
             HealthLevel = 1;
             PlayerScore = 0;
             PlayerCoolDown = 0;
-        }
-
-        public void ResetPlayer()
-        {
-            PlayerDirection = Direction.Down;
-            Health = 20;
-            PlayerLoc.X = 234;
-            PlayerLoc.Y = 159;
-            HealthLevel = 1;
-            PlayerScore = 0;
+            PlayerIsDead = false;
         }
 
         public void Login(string user,string filename, GameController ctrl)

@@ -64,6 +64,10 @@
     <Compile Include="HighScoresScreen.xaml.cs">
       <DependentUpon>HighScoresScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Arrow.cs" />
+    <Compile Include="Model\MeleeState.cs" />
+    <Compile Include="Model\RangedState.cs" />
+    <Compile Include="Model\StateMachine.cs" />
     <Compile Include="PauseWindow.xaml.cs">
       <DependentUpon>PauseWindow.xaml</DependentUpon>
     </Compile>

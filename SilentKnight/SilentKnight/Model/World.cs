@@ -10,7 +10,9 @@ namespace Model
     class World
     {
         public List<Enemy> Entities { get; set; } //This list is for storing all game entities
+        public List<Arrow> EntitiesArrow { get; set; }
         public List<Enemy> DeadEnemy { get; set; } //This list is for storing enemies that need to be removed from the canvas
+        public List<Arrow> DeadArrow { get; set; }
         public double borderRight { get; set; } //This is for border collision
         public double borderBottom { get; set; } //This is for border collision
         public int Difficulty { get; set; } //Ranges from 1 to 3
@@ -23,7 +25,9 @@ namespace Model
         public List<string> EnemyTypes {get;set;}
         private World()
         {
+            DeadArrow = new List<Arrow>();
             Entities = new List<Enemy>();
+            EntitiesArrow = new List<Arrow>();
             DeadEnemy = new List<Enemy>();
             borderBottom = 0;
             Difficulty = 1; 
@@ -56,6 +60,11 @@ namespace Model
         public void AddEntity(Enemy enemy)
         {
             Entities.Add(enemy);
+        }
+
+        public void AddEntityArrow(Arrow enemy)
+        {
+            EntitiesArrow.Add(enemy);
         }
 
         // public Enemy GetEntityByID(int ID)

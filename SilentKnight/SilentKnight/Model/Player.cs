@@ -18,6 +18,7 @@ namespace Model
         public int HealthLevel { get; set; }
         public int PlayerCoolDown { get; set; }
         public bool PlayerIsDead { get; set; }
+        public StateMachine PlayerState { get; set; }
 
         private Player()
         {
@@ -30,6 +31,7 @@ namespace Model
             PlayerScore = 0;
             PlayerCoolDown = 0;
             PlayerIsDead = false;
+            PlayerState = new StateMachine();
         }
 
         public void ResetPlayer()

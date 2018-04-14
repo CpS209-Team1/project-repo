@@ -54,7 +54,7 @@ namespace SilentKnight
             PlayerHealth();
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = mw.ActualWidth;
-            Console.WriteLine(World.Instance.borderRight);
+            
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(MovePlayer);
             timer.Start();
@@ -88,8 +88,8 @@ namespace SilentKnight
         {
             enemyEvent = new DispatcherTimer();
             enemyEvent.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            enemyEvent.Tick += new EventHandler(AnimateEnemy); //Adds AnimateEnemy to the timer
-            enemyEvent.Tick += new EventHandler(EnemyAttack); //Adds EnemyAttack to the timer
+            enemyEvent.Tick += new EventHandler(AnimateEntity); //Adds AnimateEnemy to the timer
+            enemyEvent.Tick += new EventHandler(EntityAttack); //Adds EnemyAttack to the timer
             enemyEvent.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
             enemyEvent.Start();
         }
@@ -117,19 +117,19 @@ namespace SilentKnight
         /// <param name="e"></param>
         void CheckLevelStatus(object sender, EventArgs e)
         {
-            if(Player.Instance.PlayerIsDead == true)
+            if (Player.Instance.PlayerIsDead == true)
             {
                 enemyEvent.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
-                Console.WriteLine(Player.Instance.PlayerScore);
+               
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
 
                 mw.ShowHighScoreScreen();
             }
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
             {
-                Console.WriteLine("test");
+                
                 if (World.Instance.LevelCount == 1)
                 {
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
@@ -150,12 +150,12 @@ namespace SilentKnight
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
-                Console.WriteLine(Player.Instance.PlayerScore);
+                
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
 
                 mw.ShowHighScoreScreen();
             }
-            if(Player.Instance.PlayerCoolDown != 0)
+            if (Player.Instance.PlayerCoolDown != 0)
             {
                 Player.Instance.PlayerCoolDown -= 1;
             }
@@ -225,15 +225,42 @@ namespace SilentKnight
         private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            Console.WriteLine("Swinging sword!");
+            //Console.WriteLine("Swinging sword!");
 
             Task.Run(() => soundPlayer.PlaySync());
 
-            ctrl.ComputePlayerAttack();
+            ctrl.ComputePlayerMeleeAttack();
             KilledEnemy();
         }
 
-        
+        private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+            ctrl.ComputePlayerRangedAttack();
+            if (Player.Instance.PlayerState.currentState is RangedState)
+            {
+                var arrowControl = new ArrowControl(enemyCanvas);
+                Canvas.SetTop(arrowControl, y);
+                Canvas.SetLeft(arrowControl, x);
+               
+
+                // Create model object and associate with this page
+                var arrow = new Arrow();
+                arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
+                arrow.ArrowKilledEvent += arrowControl.NotifyDead;
+                arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
+                World.Instance.AddEntityArrow(arrow);
+                arrow.Spawn();
+
+            }
+            foreach(UIElement i in enemyCanvas.Children)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+
         //ATTACK AND HEALTH LOGIC
 
         /// <summary>
@@ -241,11 +268,12 @@ namespace SilentKnight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void EnemyAttack(object sender, EventArgs e)
+        void EntityAttack(object sender, EventArgs e)
         {
-            int playerHits = ctrl.ComputeEnemyAttack();
-
+            ctrl.ComputeEnemyAttack();
+            ctrl.ComputeArrowAttack();
             PlayerHealth();
+            KilledEnemy();
         }
 
         /// <summary>
@@ -274,7 +302,13 @@ namespace SilentKnight
             {
                 enemyCanvas.Children.Remove((UIElement)i.Observer);
             }
+            foreach(Arrow j in World.Instance.DeadArrow)
+            {
+                j.Killed();
+                j.KillArrow(j);
+            }
             World.Instance.DeadEnemy = new List<Enemy>();
+            World.Instance.DeadArrow = new List<Arrow>();
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
         }
@@ -291,7 +325,7 @@ namespace SilentKnight
         {
             Enemy enemy;
             Random randEnt = new Random();
-            Console.WriteLine("Creating new enemies...");
+           
             if (World.Instance.Entities.Count == 0 && World.Instance.Load == false)
             {
                 Random rand = new Random();
@@ -300,7 +334,7 @@ namespace SilentKnight
                     int entType = randEnt.Next(0, 2);
                     int x = rand.Next(0, (int)gameScreenCanvas.ActualWidth - 50);
                     int y = rand.Next((int)gameScreenCanvas.ActualHeight - 52, (int)gameScreenCanvas.ActualHeight - 50);
-                    var enemyControl = CreateEnemyControl("/Assets/"+ World.Instance.EnemyTypes[entType] + ".png", x, y);
+                    var enemyControl = CreateEnemyControl("/Assets/" + World.Instance.EnemyTypes[entType] + ".png", x, y);
                     switch (entType)
                     {
                         case 0:
@@ -313,13 +347,13 @@ namespace SilentKnight
                             enemy = new Skeleton(enemyControl, x, y, "skeleton");
                             break;
                     }
-                    Console.WriteLine(enemy);
+                  
                     World.Instance.Entities.Add(enemy);
                 }
             }
             else
             {
-                Console.WriteLine("Loading in previous enemies...");
+               
                 foreach (Enemy ent in World.Instance.Entities)
                 {
                     Location loc = ent.EnemyLoc;
@@ -353,13 +387,17 @@ namespace SilentKnight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AnimateEnemy(object sender, EventArgs e)
+        private void AnimateEntity(object sender, EventArgs e)
         {
             World.Instance.borderRight = gameScreen.ActualWidth - 50; //50 is the picture width
             World.Instance.borderBottom = gameScreen.ActualHeight - 50;
             foreach (Enemy i in World.Instance.Entities)
             {
                 i.UpdatePosition();
+            }
+            foreach (Arrow i in World.Instance.EntitiesArrow)
+            {
+                i.Update();
             }
         }
 
@@ -383,7 +421,7 @@ namespace SilentKnight
             margin = scoreTxt.Margin;
             margin.Left = World.Instance.borderRight / 2 - 150;
             scoreTxt.Margin = margin;
-            Console.WriteLine(World.Instance.borderRight);
+           
             ctrl.KeepEnemyInBounds();
         }
 
@@ -394,7 +432,7 @@ namespace SilentKnight
         {
             if (e.Key == Key.Escape && timer != null)
             {
-                Console.WriteLine("Pressed Escape!");
+               
                 timer.Stop();
                 enemyEvent.Stop();
                 gameTime.Stop();
@@ -406,6 +444,43 @@ namespace SilentKnight
             }
         }
 
+
+    }
+
+    class ArrowControl : ContentControl
+    {
+        Canvas canvas;
+        public ArrowControl(Canvas enemyCanvas)
+        {
+            canvas = enemyCanvas;
+            Content = new Image()
+            {
+                Source = new BitmapImage(new Uri("/Assets/HealthPotion.png", UriKind.Relative))
+            };
+        }
+
+        public void NotifyMoved(object sender, int i)
+        {
+            Arrow arrow = sender as Arrow;
+            Canvas.SetTop(this, arrow.ArrowLocation.Y);
+            Canvas.SetLeft(this, arrow.ArrowLocation.X);
+        }
+
+        public void NotifyDead(object sender, int i)
+        {
+            Arrow arrow = sender as Arrow;
+            if (World.Instance.EntitiesArrow.Contains(arrow))
+            {
+                canvas.Children.Remove(this);
+
+            }
+
+        }
+
+        public void NotifySpawn(object sender, int i)
+        {
+            canvas.Children.Add(this);
+        }
     }
 
     /// <summary>

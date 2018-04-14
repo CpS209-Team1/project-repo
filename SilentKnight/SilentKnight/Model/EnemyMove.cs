@@ -73,7 +73,7 @@ namespace Model
             }
             if (Player.Instance.PlayerLoc.Y < enemy.EnemyLoc.Y)
             {
-                enemy.EnemyLoc.Y -= .5;
+                enemy.EnemyLoc.Y -= .5; //(enemy.EnemyLoc.X - Player.Instance.PlayerLoc.X)/(enemy.EnemyLoc.Y - Player.Instance.PlayerLoc.Y);
             }
             else if (Player.Instance.PlayerLoc.Y > enemy.EnemyLoc.Y)
             {

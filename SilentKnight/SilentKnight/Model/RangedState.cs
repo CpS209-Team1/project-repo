@@ -11,7 +11,6 @@ namespace Model
         public RangedState() { }
         public void Update()
         {
-
         }
         public void HandleInput(string data)
         {

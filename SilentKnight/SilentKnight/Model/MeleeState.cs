@@ -8,7 +8,6 @@ namespace Model
 {
     class MeleeState : IState
     {
-        StateMachine statemachine;
         public MeleeState() { }
         public void Update()
         {
@@ -40,7 +39,6 @@ namespace Model
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
                     }
-                    Player.Instance.PlayerCoolDown = 25;
 
                 }
                 else if (enemyDistance < 50 && World.Instance.CheatMode == true)
@@ -73,6 +71,7 @@ namespace Model
             }
             else if (data == "ranged" && Player.Instance.PlayerCoolDown == 0)
             {
+                Console.WriteLine(Player.Instance.PlayerCoolDown);
                 Player.Instance.PlayerState.Change("ranged");
             }
         }

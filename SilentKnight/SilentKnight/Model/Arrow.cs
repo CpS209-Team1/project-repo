@@ -19,8 +19,8 @@ namespace Model
         public Arrow()
         {
             ArrowDirection = Player.Instance.PlayerDirection;
-            ArrowLocation.X = Player.Instance.PlayerLoc.X;
-            ArrowLocation.Y = Player.Instance.PlayerLoc.Y;
+            ArrowLocation.X = Player.Instance.PlayerLoc.X + 25;
+            ArrowLocation.Y = Player.Instance.PlayerLoc.Y + 25;
 
         }
 
@@ -28,19 +28,23 @@ namespace Model
         {
             if(ArrowDirection == Direction.Left)
             {
-                ArrowLocation.X -= 1;
+                ArrowLocation.X -= 10;
             }
             else if (ArrowDirection == Direction.Right)
             {
-                ArrowLocation.X += 1;
+                ArrowLocation.X += 10;
             }
             else if(ArrowDirection == Direction.Up)
             {
-                ArrowLocation.Y -= 1;
+                ArrowLocation.Y -= 10;
             }
             else if (ArrowDirection == Direction.Down)
             {
-                ArrowLocation.Y += 1;
+                ArrowLocation.Y += 10;
+            }
+            if(ArrowLocation.X > World.Instance.borderRight || ArrowLocation.X < 0 || ArrowLocation.Y > World.Instance.borderBottom || ArrowLocation.Y <  0)
+            {
+                Killed();
             }
 
 

@@ -168,11 +168,19 @@ namespace Model
         public void ComputePlayerMeleeAttack()
         {
             Player.Instance.PlayerState.HandleInput("melee");
+            if(Player.Instance.PlayerCoolDown == 0)
+            {
+                Player.Instance.PlayerCoolDown = 50;
+            }
         }
 
         public void ComputePlayerRangedAttack()
         {
             Player.Instance.PlayerState.HandleInput("ranged");
+            if (Player.Instance.PlayerCoolDown == 0)
+            {
+                Player.Instance.PlayerCoolDown = 20;
+            }
         }
 
         /// <summary>
@@ -207,7 +215,7 @@ namespace Model
             {
                 foreach (Enemy j in World.Instance.Entities)
                 {
-                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - j.EnemyLoc.X, 2) + Math.Pow(i.ArrowLocation.Y - j.EnemyLoc.Y, 2)) <= 1)
+                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - (j.EnemyLoc.X+25), 2) + Math.Pow(i.ArrowLocation.Y - (j.EnemyLoc.Y+25), 2)) <= 25)
                     {
                         j.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(j);

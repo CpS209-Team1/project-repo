@@ -236,27 +236,29 @@ namespace SilentKnight
         private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-
-            ctrl.ComputePlayerRangedAttack();
-            if (Player.Instance.PlayerState.currentState is RangedState)
+            if (Player.Instance.PlayerCoolDown == 0)
             {
-                var arrowControl = new ArrowControl(enemyCanvas);
-                Canvas.SetTop(arrowControl, y);
-                Canvas.SetLeft(arrowControl, x);
-               
+                ctrl.ComputePlayerRangedAttack();
+                if (Player.Instance.PlayerState.currentState is RangedState)
+                {
+                    var arrowControl = new ArrowControl(enemyCanvas);
+                    Canvas.SetTop(arrowControl, y);
+                    Canvas.SetLeft(arrowControl, x);
 
-                // Create model object and associate with this page
-                var arrow = new Arrow();
-                arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
-                arrow.ArrowKilledEvent += arrowControl.NotifyDead;
-                arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
-                World.Instance.AddEntityArrow(arrow);
-                arrow.Spawn();
 
-            }
-            foreach(UIElement i in enemyCanvas.Children)
-            {
-                Console.WriteLine(i);
+                    // Create model object and associate with this page
+                    var arrow = new Arrow();
+                    arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
+                    arrow.ArrowKilledEvent += arrowControl.NotifyDead;
+                    arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
+                    World.Instance.AddEntityArrow(arrow);
+                    arrow.Spawn();
+
+                }
+                foreach (UIElement i in enemyCanvas.Children)
+                {
+                    Console.WriteLine(i);
+                }
             }
         }
 
@@ -450,13 +452,32 @@ namespace SilentKnight
     class ArrowControl : ContentControl
     {
         Canvas canvas;
+        RotateTransform rotate;
         public ArrowControl(Canvas enemyCanvas)
         {
             canvas = enemyCanvas;
-            Content = new Image()
+           Image image = new Image()
             {
-                Source = new BitmapImage(new Uri("/Assets/HealthPotion.png", UriKind.Relative))
+                Source = new BitmapImage(new Uri("/Assets/Arrow.png", UriKind.Relative))
             };
+         
+            switch(Player.Instance.PlayerDirection)
+            {
+                case Direction.Up:
+                    rotate = new RotateTransform(0);
+                        break;
+                case Direction.Right:
+                    rotate = new RotateTransform(90);
+                    break;
+                case Direction.Down:
+                    rotate = new RotateTransform(180);
+                    break;
+                case Direction.Left:
+                    rotate = new RotateTransform(270);
+                    break;
+            }
+            image.RenderTransform = rotate;
+            Content = image;
         }
 
         public void NotifyMoved(object sender, int i)
@@ -479,6 +500,7 @@ namespace SilentKnight
 
         public void NotifySpawn(object sender, int i)
         {
+            this.Width = 10;
             canvas.Children.Add(this);
         }
     }

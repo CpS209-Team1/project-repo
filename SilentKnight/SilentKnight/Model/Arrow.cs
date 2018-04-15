@@ -16,11 +16,25 @@ namespace Model
         public static int id = 0;
         Random rand = new Random();
 
-        public Arrow()
+        public Arrow(double x, double y, string direction)
         {
-            ArrowDirection = Player.Instance.PlayerDirection;
-            ArrowLocation.X = Player.Instance.PlayerLoc.X + 25;
-            ArrowLocation.Y = Player.Instance.PlayerLoc.Y + 25;
+            switch (direction)
+            {
+                case "Down":
+                    ArrowDirection = Direction.Down;
+                    break;
+                case "Up":
+                    ArrowDirection = Direction.Up;
+                    break;
+                case "Left":
+                    ArrowDirection = Direction.Left;
+                    break;
+                case "Right":
+                    ArrowDirection = Direction.Right;
+                    break;
+            }
+            ArrowLocation.X = x;
+            ArrowLocation.Y = y;
 
         }
 
@@ -73,6 +87,13 @@ namespace Model
 
                 World.Instance.EntitiesArrow.Remove(i);
             
+        }
+        public List<string> Serialize()
+        {
+            List<string> world = new List<string>();
+            world.Add(String.Format("\t\t\t\tLocation: {0},{1}", ArrowLocation.X, ArrowLocation.Y));
+            world.Add(String.Format("\t\t\t\tDirection: {0}", ArrowDirection));
+            return world;
         }
     }
 }

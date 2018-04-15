@@ -99,6 +99,12 @@ namespace Model
                 List<string> attrs = ent.Serialize();
                 foreach(string attr in attrs) { world.Add(attr); }
             }
+            world.Add(String.Format("\t\tArrows: {0}", World.Instance.EntitiesArrow.Count));
+            foreach (Arrow ent in World.Instance.EntitiesArrow)
+            {
+                List<string> attrs = ent.Serialize();
+                foreach (string attr in attrs) { world.Add(attr); }
+            }
             return world;
         }
 
@@ -107,8 +113,8 @@ namespace Model
             Instance.Load = true;
             rd.ReadLine();
             string[] border = rd.ReadLine().Trim().Split(' ')[1].Split(',');
-            World.Instance.borderRight = Convert.ToInt32(border[0]);
-            World.Instance.borderBottom = Convert.ToInt32(border[1]);
+            World.Instance.borderRight = Convert.ToDouble(border[0]);
+            World.Instance.borderBottom = Convert.ToDouble(border[1]);
             World.Instance.Difficulty = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.CheatMode = Boolean.Parse(rd.ReadLine().Trim().Split(' ')[1]);
             World.Instance.LevelCount = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
@@ -124,7 +130,16 @@ namespace Model
                 Skeleton ent = new Skeleton(Spawn.Instance.observer,x,y,image);
                 World.Instance.Entities.Add(ent);
             }
-            
+            int numArrows = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
+            for (int i = 0; i < numArrows; ++i)
+            {
+                string[] loc = rd.ReadLine().Trim().Split(' ')[1].Split(',');
+                double x = Convert.ToDouble(loc[0]);
+                double y = Convert.ToDouble(loc[1]);
+                string direction = rd.ReadLine().Trim().Split(' ')[1];
+                Arrow ent = new Arrow(x,y, direction);
+                World.Instance.EntitiesArrow.Add(ent);
+            }
         }
 
         public static World Instance

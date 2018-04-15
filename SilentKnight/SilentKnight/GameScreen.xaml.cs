@@ -27,8 +27,7 @@ namespace SilentKnight
         MediaPlayer media_player = new MediaPlayer();
         SoundPlayer soundPlayer;
         DispatcherTimer gameTime;
-        DispatcherTimer enemyEvent;
-        DispatcherTimer timer;
+        DispatcherTimer GameEvent;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
 
@@ -54,16 +53,17 @@ namespace SilentKnight
             PlayerHealth();
             mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = mw.ActualWidth;
-            
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(MovePlayer);
-            timer.Start();
+            if (World.Instance.Load == true)
+            {
+                SpawnArrow();
+            }
+          
             y = Player.Instance.PlayerLoc.Y;
             x = Player.Instance.PlayerLoc.X;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
             DoSpawn(10); //Spawns 10 enemies
-            EnemyEvents(); //Starts EnemyEvents timer
+            GameEvents(); //Starts EnemyEvents timer
             GameTimer();
             soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
         }
@@ -84,14 +84,16 @@ namespace SilentKnight
         /// <summary>
         /// Activates each 'animage.Tick' ever 10 mls
         /// </summary>
-        void EnemyEvents()
+        void GameEvents()
         {
-            enemyEvent = new DispatcherTimer();
-            enemyEvent.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            enemyEvent.Tick += new EventHandler(AnimateEntity); //Adds AnimateEnemy to the timer
-            enemyEvent.Tick += new EventHandler(EntityAttack); //Adds EnemyAttack to the timer
-            enemyEvent.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
-            enemyEvent.Start();
+            GameEvent = new DispatcherTimer();
+            Console.WriteLine(GameEvent);
+            GameEvent.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            GameEvent.Tick += new EventHandler(AnimateEntity); //Adds AnimateEnemy to the timer
+            GameEvent.Tick += new EventHandler(EntityAttack); //Adds EnemyAttack to the timer
+            GameEvent.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
+            GameEvent.Tick += new EventHandler(MovePlayer);
+            GameEvent.Start();
         }
 
 
@@ -119,7 +121,7 @@ namespace SilentKnight
         {
             if (Player.Instance.PlayerIsDead == true)
             {
-                enemyEvent.Stop();
+                GameEvent.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                
@@ -146,7 +148,7 @@ namespace SilentKnight
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
             {
 
-                enemyEvent.Stop();
+                GameEvent.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
@@ -172,7 +174,7 @@ namespace SilentKnight
                 if (y + .05 <= gameScreenCanvas.ActualHeight - Plr.ActualHeight)
                 {
                     KeyPress = "S";
-                    y += 0.05;
+                    y += 1;
                     Canvas.SetTop(Plr, y);
                 }
             }
@@ -181,7 +183,7 @@ namespace SilentKnight
                 if (y - 0.05 >= 0)
                 {
                     KeyPress = "W";
-                    y -= 0.05;
+                    y -= 1;
                     Canvas.SetTop(Plr, y);
                 }
             }
@@ -190,7 +192,7 @@ namespace SilentKnight
                 if (x - .05 >= 0)
                 {
                     KeyPress = "A";
-                    x -= 0.05;
+                    x -= 1;
                     Canvas.SetLeft(Plr, x);
                 }
             }
@@ -199,7 +201,7 @@ namespace SilentKnight
                 if (x + .05 <= gameScreenCanvas.ActualWidth - Plr.ActualWidth)
                 {
                     KeyPress = "D";
-                    x += 0.05;
+                    x += 1;
                     Canvas.SetLeft(Plr, x);
                 }
             }
@@ -236,18 +238,23 @@ namespace SilentKnight
         private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-            if (Player.Instance.PlayerCoolDown == 0)
+            SpawnArrow();
+        }
+
+        void SpawnArrow()
+        {
+            if (Player.Instance.PlayerCoolDown == 0 && World.Instance.Load == false)
             {
                 ctrl.ComputePlayerRangedAttack();
                 if (Player.Instance.PlayerState.currentState is RangedState)
                 {
-                    var arrowControl = new ArrowControl(enemyCanvas);
+                    var arrowControl = new ArrowControl(enemyCanvas,Player.Instance.PlayerDirection);
                     Canvas.SetTop(arrowControl, y);
                     Canvas.SetLeft(arrowControl, x);
 
 
                     // Create model object and associate with this page
-                    var arrow = new Arrow();
+                    var arrow = new Arrow(Player.Instance.PlayerLoc.X + 25, Player.Instance.PlayerLoc.Y, Convert.ToString(Player.Instance.PlayerDirection));
                     arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
                     arrow.ArrowKilledEvent += arrowControl.NotifyDead;
                     arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
@@ -259,6 +266,21 @@ namespace SilentKnight
                 {
                     Console.WriteLine(i);
                 }
+            }
+            else if (World.Instance.Load == true)
+            {
+                foreach (Arrow i in World.Instance.EntitiesArrow)
+                {
+                    var arrowControl = new ArrowControl(enemyCanvas, i.ArrowDirection);
+                    Canvas.SetTop(arrowControl, i.ArrowLocation.Y);
+                    Canvas.SetLeft(arrowControl, i.ArrowLocation.X);
+
+                    i.ArrowMovedEvent += arrowControl.NotifyMoved;
+                    i.ArrowKilledEvent += arrowControl.NotifyDead;
+                    i.ArrowSpawnEvent += arrowControl.NotifySpawn;
+                    i.Spawn();
+                }
+                World.Instance.Load = false;
             }
         }
 
@@ -364,7 +386,7 @@ namespace SilentKnight
                     var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
                     ent.Observer = enemyControl;
                 }
-                World.Instance.Load = false;
+
             }
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }
@@ -432,16 +454,13 @@ namespace SilentKnight
 
         public void OnKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Escape && timer != null)
+            if (e.Key == Key.Escape && GameEvent != null)
             {
-               
-                timer.Stop();
-                enemyEvent.Stop();
+                GameEvent.Stop();
                 gameTime.Stop();
                 PauseWindow pause = new PauseWindow(ctrl);
                 pause.ShowDialog();
-                timer.Start();
-                enemyEvent.Start();
+                GameEvent.Start();
                 gameTime.Start();
             }
         }
@@ -453,7 +472,7 @@ namespace SilentKnight
     {
         Canvas canvas;
         RotateTransform rotate;
-        public ArrowControl(Canvas enemyCanvas)
+        public ArrowControl(Canvas enemyCanvas, Direction direction)
         {
             canvas = enemyCanvas;
            Image image = new Image()
@@ -461,7 +480,7 @@ namespace SilentKnight
                 Source = new BitmapImage(new Uri("/Assets/Arrow.png", UriKind.Relative))
             };
          
-            switch(Player.Instance.PlayerDirection)
+            switch(direction)
             {
                 case Direction.Up:
                     rotate = new RotateTransform(0);

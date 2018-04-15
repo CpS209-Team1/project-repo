@@ -35,7 +35,8 @@ namespace SilentKnight
         }
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach(Score i in highScores.scoreList)
+            Console.WriteLine("HCKJHHJSJNCJSNC");
+            foreach (Score i in highScores.scoreList)
             {
                 Console.WriteLine(i.Name);
             }

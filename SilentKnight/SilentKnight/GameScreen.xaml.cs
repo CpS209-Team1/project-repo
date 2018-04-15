@@ -38,8 +38,9 @@ namespace SilentKnight
             get { return ctrl; }
         }
 
-        public GameScreen()
+        public GameScreen(MainWindow m)
         {
+            mw = m;
             InitializeComponent();
         }
 
@@ -52,7 +53,6 @@ namespace SilentKnight
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             levelNum.Text = "1";
             PlayerHealth();
-            mw = (MainWindow)Application.Current.MainWindow;
             gameScreen.Width = mw.ActualWidth;
             
             timer = new DispatcherTimer();
@@ -124,7 +124,6 @@ namespace SilentKnight
                 World.Instance.GameCompleted = true;
                
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
-
                 mw.ShowHighScoreScreen();
             }
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)

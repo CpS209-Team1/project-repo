@@ -23,7 +23,7 @@ namespace SilentKnight
     public partial class MainWindow : Window
     {
         HighScore topScore;
-        GameScreen gs = new GameScreen();
+        GameScreen gs;
         HelpScreen hs;
         HighScoresScreen highscoresscreen;
         AboutScreen aboutscreen;
@@ -31,6 +31,7 @@ namespace SilentKnight
 
         public MainWindow()
         {
+            gs = new GameScreen(this);
             InitializeComponent();
         }
 
@@ -94,7 +95,7 @@ namespace SilentKnight
 
         private void Button_Click_LoadScreen(object sender, RoutedEventArgs e)
         {
-            LoadWindow lw = new LoadWindow(gs.Controller);
+            LoadWindow lw = new LoadWindow(gs.Controller, this, gs);
             Console.WriteLine("Is it null?");
             lw.Show();
             Console.WriteLine("Maybe it is...");

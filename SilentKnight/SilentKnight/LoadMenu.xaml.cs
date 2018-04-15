@@ -21,12 +21,14 @@ namespace SilentKnight
     /// </summary>
     public partial class LoadWindow : Window
     {
-        MainWindow mw = (MainWindow)Application.Current.MainWindow;
+        MainWindow mw;
         
-        GameScreen gs = new GameScreen();
+        GameScreen gs;
         GameController ctrl;
-        public LoadWindow(GameController c)
+        public LoadWindow(GameController c, MainWindow m, GameScreen g)
         {
+            mw = m;
+            gs = g;
             InitializeComponent();
             ctrl = c;
         }
@@ -41,7 +43,7 @@ namespace SilentKnight
                 Player.Instance.Login(name, "data.txt", ctrl);
                 ctrl.Load("data.txt");
                 ctrl.Print();
-                mw.Content = gs;
+                mw.Main.Content = gs;
                 return;
             }
             txtStatus.Text = String.Format("The user {0} does not exist.",name);

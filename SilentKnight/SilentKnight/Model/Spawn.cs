@@ -21,15 +21,29 @@ namespace Model
         /// <param name="enemyCount"></param>
         public void DoSpawn(int enemyCount)
         {
-           Random rand = new Random();
-           for (int i = 1; i <= enemyCount; i++)
-           {
-               int x = rand.Next(0, (int)World.Instance.borderRight);
-               int y = rand.Next(0, (int)World.Instance.borderBottom);
+            Enemy enemy;
+            Random rand = new Random();
 
-               var enemy = new Skeleton(observer, x, y,"skeleton.png",75);
-               World.Instance.Entities.Add(enemy);
-           }
+            foreach (Enemy j in World.Instance.Entities)
+            {
+                int x = rand.Next(0, (int)World.Instance.borderRight);
+                int y = rand.Next(0, (int)World.Instance.borderBottom);
+                switch (j.Image)
+                {
+                    case "skeleton":
+                        enemy = new Skeleton(observer, x, y, "skeleton.png", 75);
+                        break;
+                    case "troll":
+                        enemy = new Troll(observer, x, y, "troll.png", 75);
+                        break;
+                    default:
+                        enemy = new Skeleton(observer, x, y, "skeleton.png", 75);
+                        break;
+                }
+
+
+                World.Instance.Entities.Add(enemy);
+            }
         }
 
         public static Spawn Instance

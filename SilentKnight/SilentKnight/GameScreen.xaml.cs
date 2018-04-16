@@ -48,12 +48,9 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-          foreach(Image i in enemyCanvas.Children)
+          while(enemyCanvas.Children.Count >1)
             {
-                if(i.Name != "Plr")
-                {
-                    enemyCanvas.Children.Remove(i);
-                }
+                enemyCanvas.Children.RemoveAt(1);
             }
             minuteTxt.Text = "00";
             secondTxt.Text = "00";
@@ -159,7 +156,7 @@ namespace SilentKnight
                 }
                 else
                 {
-                    DoSpawn(10 + World.Instance.LevelCount);
+                    DoSpawn(10 + World.Instance.LevelCount * 2);
                     World.Instance.LevelCount += 1;
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
@@ -401,7 +398,7 @@ namespace SilentKnight
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
-                    var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
+                    var enemyControl = CreateEnemyControl("/Assets/"+ent.Image+".png", x, y);
                     ent.Observer = enemyControl;
                 }
 

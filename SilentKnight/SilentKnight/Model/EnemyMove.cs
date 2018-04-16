@@ -63,19 +63,19 @@ namespace Model
         /// <param name="enemy"></param>
         public void Track(Enemy enemy)
         {
-            if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X)
+            if (Player.Instance.PlayerLoc.X + 50 < enemy.EnemyLoc.X + enemy.Height)
             {
                 enemy.EnemyLoc.X -= .5;
             }
-            else if (Player.Instance.PlayerLoc.X > enemy.EnemyLoc.X)
+            else if (Player.Instance.PlayerLoc.X + 50 > enemy.EnemyLoc.X + enemy.Height)
             {
                 enemy.EnemyLoc.X += .5;
             }
-            if (Player.Instance.PlayerLoc.Y < enemy.EnemyLoc.Y)
+            if (Player.Instance.PlayerLoc.Y + 50 < enemy.EnemyLoc.Y + enemy.Height)
             {
                 enemy.EnemyLoc.Y -= .5; //(enemy.EnemyLoc.X - Player.Instance.PlayerLoc.X)/(enemy.EnemyLoc.Y - Player.Instance.PlayerLoc.Y);
             }
-            else if (Player.Instance.PlayerLoc.Y > enemy.EnemyLoc.Y)
+            else if (Player.Instance.PlayerLoc.Y + 50 > enemy.EnemyLoc.Y + enemy.Height)
             {
                 enemy.EnemyLoc.Y += .5;
             }

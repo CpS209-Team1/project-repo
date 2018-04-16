@@ -192,7 +192,7 @@ namespace SilentKnight
             string KeyPress = "";
             if (Keyboard.IsKeyDown(Key.S))
             {
-                if (y + 5 <= World.Instance.borderBottom - Plr.Height)
+                if (y + 5 <= World.Instance.borderBottom - 75)
                 {
                     anim.KeyDown = true;
                     KeyPress = "S";
@@ -202,7 +202,7 @@ namespace SilentKnight
             }
             if (Keyboard.IsKeyDown(Key.W))
             {
-                if (y - 5 >= 0)
+                if (y - 5 >= 0 - 75)
                 {
                     anim.KeyDown = true;
                     KeyPress = "W";
@@ -212,7 +212,7 @@ namespace SilentKnight
             }
             if (Keyboard.IsKeyDown(Key.A))
             {
-                if (x - 5 >= 0)
+                if (x - 5 >= 0 - 75)
                 {
                     anim.KeyDown = true;
                     KeyPress = "A";
@@ -222,7 +222,7 @@ namespace SilentKnight
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
-                if (x + 5 <= World.Instance.borderRight - Plr.Width)
+                if (x + 5 <= World.Instance.borderRight - 75)
                 {
                     anim.KeyDown = true;
                     KeyPress = "D";
@@ -383,8 +383,8 @@ namespace SilentKnight
                 for (int i = 1; i <= enemyCount; i++)
                 {
                     int entType = randEnt.Next(0, 2);
-                    int x = rand.Next(0, 500);
-                    int y = rand.Next((int)gameScreenCanvas.Height - (int)enemyCanvas.Height, (int)gameScreenCanvas.Height - (int)enemyCanvas.Height);
+                    int x = rand.Next(0, (int)World.Instance.borderRight);
+                    int y = rand.Next(0, (int)World.Instance.borderBottom);
                     var enemyControl = CreateEnemyControl("/Assets/" + World.Instance.EnemyTypes[entType] + ".png", x, y);
                     switch (entType)
                     {
@@ -561,7 +561,7 @@ namespace SilentKnight
 
         public void NotifySpawn(object sender, int i)
         {
-            this.Width = 10;
+            this.Width = 20;
             canvas.Children.Add(this);
         }
     }

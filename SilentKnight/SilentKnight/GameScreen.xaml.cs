@@ -51,12 +51,9 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-          foreach(Image i in enemyCanvas.Children)
+          while(enemyCanvas.Children.Count >1)
             {
-                if(i.Name != "Plr")
-                {
-                    enemyCanvas.Children.Remove(i);
-                }
+                enemyCanvas.Children.RemoveAt(1);
             }
             minuteTxt.Text = "00";
             secondTxt.Text = "00";
@@ -161,7 +158,7 @@ namespace SilentKnight
                 }
                 else
                 {
-                    DoSpawn(10 + World.Instance.LevelCount);
+                    DoSpawn(10 + World.Instance.LevelCount * 2);
                     World.Instance.LevelCount += 1;
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
@@ -281,7 +278,7 @@ namespace SilentKnight
 
 
                     // Create model object and associate with this page
-                    var arrow = new Arrow(Player.Instance.PlayerLoc.X + (Plr.Width/2), Player.Instance.PlayerLoc.Y + (Plr.Height/2), Convert.ToString(Player.Instance.PlayerDirection));
+                    var arrow = new Arrow(Player.Instance.PlayerLoc.X, Player.Instance.PlayerLoc.Y, Convert.ToString(Player.Instance.PlayerDirection));
                     arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
                     arrow.ArrowKilledEvent += arrowControl.NotifyDead;
                     arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
@@ -389,13 +386,13 @@ namespace SilentKnight
                     switch (entType)
                     {
                         case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                         case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
+                            enemy = new Troll(enemyControl, x, y, "troll", 75);
                             break;
                         default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                     }
                   
@@ -410,7 +407,7 @@ namespace SilentKnight
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
-                    var enemyControl = CreateEnemyControl("/Assets/skeleton.png", x, y);
+                    var enemyControl = CreateEnemyControl("/Assets/"+ent.Image+".png", x, y);
                     ent.Observer = enemyControl;
                 }
 

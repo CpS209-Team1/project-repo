@@ -132,10 +132,10 @@ namespace Model
                 double y = Convert.ToDouble(loc[1]);
                 switch(image)
                 {
-                    case "Skeleton":
+                    case "skeleton":
                         ent = new Skeleton(Spawn.Instance.observer, x, y, image, 75);
                         break;
-                    case "Troll":
+                    case "troll":
                       ent = new Troll(Spawn.Instance.observer, x, y, image, 75);
                         break;
                     default:

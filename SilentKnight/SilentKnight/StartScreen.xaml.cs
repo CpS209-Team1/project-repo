@@ -74,5 +74,9 @@ namespace SilentKnight
                 mw.Main.Content = gs;
             }
         }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mw.Main.Content = null;
+        }
     }
 }

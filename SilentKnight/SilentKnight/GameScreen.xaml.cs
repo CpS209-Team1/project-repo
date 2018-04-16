@@ -269,7 +269,7 @@ namespace SilentKnight
 
 
                     // Create model object and associate with this page
-                    var arrow = new Arrow(Player.Instance.PlayerLoc.X + (Plr.Width/2), Player.Instance.PlayerLoc.Y + (Plr.Height/2), Convert.ToString(Player.Instance.PlayerDirection));
+                    var arrow = new Arrow(Player.Instance.PlayerLoc.X, Player.Instance.PlayerLoc.Y, Convert.ToString(Player.Instance.PlayerDirection));
                     arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
                     arrow.ArrowKilledEvent += arrowControl.NotifyDead;
                     arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
@@ -377,13 +377,13 @@ namespace SilentKnight
                     switch (entType)
                     {
                         case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                         case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
+                            enemy = new Troll(enemyControl, x, y, "troll", 75);
                             break;
                         default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                     }
                   

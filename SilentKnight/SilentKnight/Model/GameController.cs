@@ -143,8 +143,8 @@ namespace Model
         /// <param name="y"></param>
         public void ComputePlayerMove(double x, double y, string KeyPress)
         {
-            Player.Instance.PlayerLoc.X = x;
-            Player.Instance.PlayerLoc.Y = y;
+            Player.Instance.PlayerLoc.X = x + 100;
+            Player.Instance.PlayerLoc.Y = y + 100;
             switch (KeyPress) //Keypress is used to determine which direction the player was looking in when he/she attacked
             {
                 //Sets the player's direction to the appropriate direction
@@ -192,7 +192,7 @@ namespace Model
             int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X + 50 - i.EnemyLoc.X + i.Height, 2) + Math.Pow(Player.Instance.PlayerLoc.Y + 50 - i.EnemyLoc.Y + i.Height, 2)) < 25 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X + (i.Height / 2), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y + (i.Height / 2), 2)) < 25 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);
                     Console.WriteLine(i.Health);

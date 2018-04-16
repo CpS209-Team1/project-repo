@@ -15,26 +15,26 @@ namespace Model
             foreach (Enemy i in World.Instance.Entities)
             {
                 int randNum = rand.Next(0, 10);
-                double enemyDistance = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (i.EnemyLoc.X + i.Height), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + i.Height), 2));
-                if (enemyDistance < 100 && World.Instance.CheatMode == false)
+                double enemyDistance = Math.Sqrt(Math.Pow((Player.Instance.PlayerLoc.X) - (i.EnemyLoc.X + (i.Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + (i.Height/2)), 2));
+                if (enemyDistance < 150 && World.Instance.CheatMode == false)
                 {
-                    if (Player.Instance.PlayerDirection == Direction.Left && i.EnemyLoc.X < Player.Instance.PlayerLoc.X)
+                    if (Player.Instance.PlayerDirection == Direction.Left && i.EnemyLoc.X + (i.Height / 2) < Player.Instance.PlayerLoc.X)
                     {
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
                     }
-                    else if (Player.Instance.PlayerDirection == Direction.Right && i.EnemyLoc.X > Player.Instance.PlayerLoc.X)
+                    else if (Player.Instance.PlayerDirection == Direction.Right && i.EnemyLoc.X + (i.Height / 2) > Player.Instance.PlayerLoc.X)
                     {
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
                     }
-                    else if (Player.Instance.PlayerDirection == Direction.Up && i.EnemyLoc.Y < Player.Instance.PlayerLoc.Y)
+                    else if (Player.Instance.PlayerDirection == Direction.Up && i.EnemyLoc.Y + (i.Height / 2) < Player.Instance.PlayerLoc.Y)
                     {
 
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
                     }
-                    else if (Player.Instance.PlayerDirection == Direction.Down && i.EnemyLoc.Y > Player.Instance.PlayerLoc.Y)
+                    else if (Player.Instance.PlayerDirection == Direction.Down && i.EnemyLoc.Y + (i.Height / 2) > Player.Instance.PlayerLoc.Y)
                     {
                         i.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(i);
@@ -53,7 +53,10 @@ namespace Model
                     if (randNum == 7)
                     {
                         randNum = rand.Next(1, 5);
-                        Player.Instance.Health += randNum;
+                        if (randNum + Player.Instance.Health <= 20)
+                        {
+                            Player.Instance.Health += randNum;
+                        }
                     }
                 }
             }

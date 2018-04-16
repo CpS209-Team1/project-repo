@@ -39,7 +39,7 @@ namespace Model
         public void UpdatePosition()
         {
             //Checks if the enemy is within 150 px from the player, if so then it will call the Track method
-            if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - EnemyLoc.Y, 2)) < 150)
+            if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (EnemyLoc.X + (Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (EnemyLoc.Y + (Height / 2)), 2)) < 150)
             {
                 EnemyMove.Instance.Track(this);
             }

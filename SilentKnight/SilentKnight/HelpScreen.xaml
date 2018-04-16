@@ -9,20 +9,21 @@
 
     <Canvas x:Name="helpCanvas" Margin="0,0,-1209,-453">
         <ScrollViewer Height="762">
-            <StackPanel Background="#FF7B9191" Height="859">
-            <Image Source="/Assets/HelpLogo.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
+            <StackPanel Background="#FF7B9191" Height="900">
+                <Image Source="/Assets/HelpLogo.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
 
-            <TextBlock Text="Controls" FontSize="40" Margin="670,0,0,0"/>
-            <TextBlock Text="Left Move: A" FontSize="20" Margin="700,0,0,0"/>
-            <TextBlock Text="Right Move: D" FontSize="20" Margin="700,0,0,0"/>
-            <TextBlock Text="Up Move: W" FontSize="20" Margin="700,0,0,0"/>
-            <TextBlock Text="Down Move: S" FontSize="20" Margin="700,0,0,0"/>
-            <TextBlock Text="Attack: Left Click" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Controls" FontSize="40" Margin="670,0,0,0"/>
+                <TextBlock Text="Left Move: A" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Right Move: D" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Up Move: W" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Down Move: S" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Attack: Left Click" FontSize="20" Margin="700,0,0,0"/>
+                <TextBlock Text="Shoot Arrow: Right Click" FontSize="20" Margin="700,0,0,0"/>
 
-            <TextBlock Text="How to Play" FontSize="40" Margin="670,40,0,0"/>
-            <TextBlock Text="The player starts off in the dungeon with the first wave of enemies starting off at ten. The amount of enemies increases by 5 until the final round. Enemies will attack the player when they are within 20 pixels from the player. The player deals 2 damage per swing. Enemies have 10 health and the player has 20 health." FontSize="20" TextWrapping="Wrap" Margin="00,0,0,0" Height="227" Width="392"/>
+                <TextBlock Text="How to Play" FontSize="40" Margin="670,40,0,0"/>
+                <TextBlock Text="The player starts off in the dungeon with the first wave of enemies starting off at ten. The amount of enemies increases by 5 until the final round. Enemies will attack the player when they are within 20 pixels from the player. The player deals 2 damage per swing. Enemies have 10 health and the player has 20 health." FontSize="20" TextWrapping="Wrap" Margin="00,0,0,0" Height="227" Width="392"/>
 
-            <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
+                <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
             </StackPanel>
         </ScrollViewer>
     </Canvas>

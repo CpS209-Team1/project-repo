@@ -51,7 +51,6 @@ namespace SilentKnight
 
         private void Button_Click_GameScreen(object sender, RoutedEventArgs e)
         {
-
             Main.Content = startScreen;
         }
 

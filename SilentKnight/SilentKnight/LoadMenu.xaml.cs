@@ -40,7 +40,7 @@ namespace SilentKnight
             string name = txtName.Text;
             if (ctrl.ValidateUser(name, "data.txt"))
             {
-                Player.Instance.Login(name, "data.txt", ctrl);
+                Player.Instance.Login(name);
                 ctrl.Load("data.txt");
                 ctrl.Print();
                 mw.Main.Content = gs;

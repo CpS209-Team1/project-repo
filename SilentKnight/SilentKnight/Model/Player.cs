@@ -51,7 +51,7 @@ namespace Model
             PlayerIsDead = false;
         }
 
-        public void Login(string user,string filename, GameController ctrl)
+        public void Login(string user)
         {
             Player.Instance.PlayerName = user;
         }

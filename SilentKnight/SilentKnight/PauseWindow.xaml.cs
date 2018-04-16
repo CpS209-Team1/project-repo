@@ -31,7 +31,7 @@ namespace SilentKnight
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
             string name = txtName.Text;
-            Player.Instance.Login(name,"data.txt", ctrl);
+            Player.Instance.Login(name);
             ctrl.Save("data.txt");
             ctrl.Print();
         }

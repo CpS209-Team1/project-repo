@@ -45,6 +45,10 @@ namespace Model
         /// <param name="filename"></param>
         public bool ValidateUser(string name,string filename)
         {
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter w = File.AppendText(filename));
+            }
             string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
             List<string> contents = new List<string>(file);
             foreach (string line in contents)
@@ -96,6 +100,10 @@ namespace Model
         {
             int startInd = 0;
             int endInd = 0;
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter w = File.AppendText(filename)) ;
+            }
             string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
  
             List<string> contents = new List<string>(file);
@@ -249,6 +257,10 @@ namespace Model
 
         public void Save(string filename)
         {
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter w = File.AppendText(filename)) ;
+            }
             RemovePlayerData(filename);
             string[] file = File.ReadAllText(filename).Split(new string[]{Environment.NewLine},StringSplitOptions.None);
             List<string> contents = new List<string>(file);

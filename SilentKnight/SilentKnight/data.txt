@@ -15,3 +15,6 @@
 			Image: skeleton
 				Health: 5
 				Location: 1331.5,689.75
+		Arrows: 1
+			Location: 23,230
+			Direction: Direction.Up

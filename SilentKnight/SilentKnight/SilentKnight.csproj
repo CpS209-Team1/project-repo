@@ -202,9 +202,9 @@
     <Resource Include="Assets\Sprites\knight_topdown_basic8.png" />
     <Resource Include="Assets\Sprites\knight_topdown_basic9.png" />
     <Resource Include="Assets\maps.png" />
-    <Content Include="data.txt">
+    <!--<Content Include="data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </Content>-->
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\skeleton.png" />

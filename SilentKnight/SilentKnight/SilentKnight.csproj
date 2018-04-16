@@ -37,6 +37,7 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,6 +72,7 @@
     <Compile Include="PauseWindow.xaml.cs">
       <DependentUpon>PauseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AnimationControl.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +181,26 @@
     <Resource Include="Assets\HealthPotion.png" />
     <Resource Include="Assets\troll.png" />
     <Resource Include="Assets\Arrow.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic1.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic10.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic11.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic12.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic13.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic14.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic15.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic16.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic17.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic18.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic19.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic2.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic20.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic3.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic4.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic5.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic6.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic7.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic8.png" />
+    <Resource Include="Assets\Sprites\knight_topdown_basic9.png" />
     <Resource Include="Assets\maps.png" />
     <Content Include="data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -206,5 +228,6 @@
   <ItemGroup>
     <Resource Include="Assets\HelpLogo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

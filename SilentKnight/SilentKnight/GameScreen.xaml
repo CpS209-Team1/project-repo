@@ -14,7 +14,7 @@
 
         </Canvas.Background>
         <Canvas x:Name="enemyCanvas" Width="1092" Height="560" Margin="157,96,0,0">
-            <Image x:Name="Plr" Height="75" Width="75" Source="/Assets/knight.png"/>
+            <Image x:Name="Plr" Height="200" Width="200" Source="/Assets/Sprites/knight_topdown_basic18.png"/>
 
         </Canvas>
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->

@@ -103,9 +103,7 @@ namespace SilentKnight
         private void Button_Click_LoadScreen(object sender, RoutedEventArgs e)
         {
             LoadWindow lw = new LoadWindow(gs.Controller, this, gs);
-            Console.WriteLine("Is it null?");
             lw.Show();
-            Console.WriteLine("Maybe it is...");
         }
 
         public void ShowHighScoreScreen()

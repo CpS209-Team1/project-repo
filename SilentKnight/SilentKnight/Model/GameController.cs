@@ -15,6 +15,7 @@ namespace Model
 
     public class GameController
     {
+
         int currentTime = 0;
         public int AddTime()
         {

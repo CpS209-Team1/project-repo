@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Model
 {
-    enum Direction { Up, Down, Left, Right}; //Used to determine the player's "viewing" direction
+    public enum Direction { Up, Down, Left, Right}; //Used to determine the player's "viewing" direction
     class Player : ISerializable
     {
         public int Health { get; set; }

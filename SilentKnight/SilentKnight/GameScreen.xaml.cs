@@ -24,10 +24,13 @@ namespace SilentKnight
     public partial class GameScreen : Page
     {
         MainWindow mw;
+        AnimationControl anim = new AnimationControl();
+        public Image PlayerControl { get; set; }
         MediaPlayer media_player = new MediaPlayer();
         SoundPlayer soundPlayer;
         DispatcherTimer gameTime;
         DispatcherTimer GameEvent;
+        DispatcherTimer animTimer;
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
 
@@ -63,14 +66,16 @@ namespace SilentKnight
             {
                 SpawnArrow();
             }
-          
+            PlayerControl = Plr;
             y = Player.Instance.PlayerLoc.Y;
             x = Player.Instance.PlayerLoc.X;
             Canvas.SetTop(Plr, y);
             Canvas.SetLeft(Plr, x);
+            anim.PlayerImage = Plr;
             DoSpawn(10); //Spawns 10 enemies
             GameEvents(); //Starts EnemyEvents timer
             GameTimer();
+            AnimTimer();
             soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
         }
 
@@ -99,7 +104,16 @@ namespace SilentKnight
             GameEvent.Tick += new EventHandler(EntityAttack); //Adds EnemyAttack to the timer
             GameEvent.Tick += new EventHandler(CheckLevelStatus); //Adds CheckLevelStatus to the timer
             GameEvent.Tick += new EventHandler(MovePlayer);
+            GameEvent.Tick += new EventHandler(anim.UpdateDirection);
             GameEvent.Start();
+        }
+
+        void AnimTimer()
+        {
+            animTimer = new DispatcherTimer();
+            animTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            animTimer.Tick += new EventHandler(anim.UpdateFrame);
+            animTimer.Start();
         }
 
 
@@ -242,7 +256,6 @@ namespace SilentKnight
 
         private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-
             SpawnArrow();
         }
 
@@ -468,8 +481,6 @@ namespace SilentKnight
                 gameTime.Start();
             }
         }
-
-
     }
 
     class ArrowControl : ContentControl

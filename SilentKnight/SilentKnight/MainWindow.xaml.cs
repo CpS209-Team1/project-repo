@@ -78,19 +78,26 @@ namespace SilentKnight
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            World.Instance.borderRight = mainWindowCanvas.ActualWidth;
-            World.Instance.borderBottom = mainWindowCanvas.ActualHeight;
+            World.Instance.MenuBorderRight = mainWindowCanvas.ActualWidth;
+            World.Instance.MenuBorderBottom = mainWindowCanvas.ActualHeight;
 
-            Main.Width = World.Instance.borderRight;
-            Main.Height = World.Instance.borderBottom;
+            Main.Width = World.Instance.MenuBorderRight;
+            Main.Height = World.Instance.MenuBorderBottom;
 
-            gs.gameScreen.Width = World.Instance.borderRight;
-            gs.gameScreen.Height = World.Instance.borderBottom;
+            gs.gameScreen.Width = World.Instance.MenuBorderRight;
+            gs.gameScreen.Height = World.Instance.MenuBorderBottom;
+            gs.enemyCanvas.Width = .78 * World.Instance.MenuBorderRight;
+            gs.enemyCanvas.Height = .7 * World.Instance.MenuBorderBottom;
+            Thickness margin = gs.enemyCanvas.Margin;
+            margin.Left = (157/1400) * World.Instance.MenuBorderRight;
+            margin.Top = .12 * World.Instance.MenuBorderBottom;
 
             Main.VerticalContentAlignment = (VerticalAlignment)Stretch.Fill;
 
-            Menu.Width = World.Instance.borderRight;
-            Menu.Height = World.Instance.borderBottom;
+            Menu.Width = World.Instance.MenuBorderRight;
+            Menu.Height = World.Instance.MenuBorderBottom;
+            World.Instance.borderRight = gs.enemyCanvas.Width;
+            World.Instance.borderBottom = gs.enemyCanvas.Height;
         }
 
         private void Button_Click_LoadScreen(object sender, RoutedEventArgs e)

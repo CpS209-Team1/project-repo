@@ -45,7 +45,13 @@ namespace SilentKnight
 
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-            enemyCanvas.Children.Clear();
+          foreach(Image i in enemyCanvas.Children)
+            {
+                if(i.Name != "Plr")
+                {
+                    enemyCanvas.Children.Remove(i);
+                }
+            }
             minuteTxt.Text = "00";
             secondTxt.Text = "00";
             scoreNum.Text = "0";
@@ -170,37 +176,37 @@ namespace SilentKnight
             string KeyPress = "";
             if (Keyboard.IsKeyDown(Key.S))
             {
-                if (y + .05 <= gameScreenCanvas.ActualHeight - Plr.ActualHeight)
+                if (y + 5 <= World.Instance.borderBottom - Plr.Height)
                 {
                     KeyPress = "S";
-                    y += 1;
+                    y += 5;
                     Canvas.SetTop(Plr, y);
                 }
             }
             if (Keyboard.IsKeyDown(Key.W))
             {
-                if (y - 0.05 >= 0)
+                if (y - 5 >= 0)
                 {
                     KeyPress = "W";
-                    y -= 1;
+                    y -= 5;
                     Canvas.SetTop(Plr, y);
                 }
             }
             if (Keyboard.IsKeyDown(Key.A))
             {
-                if (x - .05 >= 0)
+                if (x - 5 >= 0)
                 {
                     KeyPress = "A";
-                    x -= 1;
+                    x -= 5;
                     Canvas.SetLeft(Plr, x);
                 }
             }
             if (Keyboard.IsKeyDown(Key.D))
             {
-                if (x + .05 <= gameScreenCanvas.ActualWidth - Plr.ActualWidth)
+                if (x + 5 <= World.Instance.borderRight - Plr.Width)
                 {
                     KeyPress = "D";
-                    x += 1;
+                    x += 5;
                     Canvas.SetLeft(Plr, x);
                 }
             }
@@ -253,7 +259,7 @@ namespace SilentKnight
 
 
                     // Create model object and associate with this page
-                    var arrow = new Arrow(Player.Instance.PlayerLoc.X + 25, Player.Instance.PlayerLoc.Y, Convert.ToString(Player.Instance.PlayerDirection));
+                    var arrow = new Arrow(Player.Instance.PlayerLoc.X + (Plr.Width/2), Player.Instance.PlayerLoc.Y + (Plr.Height/2), Convert.ToString(Player.Instance.PlayerDirection));
                     arrow.ArrowMovedEvent += arrowControl.NotifyMoved;
                     arrow.ArrowKilledEvent += arrowControl.NotifyDead;
                     arrow.ArrowSpawnEvent += arrowControl.NotifySpawn;
@@ -355,19 +361,19 @@ namespace SilentKnight
                 for (int i = 1; i <= enemyCount; i++)
                 {
                     int entType = randEnt.Next(0, 2);
-                    int x = rand.Next(0, (int)gameScreenCanvas.ActualWidth - 50);
-                    int y = rand.Next((int)gameScreenCanvas.ActualHeight - 52, (int)gameScreenCanvas.ActualHeight - 50);
+                    int x = rand.Next(0, 500);
+                    int y = rand.Next((int)gameScreenCanvas.Height - (int)enemyCanvas.Height, (int)gameScreenCanvas.Height - (int)enemyCanvas.Height);
                     var enemyControl = CreateEnemyControl("/Assets/" + World.Instance.EnemyTypes[entType] + ".png", x, y);
                     switch (entType)
                     {
                         case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                             break;
                         case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll");
+                            enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
                             break;
                         default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton");
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                             break;
                     }
                   
@@ -397,8 +403,8 @@ namespace SilentKnight
             {
                 Source = new BitmapImage(new Uri(filename, UriKind.Relative))
             };
-            enemyControl.Width = 50;
-            enemyControl.Height = 50;
+            enemyControl.Width = 75;
+            enemyControl.Height = 75;
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
             enemyCanvas.Children.Add(enemyControl);
@@ -412,8 +418,7 @@ namespace SilentKnight
         /// <param name="e"></param>
         private void AnimateEntity(object sender, EventArgs e)
         {
-            World.Instance.borderRight = gameScreen.ActualWidth - 50; //50 is the picture width
-            World.Instance.borderBottom = gameScreen.ActualHeight - 50;
+
             foreach (Enemy i in World.Instance.Entities)
             {
                 i.UpdatePosition();
@@ -430,19 +435,19 @@ namespace SilentKnight
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Thickness margin = levelTxt.Margin;
-            margin.Left = World.Instance.borderRight - 220;
+            margin.Left = World.Instance.MenuBorderRight - 220;
             levelTxt.Margin = margin;
 
             margin = enemyTxt.Margin;
-            margin.Left = World.Instance.borderRight - 220;
+            margin.Left = World.Instance.MenuBorderRight - 220;
             enemyTxt.Margin = margin;
 
             margin = timeTxt.Margin;
-            margin.Left = World.Instance.borderRight / 2 - 150;
+            margin.Left = World.Instance.MenuBorderRight / 2 - 150;
             timeTxt.Margin = margin;
 
             margin = scoreTxt.Margin;
-            margin.Left = World.Instance.borderRight / 2 - 150;
+            margin.Left = World.Instance.MenuBorderRight / 2 - 150;
             scoreTxt.Margin = margin;
            
             ctrl.KeepEnemyInBounds();

@@ -179,6 +179,7 @@
     <Resource Include="Assets\HealthPotion.png" />
     <Resource Include="Assets\troll.png" />
     <Resource Include="Assets\Arrow.png" />
+    <Resource Include="Assets\maps.png" />
     <Content Include="data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

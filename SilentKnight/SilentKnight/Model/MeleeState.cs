@@ -15,8 +15,8 @@ namespace Model
             foreach (Enemy i in World.Instance.Entities)
             {
                 int randNum = rand.Next(0, 10);
-                double enemyDistance = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X, 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y, 2));
-                if (enemyDistance < 50 && World.Instance.CheatMode == false)
+                double enemyDistance = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (i.EnemyLoc.X + i.Height), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + i.Height), 2));
+                if (enemyDistance < 100 && World.Instance.CheatMode == false)
                 {
                     if (Player.Instance.PlayerDirection == Direction.Left && i.EnemyLoc.X < Player.Instance.PlayerLoc.X)
                     {
@@ -41,7 +41,7 @@ namespace Model
                     }
 
                 }
-                else if (enemyDistance < 50 && World.Instance.CheatMode == true)
+                else if (enemyDistance < 100 && World.Instance.CheatMode == true)
                 {
                     i.RemoveEnemyHealth(i.Health);
                     EnemyMove.Instance.Hit(i);

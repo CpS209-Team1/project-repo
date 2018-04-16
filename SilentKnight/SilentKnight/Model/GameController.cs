@@ -215,7 +215,7 @@ namespace Model
             {
                 foreach (Enemy j in World.Instance.Entities)
                 {
-                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - (j.EnemyLoc.X+25), 2) + Math.Pow(i.ArrowLocation.Y - (j.EnemyLoc.Y+25), 2)) <= 25)
+                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - (j.EnemyLoc.X+(40)), 2) + Math.Pow(i.ArrowLocation.Y - (j.EnemyLoc.Y+(40)), 2)) <= (40))
                     {
                         j.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(j);

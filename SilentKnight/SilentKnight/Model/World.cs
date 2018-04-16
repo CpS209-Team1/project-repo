@@ -23,6 +23,8 @@ namespace Model
         public List<Enemy> EntitiesLoad { get; set; }
         public bool Load { get; set; }
         public List<string> EnemyTypes {get;set;}
+        public double MenuBorderRight { get; set; }
+        public double MenuBorderBottom { get; set; }
         private World()
         {
             DeadArrow = new List<Arrow>();
@@ -110,6 +112,7 @@ namespace Model
 
         public void Deserialize(StreamReader rd)
         {
+            Enemy ent;
             Instance.Load = true;
             rd.ReadLine();
             string[] border = rd.ReadLine().Trim().Split(' ')[1].Split(',');
@@ -127,7 +130,19 @@ namespace Model
                 string[] loc = rd.ReadLine().Trim().Split(' ')[1].Split(',');
                 double x = Convert.ToDouble(loc[0]);
                 double y = Convert.ToDouble(loc[1]);
-                Skeleton ent = new Skeleton(Spawn.Instance.observer,x,y,image);
+                switch(image)
+                {
+                    case "Skeleton":
+                        ent = new Skeleton(Spawn.Instance.observer, x, y, image, 75);
+                        break;
+                    case "Troll":
+                      ent = new Troll(Spawn.Instance.observer, x, y, image, 75);
+                        break;
+                    default:
+                        ent = new Troll(Spawn.Instance.observer, x, y, image, 75);
+                        break;
+                }
+               
                 World.Instance.Entities.Add(ent);
             }
             int numArrows = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
@@ -137,8 +152,8 @@ namespace Model
                 double x = Convert.ToDouble(loc[0]);
                 double y = Convert.ToDouble(loc[1]);
                 string direction = rd.ReadLine().Trim().Split(' ')[1];
-                Arrow ent = new Arrow(x,y, direction);
-                World.Instance.EntitiesArrow.Add(ent);
+                Arrow entarrow = new Arrow(x,y, direction);
+                World.Instance.EntitiesArrow.Add(entarrow);
             }
         }
 

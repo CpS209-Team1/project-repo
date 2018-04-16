@@ -20,8 +20,9 @@ namespace Model
         static Random rand = new Random();
         public double EnemySpeed { get; set; }
         int choose = rand.Next(1, 6);
+        public int Height { get; set; }
 
-        public Enemy(IEnemyObserver observer, double x, double y, string image)
+        public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
         {
             CoolDownTimer = 0;
             Observer = observer;
@@ -45,12 +46,12 @@ namespace Model
             //If the enemy isn't near the player then the enemy will randomly go in a given position by calling one of the methods below
             else if (EnemyMove.Instance.Timer < 100)
             {
-                if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight)
+                if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight - Height)
                 {
                     EnemyMove.Instance.MoveRight(this, EnemySpeed);
 
                 }
-                else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom)
+                else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom - Height)
                 {
                     EnemyMove.Instance.MoveDown(this, EnemySpeed);
 
@@ -111,7 +112,7 @@ namespace Model
 
     class Skeleton : Enemy
     {
-        public Skeleton(IEnemyObserver observer, double x, double y, string image ) : base(observer, x, y, image)
+        public Skeleton(IEnemyObserver observer, double x, double y, string image, int height ) : base(observer, x, y, image, height)
         {
             switch(World.Instance.Difficulty)
             {
@@ -178,7 +179,7 @@ namespace Model
 
     class Troll : Enemy
     {
-        public Troll(IEnemyObserver observer, double x, double y, string image) : base(observer, x, y, image)
+        public Troll(IEnemyObserver observer, double x, double y, string image, int height) : base(observer, x, y, image, height)
         {
             switch (World.Instance.Difficulty)
             {

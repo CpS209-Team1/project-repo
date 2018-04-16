@@ -6,11 +6,19 @@
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1400"
-        Title="GameScreen" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp" Background="White" ShowsNavigationUI="False" MouseRightButtonDown="Plr_MouseRightButtonDown">
-    <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged">
-        <Canvas x:Name="enemyCanvas"></Canvas>
+        Title="GameScreen" Loaded="Windows_Loaded" MouseLeftButtonDown="Plr_MouseLeftButtonDown" KeyUp="OnKeyUp"  ShowsNavigationUI="False" MouseRightButtonDown="Plr_MouseRightButtonDown" Background="black">
+
+    <Canvas x:Name="gameScreenCanvas" SizeChanged="Canvas_SizeChanged" >
+        <Canvas.Background>
+            <ImageBrush ImageSource="/Assets/maps.png" Stretch="UniformToFill"/>
+
+        </Canvas.Background>
+        <Canvas x:Name="enemyCanvas" Width="1092" Height="560" Margin="157,96,0,0">
+            <Image x:Name="Plr" Height="75" Width="75" Source="/Assets/knight.png"/>
+
+        </Canvas>
         <!--This rectangle contains the health bar and only shows a certain part of the sprite sheet-->
-        <Rectangle x:Name="health" Width="130" Height="31.5" Margin="0,22,0,0">
+        <Rectangle x:Name="health" Width="130" Height="31.5" Margin="50,30,0,0">
             <Rectangle.Fill>
                 <!--This is where you define the sprite sheet-->
                 <ImageBrush x:Name="HealthSheetOffset" ImageSource="/Assets/HealthSheet.png"
@@ -33,30 +41,28 @@
             </Rectangle.Fill>
         </Rectangle>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock x:Name="timeTxt" Text="Time:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,0,0,0"/>
-            <TextBlock x:Name="minuteTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0"/>
-            <TextBlock x:Name="collonTxt" Text=":" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0"/>
-            <TextBlock x:Name="secondTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0"/>
+            <TextBlock x:Name="timeTxt" Text="Time:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,0,0,0" Foreground="White"/>
+            <TextBlock x:Name="minuteTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0"
+                       Foreground="White"/>
+            <TextBlock x:Name="collonTxt" Text=":" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0"
+                       Foreground="White"/>
+            <TextBlock x:Name="secondTxt" Text="00" FontSize="40" Style="{StaticResource Pixel}" Margin="1,0,0,0" Foreground="White"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="scoreTxt" Text="Score:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,50,0,0"/>
-            <TextBlock x:Name="scoreNum" Text="0" FontSize="40" Style="{StaticResource Pixel}" Margin="10,50,0,0"/>
+            <TextBlock x:Name="scoreTxt" Text="Score:" FontSize="40" Style="{StaticResource Pixel}" Margin="570,50,0,0" Foreground="White"/>
+            <TextBlock x:Name="scoreNum" Text="0" FontSize="40" Style="{StaticResource Pixel}" Margin="10,50,0,0" Foreground="White"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="levelTxt" Text="Level:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,0,0,0"/>
-            <TextBlock x:Name="levelNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0"/>
+            <TextBlock x:Name="levelTxt" Text="Level:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,0,0,0" Foreground="White"/>
+            <TextBlock x:Name="levelNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="10,0,0,0" Foreground="White"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock x:Name="enemyTxt" Text="Enemies:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,50,0,0"/>
-            <TextBlock x:Name="enemyNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="1,50,0,0"/>
+            <TextBlock x:Name="enemyTxt" Text="Enemies:" FontSize="40" Style="{StaticResource Pixel}" Margin="1220,50,0,0" Foreground="White"/>
+            <TextBlock x:Name="enemyNum" Text="1" FontSize="40" Style="{StaticResource Pixel}" Margin="1,50,0,0" Foreground="White"/>
         </StackPanel>
 
 
-        <Image x:Name="Plr" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50"  Source="/Assets/knight.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="53" Canvas.Top="96">
-            <Image.RenderTransform>
-                <RotateTransform x:Name="ImageRotation" />
-            </Image.RenderTransform>
-        </Image>
+
     </Canvas>
 </Page>

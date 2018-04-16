@@ -27,7 +27,7 @@ namespace Model
                int x = rand.Next(0, (int)World.Instance.borderRight);
                int y = rand.Next(0, (int)World.Instance.borderBottom);
 
-               var enemy = new Skeleton(observer, x, y,"skeleton.png");
+               var enemy = new Skeleton(observer, x, y,"skeleton.png",75);
                World.Instance.Entities.Add(enemy);
            }
         }

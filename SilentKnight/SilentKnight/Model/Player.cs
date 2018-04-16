@@ -12,7 +12,11 @@ namespace Model
     {
         public int Health { get; set; }
         public Location PlayerLoc;
-        public Direction PlayerDirection { get; set; }
+        public Direction PlayerDirection
+        { get;
+          set;
+
+        }
         public int PlayerScore { get; set; }
         public string PlayerName { get; set; }
         public int HealthLevel { get; set; }

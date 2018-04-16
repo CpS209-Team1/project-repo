@@ -31,6 +31,9 @@ namespace SilentKnight
         DispatcherTimer gameTime;
         DispatcherTimer GameEvent;
         DispatcherTimer animTimer;
+        public bool CanAttack = true;
+        public string Lock = "lock";
+        
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
 
@@ -116,7 +119,6 @@ namespace SilentKnight
             animTimer.Start();
         }
 
-
         private void AddTime(object sender, EventArgs e)
         {
             int time = ctrl.AddTime();
@@ -192,6 +194,7 @@ namespace SilentKnight
             {
                 if (y + 5 <= World.Instance.borderBottom - Plr.Height)
                 {
+                    anim.KeyDown = true;
                     KeyPress = "S";
                     y += 5;
                     Canvas.SetTop(Plr, y);
@@ -201,6 +204,7 @@ namespace SilentKnight
             {
                 if (y - 5 >= 0)
                 {
+                    anim.KeyDown = true;
                     KeyPress = "W";
                     y -= 5;
                     Canvas.SetTop(Plr, y);
@@ -210,6 +214,7 @@ namespace SilentKnight
             {
                 if (x - 5 >= 0)
                 {
+                    anim.KeyDown = true;
                     KeyPress = "A";
                     x -= 5;
                     Canvas.SetLeft(Plr, x);
@@ -219,6 +224,7 @@ namespace SilentKnight
             {
                 if (x + 5 <= World.Instance.borderRight - Plr.Width)
                 {
+                    anim.KeyDown = true;
                     KeyPress = "D";
                     x += 5;
                     Canvas.SetLeft(Plr, x);
@@ -243,15 +249,18 @@ namespace SilentKnight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            //Console.WriteLine("Swinging sword!");
-
-            Task.Run(() => soundPlayer.PlaySync());
-
-            ctrl.ComputePlayerMeleeAttack();
-            KilledEnemy();
+            if (CanAttack)
+            {
+                CanAttack = false;
+                anim.DoSwordAttack(PlayerControl);
+                await Task.Run(() =>soundPlayer.PlaySync());
+                Console.WriteLine("Swinging sword!");
+                ctrl.ComputePlayerMeleeAttack();
+                KilledEnemy();
+                CanAttack = true;
+            }
         }
 
         private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -479,6 +488,24 @@ namespace SilentKnight
                 pause.ShowDialog();
                 GameEvent.Start();
                 gameTime.Start();
+                return;
+            }
+            switch(e.Key)
+            {
+                case Key.W:
+                    anim.KeyDown = false;
+                    break;
+                case Key.A:
+                    anim.KeyDown = false;
+                    break;
+                case Key.S:
+                    anim.KeyDown = false;
+                    break;
+                case Key.D:
+                    anim.KeyDown = false;
+                    break;
+                default:
+                    break;
             }
         }
     }

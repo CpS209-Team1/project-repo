@@ -17,6 +17,8 @@ namespace Model
     {
 
         int currentTime = 0;
+
+ 
         public int AddTime()
         {
             World.Instance.Time += 1;

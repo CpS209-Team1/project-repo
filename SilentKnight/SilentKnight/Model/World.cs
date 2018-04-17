@@ -18,7 +18,7 @@ namespace Model
         public int Difficulty { get; set; } //Ranges from 1 to 3
         public bool CheatMode { get; set; }
         public int LevelCount { get; set; }
-        public int Time { get; set; }
+        public int Time = 0;
         public bool GameCompleted { get; set; }
         public List<Enemy> EntitiesLoad { get; set; }
         public bool Load { get; set; }

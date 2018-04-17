@@ -202,7 +202,7 @@ namespace Model
             int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X + (i.Height / 2), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - i.EnemyLoc.Y + (i.Height / 2), 2)) < 25 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X + ((i.Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + (i.Height / 2)), 2)) < 100 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);
                     Console.WriteLine(i.Health);

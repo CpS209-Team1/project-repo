@@ -11,7 +11,7 @@ All ALPHA and BETA features have been implemented.
 * Attacking enemy sometimes doesn't work
 * Loading `time` doesn't work
 # Recording
-A link to the screen recording found <a href = "https://drive.google.com/file/d/1sKOLobMO0XsLCnXuxVQ2Y1_UpU9rEYg2/view">here</a> (fixed link).
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1sKOLobMO0XsLCnXuxVQ2Y1_UpU9rEYg2/view">here</a> (Beta).
 # Expenses
 
 <table>

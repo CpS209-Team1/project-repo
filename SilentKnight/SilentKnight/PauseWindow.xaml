@@ -7,31 +7,10 @@
         mc:Ignorable="d"
         Title="PauseMenu" Height="300" Width="300">
     <Grid>
-        <Button x:Name ="btnSave" Content="Save" HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnSaveClick"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="21,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextDecorations="{x:Null}" FontSize="14">
-            <TextBox.Style>
-                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                    <Style.Resources>
-                        <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                            <VisualBrush.Visual>
-                                <Label Content="Enter name here" Foreground="LightGray" />
-                            </VisualBrush.Visual>
-                        </VisualBrush>
-                    </Style.Resources>
-                    <Style.Triggers>
-                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="Text" Value="{x:Null}">
-                            <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="True">
-                            <Setter Property="Background" Value="White" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
+        <Button x:Name ="btnSave" Content="Save" HorizontalAlignment="Left" Margin="221,51,0,0" VerticalAlignment="Top" Width="58" Height="23" Click="btnSaveClick"/>
+        <TextBlock x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="21,51,0,0" Text="Click 'Save' to save your game!" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextDecorations="{x:Null}" FontSize="14">
+
+        </TextBlock>
 
     </Grid>
 </Window>

@@ -44,6 +44,7 @@ namespace SilentKnight
                 ctrl.Load("data.txt");
                 ctrl.Print();
                 mw.Main.Content = gs;
+                Close();
                 return;
             }
             txtStatus.Text = String.Format("The user {0} does not exist.",name);

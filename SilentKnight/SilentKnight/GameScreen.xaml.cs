@@ -55,8 +55,7 @@ namespace SilentKnight
             {
                 enemyCanvas.Children.RemoveAt(1);
             }
-            minuteTxt.Text = "00";
-            secondTxt.Text = "00";
+            LoadTime();
             scoreNum.Text = "0";
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             levelNum.Text = "1";
@@ -79,7 +78,11 @@ namespace SilentKnight
             soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
         }
 
-
+        void LoadTime()
+        {
+            
+        secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
+            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);}
 
         //TIMERS AND LOGIC LINES 74 - 149
 
@@ -118,17 +121,9 @@ namespace SilentKnight
 
         private void AddTime(object sender, EventArgs e)
         {
-            int time = ctrl.AddTime();
-            if (time < 60 && time > 0)
-            {
-                secondTxt.Text = time.ToString("D2");
-            }
-            else
-            {
-                int minute = Convert.ToInt32(minuteTxt.Text) + 1;
-                minuteTxt.Text = minute.ToString("D2");
-                secondTxt.Text = time.ToString("D2");
-            }
+            ctrl.AddTime();
+            secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
+            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);
         }
 
         /// <summary>

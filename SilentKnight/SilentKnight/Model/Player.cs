@@ -91,8 +91,8 @@ namespace Model
         {
             Player.Instance.Health = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             string[] Loc = rd.ReadLine().Trim().Split(' ')[1].Split(',');
-            Player.Instance.PlayerLoc.X = Convert.ToDouble(Loc[0]);
-            Player.Instance.PlayerLoc.Y = Convert.ToDouble(Loc[1]);
+            Player.Instance.PlayerLoc.X = Convert.ToDouble(Loc[0]) - 100;
+            Player.Instance.PlayerLoc.Y = Convert.ToDouble(Loc[1]) - 100;
             Player.Instance.PlayerScore = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
             Player.Instance.HealthLevel = Convert.ToInt32(rd.ReadLine().Trim().Split(' ')[1]);
         }

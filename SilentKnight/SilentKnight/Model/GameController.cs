@@ -16,21 +16,11 @@ namespace Model
     public class GameController
     {
 
-        int currentTime = 0;
 
  
-        public int AddTime()
+        public void AddTime()
         {
             World.Instance.Time += 1;
-            if(currentTime == 59)
-            {
-                currentTime = 0;
-            }
-            else
-            {
-                currentTime += 1;
-            }
-            return (currentTime);
         }
 
         public void CalculateScore()

@@ -11,7 +11,7 @@ _If you wish to load in from a previous user, select "Load Game" and enter your 
 # Work Completed
 All Alpha and Beta features have been implemented.
 # Known Issues
-Time does not continue from previous time if loaded in but instead resets.    
+Time does not continue from user's previous time if loaded in but instead resets.    
 
 # Recording
 A link to the screen recording found <a href = "https://drive.google.com/file/d/1ENaYVAAA_NzYNI9oi8D6IisTSApAqCFM/view?usp=sharing">here</a> (Beta).

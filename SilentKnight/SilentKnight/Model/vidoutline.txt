@@ -1,0 +1,7 @@
+1. New game under the name "Demoplay1"
+2. Move and attack enemies for a bit.
+3. Press escape and save the game.
+4. Close the game then repoen it.
+5. Select Load Game and load as "Demoplay1"
+6. Continue playing as before.
+7. **Die and show highscores.

@@ -251,7 +251,7 @@ namespace SilentKnight
             if (CanAttack)
             {
                 CanAttack = false;
-                anim.DoSwordAttack(PlayerControl);
+                anim.DoSwordAttack(PlayerControl,this);
                 ctrl.ComputePlayerMeleeAttack();
                 await Task.Run(() =>soundPlayer.PlaySync());
                 //Console.WriteLine("Swinging sword!");

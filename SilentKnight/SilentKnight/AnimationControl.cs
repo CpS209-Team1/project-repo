@@ -46,14 +46,14 @@ namespace SilentKnight
         }
 
 
-        public void DoSwordAttack(Image img)
+        public void DoSwordAttack(Image img,Page page)
         {
             Channeling = true;
             Pointer = 3;
-            SetFrame(img);
-            Task.Run(() => Task.Delay(100));
+            page.Dispatcher.Invoke(new Action(()=> { SetFrame(img); }));
+            Task.Run(() => Task.Delay(200));
             Pointer = 4;
-            SetFrame(img);
+            //page.Dispatcher.Invoke(new Action(() => { SetFrame(img); }));
             Task.Run(() => Task.Delay(100));
             Channeling = false;
         }

@@ -24,6 +24,8 @@ namespace Model
         public void MoveLeft(Enemy enemy, double speed)
         {
             enemy.EnemyLoc.X -= speed;
+            enemy.EnemyDirection = Direction.Left;
+            enemy.EnemyStand = false;
             Timer += 1;
         }
 
@@ -34,6 +36,8 @@ namespace Model
         public void MoveRight(Enemy enemy, double speed)
         {
             enemy.EnemyLoc.X += speed;
+            enemy.EnemyDirection = Direction.Right;
+            enemy.EnemyStand = false;
             Timer += 1;
         }
 
@@ -44,6 +48,8 @@ namespace Model
         public void MoveUp(Enemy enemy, double speed)
         {
             enemy.EnemyLoc.Y -= speed;
+            enemy.EnemyDirection = Direction.Up;
+            enemy.EnemyStand = false;
             Timer += 1;
         }
 
@@ -54,6 +60,8 @@ namespace Model
         public void MoveDown(Enemy enemy, double speed)
         {
             enemy.EnemyLoc.Y += speed;
+            enemy.EnemyDirection = Direction.Down;
+            enemy.EnemyStand = false;
             Timer += 1;
         }
 
@@ -137,8 +145,9 @@ namespace Model
         /// <summary>
         /// This method causes enemy's to pause
         /// </summary>
-        public void Stand()
+        public void Stand(Enemy enemy)
         {
+            enemy.EnemyStand = true;
             Timer += .1;
         }
 

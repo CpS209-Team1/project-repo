@@ -229,6 +229,8 @@
   <ItemGroup>
     <Resource Include="Assets\HelpLogo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\HighScoreAchieverScreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,7 +21,8 @@ namespace Model
         public double EnemySpeed { get; set; }
         int choose = rand.Next(1, 6);
         public int Height { get; set; }
-
+        public Direction EnemyDirection { get; set; }
+        public bool EnemyStand { get; set; }
         public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
         {
             CoolDownTimer = 0;
@@ -69,7 +70,7 @@ namespace Model
                 else if (choose == 5 && EnemyLoc.Y - 1 > 0)
                 {
 
-                    EnemyMove.Instance.Stand();
+                    EnemyMove.Instance.Stand(this);
                 }
                 else
                 {

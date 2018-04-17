@@ -1,12 +1,12 @@
 # Description
 This is a project with the goal of developing a top-down style survival game. This will be implemented using a C#, WPF project in Visual Studio.
 # Instructions
-To start a new game, press "New Game"   
+1. To start a new game, press "New Game"   
 _If you wish to load in from a previous user, select "Load Game" and enter your user name._   
-After selecting "New Game", enter your name, difficulty, or whether you want cheat mode active.   
-To move, use the WASD keys.   
-To attack, use the left mouse button to use your sword and the right mouse button to fire arrows.   
-Complete all five levels to win the game!   
+2. After selecting "New Game", enter your name, difficulty, or whether you want cheat mode active.   
+3. To move, use the WASD keys.   
+4. To attack, use the left mouse button to use your sword and the right mouse button to fire arrows.   
+5. Complete all five levels to win the game!   
 
 # Work Completed
 All Beta features have been implemented.

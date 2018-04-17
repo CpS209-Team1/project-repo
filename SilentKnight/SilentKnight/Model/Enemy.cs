@@ -149,7 +149,7 @@ namespace Model
         /// <returns></returns>
         public override string GetKind()
         {
-            return "Skeleton";
+            return "skeleton";
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Model
         /// <returns></returns>
         public override string GetKind()
         {
-            return "Troll";
+            return "troll";
         }
 
         /// <summary>

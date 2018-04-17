@@ -18,25 +18,23 @@ using Model;
 
 namespace SilentKnight
 {
-    public class AnimationControl
+    public class PlayerAnimationControl
     {
-        public DispatcherTimer timer = new DispatcherTimer();
         public Direction CurDirection { get; set;}
         public Image PlayerImage { get; set; }
         public int Pointer { get; set; }
         public bool KeyDown { get; set; }
         public bool CanAttack = true;
-        public bool Channeling { get; set; }
-        public int DebounceCounter { get; set; }
-        public int[] curList { get; set; }
+        public bool IsAttacking { get; set; }
+        public int[] CurList { get; set; }
         public int[] RightList = { 1,2,3,4,5 };
         public int[] LeftList = { 6,7,8,9,10 };
         public int[] UpList = { 11,12,13,14,15 };
         public int[] DownList = { 16,17,18,19,20 };
 
-        public void SetFrame(Image img)
+        public void SetPlayerFrame(Image img)
         {
-            img.Source = new BitmapImage(new Uri(String.Format("/Assets/Sprites/knight_topdown_basic{0}.png",curList[Pointer]), UriKind.Relative));
+            img.Source = new BitmapImage(new Uri(String.Format("/Assets/player/knight_topdown_basic{0}.png",CurList[Pointer]), UriKind.Relative));
         }
 
 
@@ -48,19 +46,19 @@ namespace SilentKnight
 
         public void DoSwordAttack(Image img,Page page)
         {
-            Channeling = true;
+            IsAttacking = true;
             Pointer = 3;
-            page.Dispatcher.Invoke(new Action(()=> { SetFrame(img); }));
+            page.Dispatcher.Invoke(new Action(()=> { SetPlayerFrame(img); }));
             Task.Run(() => Task.Delay(200));
             Pointer = 4;
-            //page.Dispatcher.Invoke(new Action(() => { SetFrame(img); }));
+            page.Dispatcher.Invoke(new Action(() => { SetPlayerFrame(img); }));
             Task.Run(() => Task.Delay(100));
-            Channeling = false;
+            IsAttacking = false;
         }
 
         public void UpdateWalkPointer()
         {
-            if (!Channeling)
+            if (!IsAttacking)
             {
                 if (KeyDown)
                 {
@@ -81,27 +79,48 @@ namespace SilentKnight
             switch(CurDirection)
             {
                 case Direction.Right:
-                    curList = RightList;
+                    CurList = RightList;
                     break;
                 case Direction.Left:
-                    curList = LeftList;
+                    CurList = LeftList;
                     break;
                 case Direction.Up:
-                    curList = UpList;
+                    CurList = UpList;
                     break;
                 case Direction.Down:
-                    curList = DownList;
+                    CurList = DownList;
                     break;
             }
-            SetFrame(PlayerImage);
+            SetPlayerFrame(PlayerImage);
             UpdateWalkPointer();
+        }
+    }
+
+    public class EnemyAnimationControl
+    {
+        public Enemy CurEnemy { get; set; }
+        public Direction CurDirection { get; set; }
+        public EnemyControl EnemyImage { get; set; }
+        public int Pointer { get; set; }
+        public bool IsMoving { get; set; }
+        public bool CanAttack = true;
+        public bool IsAttacking { get; set; }
+
+        public int[] CurList { get; set; }
+        public int[] RightList = { 1, 2, 3, 4, 5 };
+        public int[] LeftList = { 6, 7, 8, 9, 10 };
+        public int[] UpList = { 11, 12, 13, 14, 15 };
+        public int[] DownList = { 16, 17, 18, 19, 20 };
+
+        public void Set(Image img)
+        {
+            img.Source = new BitmapImage(new Uri(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", CurEnemy.GetType(), CurEnemy.GetType(), CurList[Pointer]), UriKind.Relative));
         }
 
 
 
 
 
-
-
     }
+
 }

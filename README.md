@@ -9,7 +9,7 @@ _If you wish to load in from a previous user, select "Load Game" and enter your 
 5. Complete all five levels to win the game!   
 
 # Work Completed
-All Beta features have been implemented.
+All Alpha and Beta features have been implemented.
 # Known Issues
 Time does not continue from previous time if loaded in but instead resets.    
 

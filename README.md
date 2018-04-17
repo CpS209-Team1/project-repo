@@ -3,15 +3,15 @@ This is a project with the goal of developing a top-down style survival game. Th
 # Instructions
 Press new game to start a new game.  
 Use WASD keys to move.  
-Click to attack skeletons.  
+Left click to attack skeletons and trolls.  
+Right click to shoot arrows in player direction
 # Work Completed
-All ALPHA features, excluding the view elements of saving and high scores screen return button, have been implemented.
+All ALPHA and BETA features have been implemented.
 # Known Issues
-* Cannot currently load previous user data through the Menu screen.   
-* No (De)serialization unit tests added.    
-* High-scores screen's button to return to the Main Menu not implemented.   
+* Attacking enemy sometimes doesn't work
+* Loading `time` doesn't work
 # Recording
-A link to the screen recording found <a href = "https://drive.google.com/file/d/1_8tOB-uq3fyQ0OdMXds2dzywhC21oq7f/view">here</a> (fixed link).
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1sKOLobMO0XsLCnXuxVQ2Y1_UpU9rEYg2/view">here</a> (fixed link).
 # Expenses
 
 <table>

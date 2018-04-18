@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="PauseMenu" Height="300" Width="300">
+        Title="Pause Menu" Height="300" Width="300">
     <Grid>
         <Button x:Name ="btnSave" Content="Save" HorizontalAlignment="Left" Margin="221,51,0,0" VerticalAlignment="Top" Width="58" Height="23" Click="btnSaveClick"/>
         <TextBlock x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="21,51,0,0" Text="Click 'Save' to save your game!" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextDecorations="{x:Null}" FontSize="14">

@@ -11,7 +11,7 @@ namespace Model
 {
     class Spawn
     {
-        public IEnemyObserver observer;
+        public IEnemyObserver observer { get; set; }
         private Spawn() { }
         private static Spawn instance = new Spawn();
 
@@ -28,20 +28,18 @@ namespace Model
             {
                 int x = rand.Next(0, (int)World.Instance.borderRight);
                 int y = rand.Next(0, (int)World.Instance.borderBottom);
-                switch (j.Image)
+                switch (j.GetKind())
                 {
                     case "skeleton":
-                        enemy = new Skeleton(observer, x, y, "skeleton.png", 75);
+                        enemy = new Skeleton(observer, x, y, "/Assets/skeleton/skeleton_topdown_basic18.png", 75);
                         break;
                     case "troll":
-                        enemy = new Troll(observer, x, y, "troll.png", 75);
+                        enemy = new Troll(observer, x, y, "/Assets/troll/troll_topdown_basic18", 75);
                         break;
                     default:
-                        enemy = new Skeleton(observer, x, y, "skeleton.png", 75);
+                        enemy = new Skeleton(observer, x, y, "/Assets/skeleton/skeleton_topdown_basic18.png", 75);
                         break;
                 }
-
-
                 World.Instance.Entities.Add(enemy);
             }
         }

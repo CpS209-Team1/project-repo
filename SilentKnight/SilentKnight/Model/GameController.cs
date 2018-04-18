@@ -191,6 +191,7 @@ namespace Model
             {
                 if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X + ((i.Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + (i.Height / 2)), 2)) < 100 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
+                    i.Observer.NotifyAttack(i);
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);
                     Console.WriteLine(i.Health);
                     //Console.WriteLine(Player.Instance.Health);

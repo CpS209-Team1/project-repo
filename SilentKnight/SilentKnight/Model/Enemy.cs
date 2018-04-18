@@ -250,7 +250,7 @@ namespace Model
     public interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
-        void NotifySpawn();
+        void NotifySpawn(Enemy enemy);
 
         void NotifyAttack(Enemy enemy);
     }

@@ -374,21 +374,21 @@ namespace SilentKnight
                 Random rand = new Random();
                 for (int i = 1; i <= enemyCount; i++)
                 {
-                    int entType = randEnt.Next(0, 2);
-                    int x = rand.Next(0, (int)World.Instance.borderRight);
-                    int y = rand.Next(0, (int)World.Instance.borderBottom);
+                    int entType = randEnt.Next(0, 1);
+                    int x = rand.Next(0, (int)World.Instance.borderRight - 210);
+                    int y = rand.Next(0, (int)World.Instance.borderBottom-210);
                     var enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType],18), x, y);
                     
                     switch (entType)
                     {
                         case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 200);
                             break;
                         case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll", 75);
+                            enemy = new Troll(enemyControl, x, y, "troll", 200);
                             break;
                         default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 200);
                             break;
                     }
                     World.Instance.Entities.Add(enemy);

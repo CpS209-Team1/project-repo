@@ -41,35 +41,35 @@ namespace Model
         /// </summary>
         public void UpdatePosition()
         {
+            double dist = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (EnemyLoc.X + 100), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (EnemyLoc.Y + 100), 2));
             //Checks if the enemy is within 150 px from the player, if so then it will call the Track method
-            if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (EnemyLoc.X + (Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (EnemyLoc.Y + (Height / 2)), 2)) < 150)
+            if (dist < 200)
             {
-                EnemyMove.Instance.Track(this);
+                EnemyMove.Instance.Track(this, dist);
             }
             //If the enemy isn't near the player then the enemy will randomly go in a given position by calling one of the methods below
             else if (EnemyMove.Instance.Timer < 100)
             {
-                if (choose == 1 && EnemyLoc.X + .5 < World.Instance.borderRight - Height)
+                if (choose == 1 && EnemyLoc.X + EnemySpeed < World.Instance.borderRight - 75)
                 {
                     EnemyMove.Instance.MoveRight(this, EnemySpeed);
-
                 }
-                else if (choose == 2 && EnemyLoc.Y + .5 < World.Instance.borderBottom - Height)
+                else if (choose == 2 && EnemyLoc.Y + EnemySpeed < World.Instance.borderBottom - 75)
                 {
                     EnemyMove.Instance.MoveDown(this, EnemySpeed);
 
                 }
-                else if (choose == 3 && EnemyLoc.X - 1 > 0)
+                else if (choose == 3 && EnemyLoc.X - EnemySpeed > 0)
                 {
                     EnemyMove.Instance.MoveLeft(this, EnemySpeed);
 
                 }
-                else if (choose == 4 && EnemyLoc.Y - 1 > 0)
+                else if (choose == 4 && EnemyLoc.Y - EnemySpeed > 0)
                 {
 
                     EnemyMove.Instance.MoveUp(this, EnemySpeed);
                 }
-                else if (choose == 5 && EnemyLoc.Y - 1 > 0)
+                else if (choose == 5 && EnemyLoc.Y - EnemySpeed > 0)
                 {
 
                     EnemyMove.Instance.Stand(this);

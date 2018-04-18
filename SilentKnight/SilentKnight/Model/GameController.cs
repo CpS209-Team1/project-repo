@@ -189,7 +189,7 @@ namespace Model
             int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - i.EnemyLoc.X + ((i.Height / 2)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + (i.Height / 2)), 2)) < 100 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (i.EnemyLoc.X + (100)), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + 100), 2)) < 50 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
                     i.Observer.NotifyAttack(i);
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);
@@ -214,7 +214,7 @@ namespace Model
             {
                 foreach (Enemy j in World.Instance.Entities)
                 {
-                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - (j.EnemyLoc.X+(40)), 2) + Math.Pow(i.ArrowLocation.Y - (j.EnemyLoc.Y+(40)), 2)) <= (40))
+                    if (Math.Sqrt(Math.Pow(i.ArrowLocation.X - (j.EnemyLoc.X+(100)), 2) + Math.Pow(i.ArrowLocation.Y - (j.EnemyLoc.Y+(100)), 2)) <= (20))
                     {
                         j.RemoveEnemyHealth(2);
                         EnemyMove.Instance.Hit(j);

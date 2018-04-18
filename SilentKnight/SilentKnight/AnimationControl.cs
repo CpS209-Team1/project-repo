@@ -99,7 +99,6 @@ namespace SilentKnight
     public class EnemyAnimationControl
     {
         public Enemy CurEnemy { get; set; }
-        public Direction CurDirection { get; set; }
         public Image EnemyImage { get; set; }
         public int Pointer = 3;
         public bool IsMoving { get; set; }
@@ -145,8 +144,8 @@ namespace SilentKnight
 
         public void UpdateFrame(object sender, EventArgs e)
         {
-            Console.WriteLine(CurDirection);
-            switch (CurDirection)
+            //Console.WriteLine(CurDirection);
+            switch (CurEnemy.EnemyDirection)
             {
                 case Direction.Right:
                     CurList = RightList;

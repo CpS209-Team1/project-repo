@@ -581,7 +581,7 @@ namespace SilentKnight
         {
             EnemyAnim.CurEnemy = enemy;
             EnemyAnim.EnemyImage = (Image)this.Content;
-            EnemyAnim.CurDirection = enemy.EnemyDirection;
+            
             enemycanvas = (Canvas)this.Parent;
             gamecanvas = (Canvas)enemycanvas.Parent;
             gamescreen = (Page)gamecanvas.Parent;

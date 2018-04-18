@@ -391,9 +391,8 @@ namespace SilentKnight
                             enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                     }
-                    enemyControl.EnemyAnim.CurEnemy = enemy;
                     World.Instance.Entities.Add(enemy);
-                    enemyControl.NotifySpawn();
+                    enemyControl.NotifySpawn(enemy);
                 }
             }
             else
@@ -405,9 +404,8 @@ namespace SilentKnight
                     double x = loc.X;
                     double y = loc.Y;
                     var enemyControl = CreateEnemyControl(ent.Image, x, y);
-                    enemyControl.EnemyAnim.CurEnemy = ent;
                     ent.Observer = enemyControl;
-                    enemyControl.NotifySpawn();
+                    enemyControl.NotifySpawn(ent);
                 }
 
             }
@@ -426,7 +424,6 @@ namespace SilentKnight
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
             enemyCanvas.Children.Add(enemyControl);
-            
             return enemyControl;
         }
 
@@ -576,15 +573,15 @@ namespace SilentKnight
 
         public void NotifyMoved(Enemy enemy)
         {
-            EnemyAnim.CurEnemy = enemy;
-            EnemyAnim.EnemyImage = (Image)this.Content;
-            EnemyAnim.CurDirection = enemy.EnemyDirection;
             EnemyAnim.UpdateWalkPointer();
             Canvas.SetTop(this, enemy.EnemyLoc.Y);
             Canvas.SetLeft(this, enemy.EnemyLoc.X);
         }
-        public void NotifySpawn()
+        public void NotifySpawn(Enemy enemy)
         {
+            EnemyAnim.CurEnemy = enemy;
+            EnemyAnim.EnemyImage = (Image)this.Content;
+            EnemyAnim.CurDirection = enemy.EnemyDirection;
             enemycanvas = (Canvas)this.Parent;
             gamecanvas = (Canvas)enemycanvas.Parent;
             gamescreen = (Page)gamecanvas.Parent;

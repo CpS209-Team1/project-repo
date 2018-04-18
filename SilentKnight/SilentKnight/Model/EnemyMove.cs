@@ -25,7 +25,7 @@ namespace Model
         {
             enemy.EnemyLoc.X -= speed;
             enemy.EnemyDirection = Direction.Left;
-            enemy.EnemyStand = false;
+            enemy.IsMoving = true;
             Timer += 1;
         }
 
@@ -37,7 +37,7 @@ namespace Model
         {
             enemy.EnemyLoc.X += speed;
             enemy.EnemyDirection = Direction.Right;
-            enemy.EnemyStand = false;
+            enemy.IsMoving = true;
             Timer += 1;
         }
 
@@ -49,7 +49,7 @@ namespace Model
         {
             enemy.EnemyLoc.Y -= speed;
             enemy.EnemyDirection = Direction.Up;
-            enemy.EnemyStand = false;
+            enemy.IsMoving = true;
             Timer += 1;
         }
 
@@ -61,7 +61,7 @@ namespace Model
         {
             enemy.EnemyLoc.Y += speed;
             enemy.EnemyDirection = Direction.Down;
-            enemy.EnemyStand = false;
+            enemy.IsMoving = true;
             Timer += 1;
         }
 
@@ -137,7 +137,6 @@ namespace Model
                     {
                         enemy.EnemyLoc.X += World.Instance.borderRight - enemy.EnemyLoc.X;
                     }
-
                     break;
             }
         }
@@ -147,7 +146,7 @@ namespace Model
         /// </summary>
         public void Stand(Enemy enemy)
         {
-            enemy.EnemyStand = true;
+            enemy.IsMoving = false;
             Timer += .1;
         }
 

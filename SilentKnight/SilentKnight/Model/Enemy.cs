@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Threading;
 // using System.Windows.Controls;
 
 namespace Model
@@ -12,6 +13,7 @@ namespace Model
     {
         public IEnemyObserver Observer;
         public int Health { get; set; }
+        
         public Location EnemyLoc;
         public string Image { get; set; }
         public int CoolDownTimer { get; set; } //Enemy attack cooldown
@@ -22,7 +24,7 @@ namespace Model
         int choose = rand.Next(1, 6);
         public int Height { get; set; }
         public Direction EnemyDirection { get; set; }
-        public bool EnemyStand { get; set; }
+        public bool IsMoving { get; set; }
         public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
         {
             CoolDownTimer = 0;
@@ -84,7 +86,6 @@ namespace Model
                 EnemyMove.Instance.Timer = 0;
                 choose = rand.Next(1, 6);
             }
-
             Observer.NotifyMoved(this);
         }
 
@@ -249,6 +250,8 @@ namespace Model
     public interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);
-        void NotifySpawn(int x, int y);
+        void NotifySpawn();
+
+        void NotifyAttack(Enemy enemy);
     }
 }

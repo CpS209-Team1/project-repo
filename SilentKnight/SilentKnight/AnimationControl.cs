@@ -100,27 +100,82 @@ namespace SilentKnight
     {
         public Enemy CurEnemy { get; set; }
         public Direction CurDirection { get; set; }
-        public EnemyControl EnemyImage { get; set; }
-        public int Pointer { get; set; }
+        public Image EnemyImage { get; set; }
+        public int Pointer = 3;
         public bool IsMoving { get; set; }
         public bool CanAttack = true;
         public bool IsAttacking { get; set; }
-
-        public int[] CurList { get; set; }
+        public DispatcherTimer animTimer = new DispatcherTimer();
         public int[] RightList = { 1, 2, 3, 4, 5 };
         public int[] LeftList = { 6, 7, 8, 9, 10 };
         public int[] UpList = { 11, 12, 13, 14, 15 };
-        public int[] DownList = { 16, 17, 18, 19, 20 };
+        static public int[] DownList = { 16, 17, 18, 19, 20 };
+        public int[] CurList = DownList;
 
-        public void Set(Image img)
+        public void StartAnimations()
         {
-            img.Source = new BitmapImage(new Uri(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", CurEnemy.GetType(), CurEnemy.GetType(), CurList[Pointer]), UriKind.Relative));
+            animTimer.Interval = new TimeSpan(0, 0, 0, 0, 150);
+            animTimer.Tick += new EventHandler(UpdateFrame);
+            animTimer.Start();
         }
 
+        public void SetEnemyFrame(Image img)
+        {
+            Console.WriteLine(CurEnemy);
+            Console.WriteLine(img.Source);
+            img.Source = new BitmapImage(new Uri(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", CurEnemy.GetKind(), CurEnemy.GetKind(), CurList[Pointer]), UriKind.Relative));
+        }
 
+        public void UpdateWalkPointer()
+        {
+            if (!IsAttacking)
+            {
+                if (CurEnemy.IsMoving)
+                {
+                    if (Pointer == 0) ++Pointer;
+                    else if (Pointer == 1) --Pointer;
+                    else Pointer = 0;
+                }
+                else
+                {
+                    Pointer = 2;
+                }
+            }
+        }
 
+        public void UpdateFrame(object sender, EventArgs e)
+        {
+            Console.WriteLine(CurDirection);
+            switch (CurDirection)
+            {
+                case Direction.Right:
+                    CurList = RightList;
+                    break;
+                case Direction.Left:
+                    CurList = LeftList;
+                    break;
+                case Direction.Up:
+                    CurList = UpList;
+                    break;
+                case Direction.Down:
+                    CurList = DownList;
+                    break;
+            }
+            SetEnemyFrame(EnemyImage);
+            UpdateWalkPointer();
+        }
 
-
+        public void DoMeleeAttack(Image img,Page page)
+        {
+            IsAttacking = true;
+            Pointer = 3;
+            page.Dispatcher.Invoke(new Action(()=> { SetEnemyFrame(img); }));
+            Task.Run(() => Task.Delay(200));
+            Pointer = 4;
+            page.Dispatcher.Invoke(new Action(() => { SetEnemyFrame(img); }));
+            Task.Run(() => Task.Delay(100));
+            IsAttacking = false;
+        }
     }
 
 }

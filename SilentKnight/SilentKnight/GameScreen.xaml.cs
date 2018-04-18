@@ -377,7 +377,8 @@ namespace SilentKnight
                     int entType = randEnt.Next(0, 2);
                     int x = rand.Next(0, (int)World.Instance.borderRight);
                     int y = rand.Next(0, (int)World.Instance.borderBottom);
-                    var enemyControl = CreateEnemyControl("/Assets/" + World.Instance.EnemyTypes[entType] + ".png", x, y);
+                    var enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType],18), x, y);
+                    
                     switch (entType)
                     {
                         case 0:
@@ -390,8 +391,9 @@ namespace SilentKnight
                             enemy = new Skeleton(enemyControl, x, y, "skeleton", 75);
                             break;
                     }
-                  
+                    enemyControl.EnemyAnim.CurEnemy = enemy;
                     World.Instance.Entities.Add(enemy);
+                    enemyControl.NotifySpawn();
                 }
             }
             else
@@ -402,8 +404,10 @@ namespace SilentKnight
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
-                    var enemyControl = CreateEnemyControl("/Assets/"+ent.Image+".png", x, y);
+                    var enemyControl = CreateEnemyControl(ent.Image, x, y);
+                    enemyControl.EnemyAnim.CurEnemy = ent;
                     ent.Observer = enemyControl;
+                    enemyControl.NotifySpawn();
                 }
 
             }
@@ -417,11 +421,12 @@ namespace SilentKnight
             {
                 Source = new BitmapImage(new Uri(filename, UriKind.Relative))
             };
-            enemyControl.Width = 75;
-            enemyControl.Height = 75;
+            enemyControl.Width = 200;
+            enemyControl.Height = 200;
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
             enemyCanvas.Children.Add(enemyControl);
+            
             return enemyControl;
         }
 
@@ -564,18 +569,31 @@ namespace SilentKnight
     public class EnemyControl : ContentControl, IEnemyObserver
     {
         public EnemyAnimationControl EnemyAnim = new EnemyAnimationControl();
+        private Canvas enemycanvas { get; set; }
+        private Canvas gamecanvas { get; set; }
+        private Page gamescreen { get; set; }
+
 
         public void NotifyMoved(Enemy enemy)
         {
+            EnemyAnim.CurEnemy = enemy;
+            EnemyAnim.EnemyImage = (Image)this.Content;
+            EnemyAnim.CurDirection = enemy.EnemyDirection;
+            EnemyAnim.UpdateWalkPointer();
             Canvas.SetTop(this, enemy.EnemyLoc.Y);
             Canvas.SetLeft(this, enemy.EnemyLoc.X);
-            EnemyAnim.EnemyImage = this;
-
-
         }
-        public void NotifySpawn(int x, int y)
+        public void NotifySpawn()
         {
+            enemycanvas = (Canvas)this.Parent;
+            gamecanvas = (Canvas)enemycanvas.Parent;
+            gamescreen = (Page)gamecanvas.Parent;
+            EnemyAnim.StartAnimations();
+        }
 
+        public void NotifyAttack(Enemy enemy)
+        {
+            EnemyAnim.DoMeleeAttack((Image)this.Content,gamescreen);
         }
     }
 }

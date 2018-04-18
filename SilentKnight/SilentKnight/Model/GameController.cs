@@ -169,10 +169,7 @@ namespace Model
         public void ComputePlayerMeleeAttack()
         {
             Player.Instance.PlayerState.HandleInput("melee");
-            if(Player.Instance.PlayerCoolDown == 0)
-            {
-                Player.Instance.PlayerCoolDown = 50;
-            }
+           
         }
 
         public void ComputePlayerRangedAttack()

@@ -20,6 +20,7 @@ namespace Model
             }
             else if (data == "melee" && Player.Instance.PlayerCoolDown == 0)
             {
+                Console.WriteLine("TESTasdfaeswcwawefewasad");
                 Player.Instance.PlayerState.Change("melee");
             }
 

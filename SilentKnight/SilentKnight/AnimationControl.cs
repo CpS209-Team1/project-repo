@@ -114,7 +114,7 @@ namespace SilentKnight
 
         public void StartAnimations()
         {
-            animTimer.Interval = new TimeSpan(0, 0, 0, 0, 150);
+            animTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             animTimer.Tick += new EventHandler(UpdateFrame);
             animTimer.Start();
         }

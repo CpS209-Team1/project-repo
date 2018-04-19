@@ -11,7 +11,7 @@
         <ScrollViewer Height="762">
             <StackPanel Background="#FF7B9191" Height="900">
                 <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
-                <Image Source="/Assets/HelpLogo.png" Margin="50px" Height="151" Canvas.Left="302" Canvas.Top="74" Width="1428" RenderTransformOrigin="0.48,1.59"/>
+                <Image Source="/Assets/HelpLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
 
                 <TextBlock Text="Controls" FontSize="40" Margin="670,0,0,0"/>
                 <TextBlock Text="Left Move: A" FontSize="20" Margin="700,0,0,0"/>

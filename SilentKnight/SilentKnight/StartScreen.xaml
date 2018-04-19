@@ -11,12 +11,12 @@
     <Canvas Background="#FF7B9191" Height="759">
         <StackPanel HorizontalAlignment="Center" Width=" 1512">
             <StackPanel Orientation="Horizontal" Width="500" Margin="0,100,0,0">
-                <TextBlock Text="Username" FontSize="30" Width="135" Margin="-35,50,0,0"/>
-                <TextBox x:Name="username" FontSize="50" Width="300" Height="75" Margin="0,30,0,0"/>
+                <TextBlock Text="Username" FontSize="30" FontFamily="Tempus Sans ITC" Width="135" Margin="-35,50,0,0"/>
+                <TextBox x:Name="username" FontSize="50" FontFamily="Tempus Sans ITC" Width="300" Height="75" Margin="0,30,0,0"/>
             </StackPanel>
-            <Button x:Name="difficulty" Content="Easy" FontSize="50" Width="300" Height="75" Margin="0,30,0,0" Click="Difficulty_Click"/>
-            <Button x:Name="cheat" Content="Cheat Off" FontSize="50" Width="300" Height="75" Margin="0,30,0,0" Click="Cheat_Click"/>
-            <Button x:Name="start" Content="Start Game" FontSize="50" Width="300" Height="75" Margin="0,30,0,0" Click="start_Click"/>
+            <Button x:Name="difficulty" Content="Easy" FontSize="50" FontFamily="Tempus Sans ITC" Width="300" Height="75" Margin="0,30,0,0" Click="Difficulty_Click"/>
+            <Button x:Name="cheat" Content="Cheat Off" FontSize="50" FontFamily="Tempus Sans ITC" Width="300" Height="75" Margin="0,30,0,0" Click="Cheat_Click"/>
+            <Button x:Name="start" Content="Start Game" FontSize="50" FontFamily="Tempus Sans ITC" Width="300" Height="75" Margin="0,30,0,0" Click="start_Click"/>
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="35" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
         </StackPanel>
     </Canvas>

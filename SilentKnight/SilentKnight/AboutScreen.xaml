@@ -11,14 +11,15 @@
         <StackPanel Background="#FF7B9191" Height="759">
             <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
             <Image Source="/Assets/AboutLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
-            <TextBlock Text="Developers" FontSize="40" Margin="660,0,0,0"/>
-            <TextBlock Text="Andrew Avinante" FontSize="30" Margin="650,20,0,0"/>
-            <TextBlock Text="Michael Bruno" FontSize="30" Margin="665,0,0,0"/>
-            <TextBlock Text="Duelene Olson" FontSize="30" Margin="660,0,0,0"/>
+            <TextBlock x:Name="AboutText"  FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text="Developers" FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text="Andrew Avinante" FontSize="30" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text="Michael Bruno" FontSize="30" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text="Duelene Olson" FontSize="30" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC"  />
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
 
         </StackPanel>
-        <Frame x:Name="Main" Margin="0" Height="800" Width="1528" RenderTransformOrigin="1.116,0.536" Navigated="Main_Navigated" ></Frame>
+        <Frame x:Name="Main" Margin="0" Height="800" FontFamily="Tempus Sans ITC" Width="1528" RenderTransformOrigin="1.116,0.536" Navigated="Main_Navigated" ></Frame>
 
     </Canvas>
 </Page>

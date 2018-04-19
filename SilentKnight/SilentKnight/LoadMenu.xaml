@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Load Window" Height="300" Width="300">
     <Grid>
-        <Button x:Name ="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnLoadClick"/>
+        <Button x:Name ="btnLoad" Content="Load" HorizontalAlignment="Left" Margin="158,51,0,0" VerticalAlignment="Top" Width="75" Height="23" FontFamily="Tempus Sans ITC" Click="btnLoadClick"/>
         <TextBox x:Name="txtName" HorizontalAlignment="Left" Text="" Height="23" Margin="21,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextDecorations="{x:Null}" FontSize="14">
             <TextBox.Style>
                 <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">

@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+//File:   StartScreen.xaml.cs
+//Desc:   This file contains the code for the Start screen for Silent Knight
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

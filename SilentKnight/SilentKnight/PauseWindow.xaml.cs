@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+//File:   PauseWindow.xaml.cs
+//Desc:   This file contains the code for the Pause Window for saving a game in Silent Knight
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

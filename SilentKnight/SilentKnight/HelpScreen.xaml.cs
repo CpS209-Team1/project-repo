@@ -1,4 +1,8 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+//File:   HelpScreen.xaml.cs
+//Desc:   This file contains the code for the Help screen for Silent Knight
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

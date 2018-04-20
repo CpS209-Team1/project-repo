@@ -126,8 +126,8 @@ namespace SilentKnight
         private void AddTime(object sender, EventArgs e)
         {
             ctrl.AddTime();
-            secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
-            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);
+            secondTxt.Text = (World.Instance.Time % 60).ToString("D2");
+            minuteTxt.Text = (World.Instance.Time / 60).ToString("D2");
         }
 
         /// <summary>
@@ -482,8 +482,10 @@ namespace SilentKnight
             {
                 GameEvent.Stop();
                 gameTime.Stop();
+                animTimer.Stop();
                 PauseWindow pause = new PauseWindow(ctrl);
                 pause.ShowDialog();
+                animTimer.Start();
                 GameEvent.Start();
                 gameTime.Start();
                 return;

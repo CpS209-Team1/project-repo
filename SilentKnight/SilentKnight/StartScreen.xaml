@@ -8,7 +8,7 @@
       d:DesignHeight="762" d:DesignWidth="1512"
       Title="StartScreen" Height="762" Width="1512">
 
-    <Canvas Background="#FF7B9191" Height="759">
+    <Canvas x:Name="startCanvas" Background="#FF7B9191" Height="759">
         <StackPanel HorizontalAlignment="Center" Width=" 1512">
             <StackPanel Orientation="Horizontal" Width="500" Margin="0,100,0,0">
                 <TextBlock Text="Username" FontSize="30" FontFamily="Tempus Sans ITC" Width="135" Margin="-35,50,0,0"/>

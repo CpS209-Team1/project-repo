@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SilentKnight"
       mc:Ignorable="d"
-      Title="HelpScreen" Height="762" Width="1512">
+      Title="HelpScreen" Height="800" Width="1400">
 
-    <Canvas x:Name="helpCanvas" Margin="0,0,-1209,-453">
-        <ScrollViewer Height="762" Canvas.Left="28" Canvas.Top="27">
+    <Canvas x:Name="helpCanvas" Width="1400" Height="800">
+        <ScrollViewer x:Name="helpView" Height="762" VerticalScrollBarVisibility="Hidden">
             <StackPanel Background="#FF7B9191" Height="900">
                 <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
                 <Image Source="/Assets/HelpLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>

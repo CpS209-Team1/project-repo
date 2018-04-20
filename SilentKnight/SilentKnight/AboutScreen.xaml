@@ -11,7 +11,8 @@
         <StackPanel Background="#FF7B9191" Height="759">
             <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
             <Image Source="/Assets/AboutLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
-            <TextBlock x:Name="AboutText"  FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text=" " FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
+            <TextBlock Text="Silent Knight is a top-down, dungeon style survival game. Your goal is to fight your way through five waves of enemies and defeat the final boss at the end of each dungeon as fast as possible. You can control your character to move around the map and can attack enemies. Your health, however, is limited so you must attack and evade in order to survive. Make it through five waves of enemies and you'll be faced with the final boss. This enemy will be much more powerful and will take more effort to defeat. " FontSize="20" FontFamily="Tempus Sans ITC" TextWrapping="Wrap" Margin="0,0,0,0" Height="139" Width="1070" Canvas.Left="179" Canvas.Top="265"/>
             <TextBlock Text="Developers" FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
             <TextBlock Text="Andrew Avinante" FontSize="30" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
             <TextBlock Text="Michael Bruno" FontSize="30" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />

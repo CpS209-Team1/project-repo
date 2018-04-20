@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SilentKnight"
         mc:Ignorable="d"
-        Title="Silent Knight" Height="800" Width="1440" MinHeight="500" MinWidth="855" Loaded="Windows_Loaded" KeyUp="btnKeyUp" SizeChanged="MainWindow_SizeChanged">
+        Title="Silent Knight" Height="800" Width="1440" MinHeight="799" MinWidth="1399" Loaded="Windows_Loaded" KeyUp="btnKeyUp" SizeChanged="MainWindow_SizeChanged">
     <Canvas x:Name="mainWindowCanvas">
         <StackPanel x:Name="Menu" Background="#FF7B9191" Height="800" Width="1440">
             <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>

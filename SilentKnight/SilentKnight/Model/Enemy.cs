@@ -246,6 +246,73 @@ namespace Model
         }
     }
 
+    class Spider: Enemy
+    {
+        public Spider(IEnemyObserver observer, double x, double y, string image, int height) : base(observer, x, y, image, height)
+        {
+            switch (World.Instance.Difficulty)
+            {
+                case 1:
+                    AttackDamage = 5;
+                    break;
+                case 2:
+                    AttackDamage = 6;
+                    break;
+                case 3:
+                    AttackDamage = 7;
+                    break;
+            }
+            switch (World.Instance.Difficulty)
+            {
+                case 1:
+                    Health = 20 + World.Instance.LevelCount * World.Instance.Difficulty;
+                    break;
+                case 2:
+                    Health = 30 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+                case 3:
+                    Health = 40 + World.Instance.LevelCount * World.Instance.Difficulty; ;
+                    break;
+            }
+            EnemySpeed = .5;
+            CoolDown = 50;
+        }
+
+        /// <summary>
+        /// Returns entity kind
+        /// </summary>
+        /// <returns></returns>
+        public override string GetKind()
+        {
+            return "spider";
+        }
+
+        /// <summary>
+        /// Removes number from enemy's health
+        /// </summary>
+        public override void RemoveEnemyHealth(int amount)
+        {
+            Health -= amount;
+        }
+
+        /// <summary>
+        /// Adds number to enemy's health
+        /// </summary>
+        public override void AddEnemyHealth(int amount)
+        {
+            Health += amount;
+        }
+
+        //Removes enemy from Entities list
+        public override void KillEnemy()
+        {
+            if (Health <= 0)
+            {
+                World.Instance.Entities.Remove(this);
+            }
+        }
+    }
+
     // Oberver pattern
     public interface IEnemyObserver
     {

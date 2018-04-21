@@ -25,21 +25,31 @@ namespace SilentKnight
     public partial class AboutScreen : Page
     {
         MainWindow wn;
+
+        /// <summary>
+        /// The constructor for the About screen
+        /// </summary>
+        /// <param name="t">An instance of the main window</param>
         public AboutScreen(MainWindow t)
         {
             wn = t;
             InitializeComponent();
         }
 
-
-        private void Main_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// Loads the About screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
         }
 
+        /// <summary>
+        /// The event handler for the Back button of the About screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             wn.Main.Content = null;

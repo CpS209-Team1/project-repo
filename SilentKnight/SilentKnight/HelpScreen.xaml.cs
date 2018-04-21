@@ -26,23 +26,32 @@ namespace SilentKnight
     public partial class HelpScreen : Page
     {
         MainWindow wn;
+
+        /// <summary>
+        /// Constuctor for the Help screen
+        /// </summary>
+        /// <param name="t">instance of MainWindow</param>
         public HelpScreen(MainWindow t)
         {
             wn = t;
             InitializeComponent();
         }
 
-        private void Main_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-
+        /// <summary>
+        /// The event handler for the Back button of the Help screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             wn.Main.Content = null;
         }
 
+        /// <summary>
+        /// Handles the scrolling for the Help screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e"Contains the arguments passed to the event handler></param>
         private void StackPanel_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
 

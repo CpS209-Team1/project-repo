@@ -41,46 +41,20 @@ namespace SilentKnight
         }
 
         /// <summary>
-        /// 
+        /// Displays the High Scores screen
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Main_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("HCKJHHJSJNCJSNC");
-            foreach (Score i in highScores.scoreList)
-            {
-                Console.WriteLine(i.Name);
-            }
-            Console.WriteLine();
             highScores.SaveIfHighScore();
-            foreach (Score i in highScores.scoreList)
-            {
-                Console.WriteLine(i.Name);
-            }
-            Console.WriteLine();
             highScores.WriteScores("HighScoresTestData.txt");
-            foreach (Score i in highScores.scoreList)
-            {
-                Console.WriteLine(i.Name);
-            }
-            Console.WriteLine();
             NamesAndScores.Text = " ";
             DisplayHighScores();
         }
 
         /// <summary>
-        /// 
+        /// Displays the high scoring players and their scores
         /// </summary>
         public void DisplayHighScores()
         {
@@ -97,10 +71,10 @@ namespace SilentKnight
         }
 
         /// <summary>
-        /// 
+        /// The event handler for the Back button of the High Scores screen
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             wn.Main.Content = null;

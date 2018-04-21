@@ -20,7 +20,7 @@
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
 
         </StackPanel>
-        <Frame x:Name="Main" Margin="0" Height="800" FontFamily="Tempus Sans ITC" Width="1528" RenderTransformOrigin="1.116,0.536" Navigated="Main_Navigated" ></Frame>
+        <Frame x:Name="Main" Margin="0" Height="800" FontFamily="Tempus Sans ITC" Width="1528" RenderTransformOrigin="1.116,0.536"></Frame>
 
     </Canvas>
 </Page>

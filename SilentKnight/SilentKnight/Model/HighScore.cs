@@ -13,6 +13,10 @@ namespace Model
         public List<Score> scoreList = new List<Score>();
         public int maxEntries = 10;
 
+        /// <summary>
+        /// Reads the current high scores from a .txt file
+        /// </summary>
+        /// <param name="fileName">The .txt file where the scores are stored</param>
         public void LoadScores(string fileName)
         {
             // Help source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/
@@ -38,9 +42,9 @@ namespace Model
         }
 
         /// <summary>
-        /// 
+        /// Writes the high scores out to a .txt file
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName"Tthe .txt file where the scores are to be written to</param>
         public void WriteScores(string fileName)
         {
 
@@ -55,6 +59,10 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Adds the current player's score to the list of scores already loaded in.
+        /// Sorts the list and then keeps the top [maxEntries] number of scores.
+        /// </summary>
         public void SaveIfHighScore()
         {
             Score playerScore = new Score(Player.Instance.PlayerName, Player.Instance.PlayerScore);
@@ -99,6 +107,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Resets the .txt file for the unit tests
+        /// </summary>
         public void Reset()
         {
             using (StreamWriter outputFile = new StreamWriter("HighScoresTestData.txt"))
@@ -112,9 +123,17 @@ namespace Model
         
     }
 
+    /// <summary>
+    /// the Score object
+    /// </summary>
     public class Score
     {
 
+        /// <summary>
+        /// The constructor for the Score object
+        /// </summary>
+        /// <param name="newName">The current player's name</param>
+        /// <param name="newPoints">The points scored by the current player</param>
         public Score(string newName, int newPoints)
         {
             Name = newName;
@@ -131,6 +150,10 @@ namespace Model
         /// </summary>
         public int Points { get; set; }
 
+        /// <summary>
+        /// The format for displaying the high scores
+        /// </summary>
+        /// <returns>a player/score line for the High Scores screen</returns>
         override public string ToString()
         {
             return String.Format("{0}—{1}", Name, Points);

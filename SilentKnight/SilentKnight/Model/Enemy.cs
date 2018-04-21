@@ -23,6 +23,7 @@ namespace Model
         public double EnemySpeed { get; set; }
         int choose = rand.Next(1, 6);
         public int Height { get; set; }
+        public int Center { get; set; }
         public Direction EnemyDirection { get; set; }
         public bool IsMoving { get; set; }
         public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
@@ -50,11 +51,11 @@ namespace Model
             //If the enemy isn't near the player then the enemy will randomly go in a given position by calling one of the methods below
             else if (EnemyMove.Instance.Timer < 100)
             {
-                if (choose == 1 && EnemyLoc.X + EnemySpeed < World.Instance.borderRight - 75)
+                if (choose == 1 && EnemyLoc.X + EnemySpeed < World.Instance.borderRight - Center)
                 {
                     EnemyMove.Instance.MoveRight(this, EnemySpeed);
                 }
-                else if (choose == 2 && EnemyLoc.Y + EnemySpeed < World.Instance.borderBottom - 75)
+                else if (choose == 2 && EnemyLoc.Y + EnemySpeed < World.Instance.borderBottom - Center)
                 {
                     EnemyMove.Instance.MoveDown(this, EnemySpeed);
 
@@ -140,8 +141,10 @@ namespace Model
                     Health = 20 + World.Instance.LevelCount * World.Instance.Difficulty; ;
                     break;
             }
+            Height = height;
             EnemySpeed = .5;
             CoolDown = 100;
+            Center = Height / 2;
         }
 
         /// <summary>
@@ -207,6 +210,7 @@ namespace Model
                     Health = 8 + World.Instance.LevelCount * World.Instance.Difficulty; ;
                     break;
             }
+            Height = height;
             EnemySpeed = .8;
             CoolDown = 50;
         }
@@ -274,8 +278,10 @@ namespace Model
                     Health = 40 + World.Instance.LevelCount * World.Instance.Difficulty; ;
                     break;
             }
+            Height = height;
             EnemySpeed = .5;
             CoolDown = 50;
+            Center = Height / 2;
         }
 
         /// <summary>

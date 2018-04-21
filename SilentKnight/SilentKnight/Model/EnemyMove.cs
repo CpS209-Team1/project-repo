@@ -75,26 +75,26 @@ namespace Model
 
             previousLoc.X = enemy.EnemyLoc.X;
             previousLoc.Y = enemy.EnemyLoc.Y;
-            if (Player.Instance.PlayerLoc.X <= enemy.EnemyLoc.X + 100 && dist > 50)
+            if (Player.Instance.PlayerLoc.X <= enemy.EnemyLoc.X + enemy.Center && dist > 50)
             {
                 enemy.EnemyLoc.X -= .5;
             }
-            else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + 100 && dist > 50)
+            else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + enemy.Center && dist > 50)
             {
                 enemy.EnemyLoc.X += .5;
 
             }
-            if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + 100 && dist > 50)
+            if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + enemy.Center && dist > 50)
             {
                 enemy.EnemyLoc.Y -= .5;
 
             }
-            else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + 100 && dist > 50)
+            else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + enemy.Center && dist > 50)
             {
                 enemy.EnemyLoc.Y += .5;
             }
             enemy.IsMoving = true;
-            if (Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + 100)) > 50)
+            if (Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) > 50)
             {
                 if (previousLoc.X < enemy.EnemyLoc.X && previousLoc.Y < enemy.EnemyLoc.Y)
                 {
@@ -115,11 +115,11 @@ namespace Model
             }
             else
             {
-                if (Player.Instance.PlayerLoc.Y < (enemy.EnemyLoc.Y + 100))
+                if (Player.Instance.PlayerLoc.Y < (enemy.EnemyLoc.Y + enemy.Center))
                 {
                     enemy.EnemyDirection = Direction.Up;
                 }
-                else if (Player.Instance.PlayerLoc.Y > (enemy.EnemyLoc.Y + 100))
+                else if (Player.Instance.PlayerLoc.Y > (enemy.EnemyLoc.Y + enemy.Center))
                 {
                     enemy.EnemyDirection = Direction.Down;
                 }
@@ -127,19 +127,19 @@ namespace Model
             if (dist < 50)
             {
                 enemy.IsMoving = false;
-                if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X + 100 && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + 100)) < 20)
+                if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < 20)
                 {
                     enemy.EnemyDirection = Direction.Left;
                 }
-                else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + 100 && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + 100)) < 20)
+                else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < 20)
                 {
                     enemy.EnemyDirection = Direction.Right;
                 }
-                else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + 100 && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + 100)) < 20)
+                else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < 20)
                 {
                     enemy.EnemyDirection = Direction.Down;
                 }
-                else if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + 100 && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + 100)) < 20)
+                else if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < 20)
                 {
                     enemy.EnemyDirection = Direction.Up;
                 }
@@ -156,13 +156,13 @@ namespace Model
             switch (Player.Instance.PlayerDirection)
             {
                 case Direction.Down:
-                    if (enemy.EnemyLoc.Y + 50 < World.Instance.borderBottom - 150)
+                    if (enemy.EnemyLoc.Y + 50 < World.Instance.borderBottom - enemy.Center)
                     {
                         enemy.EnemyLoc.Y += 50;
                     }
                     else
                     {
-                        enemy.EnemyLoc.Y += World.Instance.borderBottom - enemy.EnemyLoc.Y - 150;
+                        enemy.EnemyLoc.Y += World.Instance.borderBottom - enemy.EnemyLoc.Y - enemy.Center;
                     }
                     break;
                 case Direction.Up:
@@ -186,13 +186,13 @@ namespace Model
                     }
                     break;
                 case Direction.Right:
-                    if (enemy.EnemyLoc.X + 50 < World.Instance.borderRight - 150)
+                    if (enemy.EnemyLoc.X + 50 < World.Instance.borderRight - enemy.Center)
                     {
                         enemy.EnemyLoc.X += 50;
                     }
                     else
                     {
-                        enemy.EnemyLoc.X += World.Instance.borderRight - enemy.EnemyLoc.X - 150;
+                        enemy.EnemyLoc.X += World.Instance.borderRight - enemy.EnemyLoc.X - enemy.Center;
                     }
                     break;
             }

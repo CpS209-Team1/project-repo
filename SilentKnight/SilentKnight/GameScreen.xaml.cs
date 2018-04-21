@@ -247,7 +247,7 @@ namespace SilentKnight
         /// <param name="e"></param>
         private async void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (CanAttack)
+            if (CanAttack && Player.Instance.PlayerCoolDown == 0)
             {
                 CanAttack = false;
                 animPlayer.DoSwordAttack(PlayerControl,this);
@@ -386,13 +386,13 @@ namespace SilentKnight
                     switch (entType)
                     {
                         case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 200);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                             break;
                         case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll", 200);
+                            enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
                             break;
                         default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", 200);
+                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                             break;
                     }
                     World.Instance.Entities.Add(enemy);

@@ -36,8 +36,8 @@ A link to the screen recording found <a href = "https://drive.google.com/file/d/
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>
-<td>48 hours 13 minutes</td>
-<td>1 hour 47 minutes</td>
+<td>49 hours 56 minutes</td>
+<td>4 minutes</td>
 </tr>
 
 <tr>

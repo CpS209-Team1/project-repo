@@ -120,8 +120,6 @@ namespace SilentKnight
 
         public void SetEnemyFrame(Image img)
         {
-            //Console.WriteLine(CurEnemy);
-            //Console.WriteLine(img.Source);
             img.Source = new BitmapImage(new Uri(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", CurEnemy.GetKind(), CurEnemy.GetKind(), CurList[Pointer]), UriKind.Relative));
         }
 

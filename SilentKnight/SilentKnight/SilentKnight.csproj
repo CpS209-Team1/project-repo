@@ -156,7 +156,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\ARCADECLASSIC.TTF" />
-    <None Include="Assets\troll\.DS_Store" />
+    <None Include="Assets\player\.DS_Store" />
+    <None Include="Assets\skeleton\.DS_Store" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -247,28 +248,6 @@
     <Resource Include="Assets\skeleton\skeleton_topdown_basic7.png" />
     <Resource Include="Assets\skeleton\skeleton_topdown_basic8.png" />
     <Resource Include="Assets\skeleton\skeleton_topdown_basic9.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\troll\troll_topdown_basic1.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic10.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic11.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic12.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic13.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic14.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic15.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic16.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic17.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic18.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic19.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic2.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic20.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic3.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic4.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic5.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic6.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic7.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic8.png" />
-    <Resource Include="Assets\troll\troll_topdown_basic9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

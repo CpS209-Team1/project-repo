@@ -15,6 +15,8 @@ Time does not continue from user's previous time if loaded in but instead resets
 
 # Recording
 A link to the screen recording found <a href = "https://drive.google.com/file/d/1ENaYVAAA_NzYNI9oi8D6IisTSApAqCFM/view?usp=sharing">here</a> (Beta).
+
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1jaFfCYT_bxnDR0QzcTrV_W6i0RC1ik3v/view?usp=sharing">here</a> (RC).
 # Expenses
 
 <table>

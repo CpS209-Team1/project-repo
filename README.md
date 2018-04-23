@@ -11,10 +11,12 @@ _If you wish to load in from a previous user, select "Load Game" and enter your 
 # Work Completed
 All Alpha and Beta features have been implemented.
 # Known Issues
-Time does not continue from user's previous time if loaded in but instead resets.    
+No Known Issues.    
 
 # Recording
 A link to the screen recording found <a href = "https://drive.google.com/file/d/1ENaYVAAA_NzYNI9oi8D6IisTSApAqCFM/view?usp=sharing">here</a> (Beta).
+
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1jaFfCYT_bxnDR0QzcTrV_W6i0RC1ik3v/view?usp=sharing">here</a> (RC).
 # Expenses
 
 <table>
@@ -26,8 +28,8 @@ A link to the screen recording found <a href = "https://drive.google.com/file/d/
 
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Avinante-Journal">Avinante</a>  </td>
-<td>37 hours 5 minutes</td>
-<td>12 hours 55 minutes</td>
+<td>40 hours 15 minutes</td>
+<td>9 hours 45 minutes</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>

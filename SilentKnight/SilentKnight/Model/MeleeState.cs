@@ -16,7 +16,7 @@ namespace Model
             {
                 int randNum = rand.Next(0, 10);
                 double enemyDistance = Math.Sqrt(Math.Pow((Player.Instance.PlayerLoc.X) - (i.EnemyLoc.X + i.Center), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + i.Center), 2));
-                if (enemyDistance < 150 && World.Instance.CheatMode == false)
+                if (enemyDistance < i.Center + 50 && World.Instance.CheatMode == false)
                 {
                     if (Player.Instance.PlayerDirection == Direction.Left && i.EnemyLoc.X + i.Center < Player.Instance.PlayerLoc.X)
                     {

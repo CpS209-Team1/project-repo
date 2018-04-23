@@ -164,6 +164,7 @@ namespace SilentKnight
             }
             else if(World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5)
             {
+                levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 DoSpawn(1);
                 World.Instance.LevelCount += 1;
             }
@@ -383,27 +384,32 @@ namespace SilentKnight
                 Random rand = new Random();
                 for (int i = 1; i <= enemyCount; i++)
                 {
-                    int entType = randEnt.Next(0, 1);
+                    EnemyControl enemyControl;
+                    int entType = randEnt.Next(0, 2);
                     int x = rand.Next(0, (int)World.Instance.borderRight - 210);
                     int y = rand.Next(0, (int)World.Instance.borderBottom-210);
-                    var enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType],18), x, y);
+                    
                     if (World.Instance.LevelCount != 5)
                     {
                         switch (entType)
                         {
                             case 0:
+                                enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType], 18), x, y, 250);
                                 enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                                 break;
                             case 1:
+                                enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType], 18), x, y, 200);
                                 enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
                                 break;
                             default:
+                                enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType], 18), x, y, 250);
                                 enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
                                 break;
                         }
                     }
                     else
                     {
+                        enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType], 18), x, y, 500);
                         enemy = new Troll(enemyControl, x, y, "spider", (int)enemyControl.Height);
                     }
                     World.Instance.Entities.Add(enemy);
@@ -418,7 +424,7 @@ namespace SilentKnight
                     Location loc = ent.EnemyLoc;
                     double x = loc.X;
                     double y = loc.Y;
-                    var enemyControl = CreateEnemyControl(ent.Image, x, y);
+                    var enemyControl = CreateEnemyControl(ent.Image, x, y, ent.Height);
                     ent.Observer = enemyControl;
                     enemyControl.NotifySpawn(ent);
                 }
@@ -427,15 +433,22 @@ namespace SilentKnight
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }
 
-        public EnemyControl CreateEnemyControl(string filename, double x, double y)
+        public EnemyControl CreateEnemyControl(string filename, double x, double y, double size)
         {
             var enemyControl = new EnemyControl();
             enemyControl.Content = new Image()
             {
                 Source = new BitmapImage(new Uri(filename, UriKind.Relative))
             };
-            enemyControl.Width = 200;
-            enemyControl.Height = 200;
+            if (World.Instance.LevelCount != 6)
+            {
+                enemyControl.Width = size;
+                enemyControl.Height = size;
+            }
+            else
+            {
+
+            }
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
             enemyCanvas.Children.Add(enemyControl);

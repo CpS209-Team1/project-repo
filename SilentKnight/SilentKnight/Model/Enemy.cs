@@ -213,6 +213,7 @@ namespace Model
             Height = height;
             EnemySpeed = .8;
             CoolDown = 50;
+            Center = Height / 2;
         }
 
         /// <summary>

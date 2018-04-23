@@ -162,7 +162,12 @@ namespace SilentKnight
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
             }
-            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5 && World.Instance.GameCompleted == false)
+            else if(World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5)
+            {
+                DoSpawn(1);
+                World.Instance.LevelCount += 1;
+            }
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 6 && World.Instance.GameCompleted == false)
             {
 
                 GameEvent.Stop();
@@ -382,18 +387,24 @@ namespace SilentKnight
                     int x = rand.Next(0, (int)World.Instance.borderRight - 210);
                     int y = rand.Next(0, (int)World.Instance.borderBottom-210);
                     var enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType],18), x, y);
-                    
-                    switch (entType)
+                    if (World.Instance.LevelCount != 5)
                     {
-                        case 0:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
-                            break;
-                        case 1:
-                            enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
-                            break;
-                        default:
-                            enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
-                            break;
+                        switch (entType)
+                        {
+                            case 0:
+                                enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                                break;
+                            case 1:
+                                enemy = new Troll(enemyControl, x, y, "troll", (int)enemyControl.Height);
+                                break;
+                            default:
+                                enemy = new Skeleton(enemyControl, x, y, "skeleton", (int)enemyControl.Height);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        enemy = new Troll(enemyControl, x, y, "spider", (int)enemyControl.Height);
                     }
                     World.Instance.Entities.Add(enemy);
                     enemyControl.NotifySpawn(enemy);

@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SilentKnight"
       mc:Ignorable="d"
-      Title="AboutScreen" Height="762" Width="1512" ShowsNavigationUI="False">
+      Title="AboutScreen" x:Name="aboutPage" ShowsNavigationUI="False" SizeChanged="AboutScreen_SizeChanged">
 
-    <Canvas x:Name="aboutCanvas" Margin="0,0,-1209,-453">
-        <StackPanel Background="#FF7B9191" Height="759">
+    <Canvas x:Name="aboutCanvas">
+        <StackPanel x:Name="aboutStack" Background="#FF7B9191" Height="759">
             <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
             <Image Source="/Assets/AboutLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
             <TextBlock Text=" " FontSize="40" HorizontalAlignment="Center" FontFamily="Tempus Sans ITC" />
@@ -20,7 +20,6 @@
             <Button Content="Back to Menu" Margin="30px"  Canvas.Left="596" Canvas.Top="258" Width="312" Height="65" FontSize="48" FontFamily="Tempus Sans ITC" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Back_Click"/>
 
         </StackPanel>
-        <Frame x:Name="Main" Margin="0" Height="800" FontFamily="Tempus Sans ITC" Width="1528" RenderTransformOrigin="1.116,0.536"></Frame>
 
     </Canvas>
 </Page>

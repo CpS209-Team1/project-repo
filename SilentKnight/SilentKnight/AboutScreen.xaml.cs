@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 
 namespace SilentKnight
 {
@@ -53,6 +54,11 @@ namespace SilentKnight
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             wn.Main.Content = null;
+        }
+
+        private void AboutScreen_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            aboutPage.Width = World.Instance.MenuBorderRight;
         }
     }
 }

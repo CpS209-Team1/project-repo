@@ -5,13 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SilentKnight"
       mc:Ignorable="d"
-      Title="HelpScreen" Height="800" Width="1400">
+      Title="HelpScreen" x:Name="helpPage">
 
-    <Canvas x:Name="helpCanvas" Width="1400" Height="800">
+    <Canvas x:Name="helpCanvas" >
         <ScrollViewer x:Name="helpView" Height="762" VerticalScrollBarVisibility="Hidden">
-            <StackPanel Background="#FF7B9191" Height="900">
+            <StackPanel x:Name="helpStack" Background="#FF7B9191" Height="900">
                 <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
-                <Image Source="/Assets/HelpLogo.png" Height="130" Canvas.Left="302" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
+                <Image Source="/Assets/HelpLogo.png" Height="130" Margin="0,-225,0,0" Width="1428"  RenderTransformOrigin="0.48,1.59"/>
 
                 <TextBlock Text="How to Play" FontSize="40" FontFamily="Tempus Sans ITC" HorizontalAlignment="Center"/>
                 <TextBlock FontSize="20" FontFamily="Tempus Sans ITC" TextWrapping="Wrap" Margin="0,0,0,0" Height="181" Width="1144"><Span FontSize="14.6666666666667" FontFamily="Calibri"><Run Text="—"/></Span><Run Text="To start a new game, press &quot;New Game&quot; and enter your name, difficulty, and whether you want cheat mode to be active."/><LineBreak/><Span FontSize="14.6666666666667" FontFamily="Calibri"><Run Text="—"/></Span><Run Text="To move, use the WASD keys for up, left, down, and right, respectively."/><LineBreak/><Run FontSize="14.6666666666667" FontFamily="Calibri" Text="—"/><Run Text="To attack, use the left mouse button to use your sword and the right mouse button to fire arrows.  You must be facing the enemy."/><LineBreak/><Run FontSize="14.6666666666667" FontFamily="Calibri" Text="—"/><Run Text="To pause the game, press Esc and click Save.  Your game and all of the settings are saved for you for a later time."/><LineBreak/><Run FontSize="14.6666666666667" FontFamily="Calibri" Text="—"/><Run Text="To resume a saved game, select Load Game.  Enter your name and click Load.  The game will resume from the point that you saved it."/><LineBreak/><Run FontSize="14.6666666666667" FontFamily="Calibri" Text="—"/><Run Text="Complete all five levels to win the game!"/></TextBlock>

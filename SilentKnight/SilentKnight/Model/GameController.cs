@@ -15,9 +15,6 @@ namespace Model
 
     public class GameController
     {
-
-
- 
         public void AddTime()
         {
             World.Instance.Time += 1;

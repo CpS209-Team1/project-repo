@@ -115,7 +115,7 @@ namespace SilentKnight
             }
 
             gameScreen.enemyCanvas.Width = .78 * World.Instance.MenuBorderRight;
-            gameScreen.enemyCanvas.Height = .7 * World.Instance.MenuBorderBottom;
+            gameScreen.enemyCanvas.Height = .63 * World.Instance.MenuBorderBottom;
            
             Thickness margin = gameScreen.enemyCanvas.Margin;
             margin.Left = (157/1400) * World.Instance.MenuBorderRight;

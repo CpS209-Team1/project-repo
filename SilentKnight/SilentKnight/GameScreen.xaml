@@ -13,7 +13,7 @@
             <ImageBrush ImageSource="/Assets/maps.png" Stretch="UniformToFill"/>
 
         </Canvas.Background>
-        <Canvas x:Name="enemyCanvas" Width="1092" Height="560" Margin="157,96,0,0">
+        <Canvas x:Name="enemyCanvas" Width="1092" Height="500" Margin="157,145,0,0">
             <Image x:Name="Plr" Height="200" Width="200" Source="/Assets/player/knight_topdown_basic18.png"/>
 
         </Canvas>

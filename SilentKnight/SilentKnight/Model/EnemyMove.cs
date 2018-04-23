@@ -127,19 +127,19 @@ namespace Model
             if (dist < enemy.Center/2)
             {
                 enemy.IsMoving = false;
-                if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < enemy.Center/3)
+                if (Player.Instance.PlayerLoc.X < enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < enemy.Center/2.5)
                 {
                     enemy.EnemyDirection = Direction.Left;
                 }
-                else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < enemy.Center / 3)
+                else if (Player.Instance.PlayerLoc.X >= enemy.EnemyLoc.X + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.Y - (enemy.EnemyLoc.Y + enemy.Center)) < enemy.Center / 2.5)
                 {
                     enemy.EnemyDirection = Direction.Right;
                 }
-                else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < enemy.Center / 3)
+                else if (Player.Instance.PlayerLoc.Y >= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < enemy.Center / 2.5)
                 {
                     enemy.EnemyDirection = Direction.Down;
                 }
-                else if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < enemy.Center / 3)
+                else if (Player.Instance.PlayerLoc.Y <= enemy.EnemyLoc.Y + enemy.Center && Math.Abs(Player.Instance.PlayerLoc.X - (enemy.EnemyLoc.X + enemy.Center)) < enemy.Center / 2.5)
                 {
                     enemy.EnemyDirection = Direction.Up;
                 }

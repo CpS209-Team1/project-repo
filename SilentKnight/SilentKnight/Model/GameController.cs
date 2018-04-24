@@ -186,7 +186,7 @@ namespace Model
             int hit = 0;
             foreach (Enemy i in World.Instance.Entities)
             {
-                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (i.EnemyLoc.X + i.Center), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + i.Center), 2)) < i.Center/2 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
+                if (Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (i.EnemyLoc.X + i.Center), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (i.EnemyLoc.Y + i.Center), 2)) < i.Center/1.5 && i.CoolDownTimer == 0 && World.Instance.CheatMode == false)
                 {
                     i.Observer.NotifyAttack(i);
                     Player.Instance.RemovePlayerHealth(i.AttackDamage);

@@ -133,13 +133,13 @@ namespace Model
                 switch(image)
                 {
                     case "skeleton":
-                        ent = new Skeleton(Spawn.Instance.observer, x, y, image, 75);
+                        ent = new Skeleton(Spawn.Instance.observer, x, y, image, 250);
                         break;
                     case "troll":
-                      ent = new Troll(Spawn.Instance.observer, x, y, image, 75);
+                      ent = new Troll(Spawn.Instance.observer, x, y, image, 200);
                         break;
                     default:
-                        ent = new Troll(Spawn.Instance.observer, x, y, image, 75);
+                        ent = new Troll(Spawn.Instance.observer, x, y, image, 250);
                         break;
                 }
                

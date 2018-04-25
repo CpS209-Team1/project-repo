@@ -430,7 +430,7 @@ namespace SilentKnight
                     else
                     {
                         enemyControl = CreateEnemyControl(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", World.Instance.EnemyTypes[entType], World.Instance.EnemyTypes[entType], 18), x, y, 500);
-                        enemy = new Troll(enemyControl, x, y, "spider", (int)enemyControl.Height);
+                        enemy = new Spider(enemyControl, x, y, "spider", (int)enemyControl.Height);
                     }
                     World.Instance.Entities.Add(enemy);
                     enemyControl.NotifySpawn(enemy);

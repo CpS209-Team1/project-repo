@@ -468,15 +468,10 @@ namespace SilentKnight
             {
                 Source = new BitmapImage(new Uri(filename, UriKind.Relative))
             };
-            if (World.Instance.LevelCount != 6)
-            {
+           
                 enemyControl.Width = size;
                 enemyControl.Height = size;
-            }
-            else
-            {
-
-            }
+           
             Canvas.SetTop(enemyControl, x);
             Canvas.SetLeft(enemyControl, y);
             enemyCanvas.Children.Add(enemyControl);

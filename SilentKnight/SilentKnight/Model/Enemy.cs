@@ -117,7 +117,23 @@ namespace Model
             return world;
         }
 
-        public void Deserialize(StreamReader filename)
+		/// <summary>
+		/// Notifies enemy's control to stop animation timer.
+		/// </summary>
+		public void StopEnemyControl()
+		{
+			Observer.NotifyPause(this);
+		}
+
+		/// <summary>
+		/// Notifies enemy's control to start animation timer.
+		/// </summary>
+		public void StartEnemyControl()
+		{
+			Observer.NotifyPlay(this);
+		}
+
+		public void Deserialize(StreamReader filename)
         {
             //Empty on purpose
         }
@@ -392,7 +408,8 @@ namespace Model
     {
         void NotifyMoved(Enemy enemy);
         void NotifySpawn(Enemy enemy);
-
         void NotifyAttack(Enemy enemy);
-    }
+		void NotifyPause(Enemy enemy);
+		void NotifyPlay(Enemy enemy);
+	}
 }

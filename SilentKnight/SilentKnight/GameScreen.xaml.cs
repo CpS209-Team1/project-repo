@@ -545,8 +545,10 @@ namespace SilentKnight
                 GameEvent.Stop();
                 gameTime.Stop();
                 animTimer.Stop();
+				foreach(Enemy ent in World.Instance.Entities) { ent.StopEnemyControl(); }
                 PauseWindow pause = new PauseWindow(ctrl);
-                pause.ShowDialog();
+				pause.ShowDialog();
+				foreach (Enemy ent in World.Instance.Entities) { ent.StartEnemyControl(); }
 				animTimer.Start();
                 GameEvent.Start();
                 gameTime.Start();
@@ -696,5 +698,15 @@ namespace SilentKnight
         {
             EnemyAnim.DoMeleeAttack((Image)this.Content, gamescreen);
         }
-    }
+
+		public void NotifyPause(Enemy enemy)
+		{
+			EnemyAnim.animTimer.Stop();
+		}
+
+		public void NotifyPlay(Enemy enemy)
+		{
+			EnemyAnim.animTimer.Start();
+		}
+	}
 }

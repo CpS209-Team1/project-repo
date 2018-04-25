@@ -1,1 +1,0 @@
-csc World.cs GameController.cs Enemy.cs Main.cs Player.cs Spawn.cs EnemyMove.cs /out:t.exe && mono t.exe || echo "> An error has ocurred"

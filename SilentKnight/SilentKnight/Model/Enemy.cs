@@ -42,7 +42,7 @@ namespace Model
         /// <param name="height">Enemy's image type</param>
         public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
         {
-            CoolDownTimer = 0;
+            CoolDownTimer = 100;
             Observer = observer;
             EnemyLoc.X = x;
             EnemyLoc.Y = y;
@@ -58,7 +58,7 @@ namespace Model
         {
             double dist = Math.Sqrt(Math.Pow(Player.Instance.PlayerLoc.X - (EnemyLoc.X + 100), 2) + Math.Pow(Player.Instance.PlayerLoc.Y - (EnemyLoc.Y + 100), 2));
             //Checks if the enemy is within 150 px from the player, if so then it will call the Track method
-            if (dist < 200)
+            if (dist < Height)
             {
                 EnemyMove.Instance.Track(this, dist);
             }

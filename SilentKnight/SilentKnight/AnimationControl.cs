@@ -15,9 +15,15 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
 using Model;
+/// <summary>
+/// Contains code for updating player and enemy sprite frames based on behaviors.
+/// </summary>
 
 namespace SilentKnight
 {
+    /// <summary>
+    /// Contains 'PlayerAnimationControl' and 'EnemyAnimationControl'
+    /// </summary>
     public class PlayerAnimationControl
     {
         public Direction CurDirection { get; set;}
@@ -32,18 +38,28 @@ namespace SilentKnight
         public int[] UpList = { 11,12,13,14,15 };
         public int[] DownList = { 16,17,18,19,20 };
 
+        /// <summary>
+        /// Sets the player's sprite frame to an image source.
+        /// </summary>
+        /// <param name="img">Reference to player's image</param>
         public void SetPlayerFrame(Image img)
         {
             img.Source = new BitmapImage(new Uri(String.Format("/Assets/player/knight_topdown_basic{0}.png",CurList[Pointer]), UriKind.Relative));
         }
 
-
+        /// <summary>
+        /// Updates 'CurDirection' with the user's current direction.
+        /// </summary>
         public void UpdateDirection(object sender, EventArgs e)
         {
             CurDirection = Player.Instance.PlayerDirection;
         }
 
-
+        /// <summary>
+        /// Changes frames to play sword attack animation
+        /// </summary>
+        /// <param name="img">Reference to player's image</param>
+        /// <param name="page">Reference to current gamescreen</param>
         public void DoSwordAttack(Image img,Page page)
         {
             IsAttacking = true;
@@ -56,6 +72,9 @@ namespace SilentKnight
             IsAttacking = false;
         }
 
+        /// <summary>
+        /// Updates frame pointer based on player's 'state'
+        /// </summary>
         public void UpdateWalkPointer()
         {
             if (!IsAttacking)
@@ -73,6 +92,9 @@ namespace SilentKnight
             }
         }
 
+        /// <summary>
+        /// Sets the player's current sprite frame based on his direction.
+        /// </summary>
         public void UpdateFrame(object sender, EventArgs e)
         {
             //Console.WriteLine(KeyDown);
@@ -111,6 +133,9 @@ namespace SilentKnight
         static public int[] DownList = { 16, 17, 18, 19, 20 };
         public int[] CurList = DownList;
 
+        /// <summary>
+        /// Creates animation timer for enemy animations
+        /// </summary>
         public void StartAnimations()
         {
             animTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
@@ -118,11 +143,18 @@ namespace SilentKnight
             animTimer.Start();
         }
 
+        /// <summary>
+        /// Sets the enemy's sprite frame to an image source.
+        /// </summary>
+        /// <param name="img">Reference to enemy image</param>
         public void SetEnemyFrame(Image img)
         {
             img.Source = new BitmapImage(new Uri(String.Format("/Assets/{0}/{1}_topdown_basic{2}.png", CurEnemy.GetKind(), CurEnemy.GetKind(), CurList[Pointer]), UriKind.Relative));
         }
 
+        /// <summary>
+        /// Updates enemy's frame pointer.
+        /// </summary>
         public void UpdateWalkPointer()
         {
             if (!IsAttacking)
@@ -140,6 +172,9 @@ namespace SilentKnight
             }
         }
 
+        /// <summary>
+        /// Updates the enemy's sprite frame based on its direction.
+        /// </summary>
         public void UpdateFrame(object sender, EventArgs e)
         {
             //Console.WriteLine(CurDirection);
@@ -162,6 +197,11 @@ namespace SilentKnight
             UpdateWalkPointer();
         }
 
+        /// <summary>
+        /// Chnages enemy sprite frames for a melee attack animation.
+        /// </summary>
+        /// <param name="img">Reference to enemy image</param>
+        /// <param name="page">Reference to gamescreen</param>
         public void DoMeleeAttack(Image img,Page page)
         {
             IsAttacking = true;

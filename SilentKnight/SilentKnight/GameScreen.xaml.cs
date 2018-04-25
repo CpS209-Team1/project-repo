@@ -547,7 +547,7 @@ namespace SilentKnight
                 animTimer.Stop();
                 PauseWindow pause = new PauseWindow(ctrl);
                 pause.ShowDialog();
-                animTimer.Start();
+				animTimer.Start();
                 GameEvent.Start();
                 gameTime.Start();
                 return;

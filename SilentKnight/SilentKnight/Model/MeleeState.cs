@@ -4,11 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// This file contains part of a state machine
+/// </summary>
 namespace Model
 {
+    /// <summary>
+    /// This class computes player melee attacks
+    /// </summary>
     class MeleeState : IState
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MeleeState() { }
+
+        /// <summary>
+        /// Calculates the player's attack to see whether or not it was successful
+        /// </summary>
         public void Update()
         {
             Random rand = new Random();
@@ -66,6 +79,11 @@ namespace Model
                 i.KillEnemy();
             }
         }
+
+        /// <summary>
+        /// Handles new input from the user and decides what to do with it
+        /// </summary>
+        /// <param name="data"></param>
         public void HandleInput(string data)
         {
             if(data == "melee" && Player.Instance.PlayerCoolDown == 0)
@@ -78,11 +96,18 @@ namespace Model
                 Player.Instance.PlayerState.Change("ranged");
             }
         }
-
+        
+        /// <summary>
+        /// This has no function just needs to be in here since it is inherited from IState
+        /// </summary>
         public void Change()
         {
 
         }
+
+        /// <summary>
+        /// This has no function just needs to be in here since it is inherited from IState
+        /// </summary>
         public void Exit()
         {
 

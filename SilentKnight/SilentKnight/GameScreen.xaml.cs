@@ -27,21 +27,21 @@ namespace SilentKnight
     /// </summary>
     public partial class GameScreen : Page
     {
-        MainWindow mw;
-        PlayerAnimationControl animPlayer = new PlayerAnimationControl();
-        public Image PlayerControl { get; set; }
-        MediaPlayer media_player = new MediaPlayer();
-        SoundPlayer soundPlayer;
-        DispatcherTimer gameTime;
-        DispatcherTimer GameEvent;
-        DispatcherTimer animTimer;
-        public bool CanAttack = true;
-        public string Lock = "lock";
-        
+        MainWindow mw; // Used for setting screen size and activating high score screen
+        PlayerAnimationControl animPlayer = new PlayerAnimationControl(); // Animation instance
+        public Image PlayerControl { get; set; } // Used for animation
+        MediaPlayer media_player = new MediaPlayer(); // Used for sound
+        SoundPlayer soundPlayer; // Used for sound
+        DispatcherTimer gameTime; // Game timer
+        DispatcherTimer GameEvent; // Event timer
+        DispatcherTimer animTimer; // Animation timer
+        public bool CanAttack = true; // Player cooldown for sound
+        public string Lock = "lock"; // For lock on threads
+
         double x = 0; //GUI Player's x
         double y = 0; //GUI Player's y
 
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(); // Reference to GameController
         public GameController Controller
         {
             get { return ctrl; }
@@ -53,9 +53,14 @@ namespace SilentKnight
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets all game view variables and settings
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
-          while(enemyCanvas.Children.Count >1)
+            while (enemyCanvas.Children.Count > 1)
             {
                 enemyCanvas.Children.RemoveAt(1);
             }
@@ -82,14 +87,20 @@ namespace SilentKnight
             soundPlayer = new SoundPlayer(SilentKnight.Properties.Resources.sword_swing);
         }
 
+        /// <summary>
+        /// Loads the game's time
+        /// </summary>
         void LoadTime()
         {
-            
-        secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
-            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);}
+            secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
+            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);
+        }
 
         //TIMERS AND LOGIC LINES 74 - 149
 
+        /// <summary>
+        /// Controls the time that is displayed in game
+        /// </summary>
         private void GameTimer()
         {
             InitializeComponent();
@@ -100,7 +111,7 @@ namespace SilentKnight
         }
 
         /// <summary>
-        /// Activates each 'animage.Tick' ever 10 mls
+        /// Activates each 'animage.Tick' every 10 mls and controlls the checking of player and enemy events
         /// </summary>
         void GameEvents()
         {
@@ -115,6 +126,9 @@ namespace SilentKnight
             GameEvent.Start();
         }
 
+        /// <summary>
+        /// Controlls animations
+        /// </summary>
         void AnimTimer()
         {
             animTimer = new DispatcherTimer();
@@ -123,6 +137,11 @@ namespace SilentKnight
             animTimer.Start();
         }
 
+        /// <summary>
+        /// Adds a second to the timer and then updates the displayed time
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void AddTime(object sender, EventArgs e)
         {
             ctrl.AddTime();
@@ -133,8 +152,8 @@ namespace SilentKnight
         /// <summary>
         /// This method checks if the current wave of enemies is defeated. If so, then the game spawns in another wave.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         void CheckLevelStatus(object sender, EventArgs e)
         {
             if (Player.Instance.PlayerIsDead == true)
@@ -142,13 +161,13 @@ namespace SilentKnight
                 GameEvent.Stop();
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
-               
+
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
                 mw.ShowHighScoreScreen();
             }
             else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount < 5)
             {
-                
+
                 if (World.Instance.LevelCount == 1)
                 {
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
@@ -162,7 +181,7 @@ namespace SilentKnight
                     levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 }
             }
-            else if(World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5)
+            else if (World.Instance.Entities.Count == 0 && World.Instance.LevelCount == 5)
             {
                 levelNum.Text = Convert.ToString(Convert.ToInt32(levelNum.Text) + 1);
                 DoSpawn(1);
@@ -175,7 +194,7 @@ namespace SilentKnight
                 gameTime.Stop();
                 World.Instance.GameCompleted = true;
                 ctrl.CalculateScore();
-                
+
                 scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
 
                 mw.ShowHighScoreScreen();
@@ -189,6 +208,11 @@ namespace SilentKnight
 
         //KEY PRESS AND PLAYER MOVEMENT
 
+        /// <summary>
+        /// Controlls player movement
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void MovePlayer(object sender, EventArgs e)
         {
             string KeyPress = "";
@@ -235,41 +259,37 @@ namespace SilentKnight
             ctrl.ComputePlayerMove(x, y, KeyPress);
         }
 
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            Point currentLocation = e.GetPosition(Plr);
-
-            double radians = Math.Atan((currentLocation.Y / 2) /
-                                        (currentLocation.X / 2));
-            var angle = radians * 180 / Math.PI;
-
-            Plr.RenderTransform = new RotateTransform(angle);
-        }
-
         /// <summary>
-        /// This method tests for player click (attack) then calls `ComputePlayerAttack` then  `KilledEnemy`
+        /// This method tests for player click (attack) then calls `ComputePlayerMeleeAttack` then  `KilledEnemy`
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private async void Plr_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (CanAttack && Player.Instance.PlayerCoolDown == 0)
             {
                 CanAttack = false;
-                animPlayer.DoSwordAttack(PlayerControl,this);
+                animPlayer.DoSwordAttack(PlayerControl, this);
                 ctrl.ComputePlayerMeleeAttack();
-                await Task.Run(() =>soundPlayer.PlaySync());
-                //Console.WriteLine("Swinging sword!");
+                await Task.Run(() => soundPlayer.PlaySync());
                 KilledEnemy();
                 CanAttack = true;
             }
         }
 
+        /// <summary>
+        /// This method tests for the player right click then calls `SpawnArrow`
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Plr_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             SpawnArrow();
         }
 
+        /// <summary>
+        /// Spawns arrow in the player's viewing direction
+        /// </summary>
         void SpawnArrow()
         {
             if (Player.Instance.PlayerCoolDown == 0 && World.Instance.Load == false)
@@ -277,7 +297,7 @@ namespace SilentKnight
                 ctrl.ComputePlayerRangedAttack();
                 if (Player.Instance.PlayerState.currentState is RangedState)
                 {
-                    var arrowControl = new ArrowControl(enemyCanvas,Player.Instance.PlayerDirection);
+                    var arrowControl = new ArrowControl(enemyCanvas, Player.Instance.PlayerDirection);
                     Canvas.SetTop(arrowControl, y);
                     Canvas.SetLeft(arrowControl, x);
 
@@ -319,8 +339,8 @@ namespace SilentKnight
         /// <summary>
         /// Enemy Attack calls `ComputeEnemyAttack`
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         void EntityAttack(object sender, EventArgs e)
         {
             ctrl.ComputeEnemyAttack();
@@ -355,7 +375,7 @@ namespace SilentKnight
             {
                 enemyCanvas.Children.Remove((UIElement)i.Observer);
             }
-            foreach(Arrow j in World.Instance.DeadArrow)
+            foreach (Arrow j in World.Instance.DeadArrow)
             {
                 j.Killed();
                 j.KillArrow(j);
@@ -378,7 +398,7 @@ namespace SilentKnight
         {
             Enemy enemy;
             Random randEnt = new Random();
-           
+
             if (World.Instance.Entities.Count == 0 && World.Instance.Load == false)
             {
                 Random rand = new Random();
@@ -387,8 +407,8 @@ namespace SilentKnight
                     EnemyControl enemyControl;
                     int entType = randEnt.Next(0, 2);
                     int x = rand.Next(0, (int)World.Instance.borderRight - 210);
-                    int y = rand.Next(0, (int)World.Instance.borderBottom-210);
-                    
+                    int y = rand.Next(0, (int)World.Instance.borderBottom - 210);
+
                     if (World.Instance.LevelCount != 5)
                     {
                         switch (entType)
@@ -418,7 +438,7 @@ namespace SilentKnight
             }
             else
             {
-               
+
                 foreach (Enemy ent in World.Instance.Entities)
                 {
                     Location loc = ent.EnemyLoc;
@@ -433,6 +453,14 @@ namespace SilentKnight
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
         }
 
+        /// <summary>
+        /// This class c reates an enemy controll
+        /// </summary>
+        /// <param name="filename">image source</param>
+        /// <param name="x">enemy x</param>
+        /// <param name="y">enemy y</param>
+        /// <param name="size">image size</param>
+        /// <returns>EnemyControl</returns>
         public EnemyControl CreateEnemyControl(string filename, double x, double y, double size)
         {
             var enemyControl = new EnemyControl();
@@ -458,8 +486,8 @@ namespace SilentKnight
         /// <summary>
         /// This method checks the right and left borders and then calls `UpdatePosition` to update each individual position
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void AnimateEntity(object sender, EventArgs e)
         {
 
@@ -476,6 +504,11 @@ namespace SilentKnight
 
         //DYNAMIC MATH LINES 338 - 357
 
+        /// <summary>
+        /// Dynamically changes gamescreen size
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Thickness margin = levelTxt.Margin;
@@ -493,13 +526,18 @@ namespace SilentKnight
             margin = scoreTxt.Margin;
             margin.Left = World.Instance.MenuBorderRight / 2 - 150;
             scoreTxt.Margin = margin;
-           
+
             ctrl.KeepEnemyInBounds();
         }
 
 
         // PAUSE MENU
 
+        /// <summary>
+        /// Pauses game and allows saving
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         public void OnKeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape && GameEvent != null)
@@ -514,7 +552,7 @@ namespace SilentKnight
                 gameTime.Start();
                 return;
             }
-            switch(e.Key)
+            switch (e.Key)
             {
                 case Key.W:
                     animPlayer.KeyDown = false;
@@ -534,23 +572,32 @@ namespace SilentKnight
         }
     }
 
+    /// <summary>
+    /// This class contains arrow view logic
+    /// </summary>
     class ArrowControl : ContentControl
     {
-        Canvas canvas;
-        RotateTransform rotate;
+        Canvas canvas; // Enemy canvas
+        RotateTransform rotate; // Arrow direction
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="enemyCanvas">Reference to enemyCanvas</param>
+        /// <param name="direction">Arrow's flying direction</param>
         public ArrowControl(Canvas enemyCanvas, Direction direction)
         {
             canvas = enemyCanvas;
-           Image image = new Image()
+            Image image = new Image()
             {
                 Source = new BitmapImage(new Uri("/Assets/Arrow.png", UriKind.Relative))
             };
-         
-            switch(direction)
+
+            switch (direction)
             {
                 case Direction.Up:
                     rotate = new RotateTransform(0);
-                        break;
+                    break;
                 case Direction.Right:
                     rotate = new RotateTransform(90);
                     break;
@@ -565,6 +612,11 @@ namespace SilentKnight
             Content = image;
         }
 
+        /// <summary>
+        /// Animates arrow
+        /// </summary>
+        /// <param name="sender">Arrow</param>
+        /// <param name="i"></param>
         public void NotifyMoved(object sender, int i)
         {
             Arrow arrow = sender as Arrow;
@@ -572,6 +624,11 @@ namespace SilentKnight
             Canvas.SetLeft(this, arrow.ArrowLocation.X);
         }
 
+        /// <summary>
+        /// Kills arrows once they hit an enemy or wall
+        /// </summary>
+        /// <param name="sender">Arrow</param>
+        /// <param name="i"></param>
         public void NotifyDead(object sender, int i)
         {
             Arrow arrow = sender as Arrow;
@@ -583,6 +640,11 @@ namespace SilentKnight
 
         }
 
+        /// <summary>
+        /// Spawns arrow
+        /// </summary>
+        /// <param name="sender">Arrow</param>
+        /// <param name="i"></param>
         public void NotifySpawn(object sender, int i)
         {
             this.Width = 20;
@@ -595,32 +657,44 @@ namespace SilentKnight
     /// </summary>
     public class EnemyControl : ContentControl, IEnemyObserver
     {
-        public EnemyAnimationControl EnemyAnim = new EnemyAnimationControl();
-        private Canvas enemycanvas { get; set; }
-        private Canvas gamecanvas { get; set; }
-        private Page gamescreen { get; set; }
+        public EnemyAnimationControl EnemyAnim = new EnemyAnimationControl(); //For animations
+        private Canvas enemycanvas { get; set; } // Canvas where animations are done
+        private Canvas gamecanvas { get; set; } // For animations
+        private Page gamescreen { get; set; } // Reference to the game screen
 
-
+        /// <summary>
+        /// Moves the enemy
+        /// </summary>
+        /// <param name="enemy"></param>
         public void NotifyMoved(Enemy enemy)
         {
             EnemyAnim.UpdateWalkPointer();
             Canvas.SetTop(this, enemy.EnemyLoc.Y);
             Canvas.SetLeft(this, enemy.EnemyLoc.X);
         }
+
+        /// <summary>
+        /// Spawns the enemy and begins the animations
+        /// </summary>
+        /// <param name="enemy"></param>
         public void NotifySpawn(Enemy enemy)
         {
             EnemyAnim.CurEnemy = enemy;
             EnemyAnim.EnemyImage = (Image)this.Content;
-            
+
             enemycanvas = (Canvas)this.Parent;
             gamecanvas = (Canvas)enemycanvas.Parent;
             gamescreen = (Page)gamecanvas.Parent;
             EnemyAnim.StartAnimations();
         }
 
+        /// <summary>
+        /// Activates the enemy's animation
+        /// </summary>
+        /// <param name="enemy"></param>
         public void NotifyAttack(Enemy enemy)
         {
-            EnemyAnim.DoMeleeAttack((Image)this.Content,gamescreen);
+            EnemyAnim.DoMeleeAttack((Image)this.Content, gamescreen);
         }
     }
 }

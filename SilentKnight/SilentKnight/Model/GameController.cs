@@ -4,28 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+/// <summary>
+/// This file contains the `GameController`, and `ISerializable`
+/// </summary>
 
 namespace Model
 {
+
+    /// <summary>
+    /// Implements `Serialize` and `Deserialize`
+    /// </summary>
     interface ISerializable
     {
         List<string> Serialize();
         void Deserialize(StreamReader rd);
     }
 
+    /// <summary>
+    /// This class controlls methods that are part of the main game model
+    /// </summary>
     public class GameController
     {
+        public List<string> Users = new List<string>(); // This contains a list of players
+
+        /// <summary>
+        /// This method adds time to the game clock
+        /// </summary>
         public void AddTime()
         {
             World.Instance.Time += 1;
         }
 
+        /// <summary>
+        /// This method calculates the game's score
+        /// </summary>
         public void CalculateScore()
         {
             Player.Instance.PlayerScore += (1000 / (World.Instance.Time / Player.Instance.Health)) + 100;
         }
-
-        public List<string> Users = new List<string>();
 
         /// <summary>
         /// Validates whether a user exists in a specified text file.
@@ -52,6 +68,13 @@ namespace Model
             return Users.Contains(name);
         }
 
+
+        /// <summary>
+        /// This method creates a new user
+        /// </summary>
+        /// <param name="name">Player's name</param>
+        /// <param name="filename">File's name</param>
+        /// <param name="ctrl">reference to GameController</param>
         public void CreateNewUser(string name, string filename,GameController ctrl)
         {
             if (!ctrl.ValidateUser(name,filename))
@@ -205,6 +228,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Computes the arrow's location to see if it made contact with an enemy
+        /// </summary>
         public void ComputeArrowAttack()
         {
             foreach (Arrow i in World.Instance.EntitiesArrow)
@@ -242,6 +268,10 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Activates all of the model's serialization methods
+        /// </summary>
+        /// <param name="filename">output file</param>
         public void Save(string filename)
         {
             if (!File.Exists(filename))
@@ -260,6 +290,10 @@ namespace Model
             File.WriteAllLines(filename, contents.ToArray(), Encoding.UTF8);
         }
 
+        /// <summary>
+        /// Starts the loading process
+        /// </summary>
+        /// <param name="filename">input file</param>
         public void Load(string filename)
         {
             string line;

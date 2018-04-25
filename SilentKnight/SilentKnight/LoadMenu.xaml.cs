@@ -17,6 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using Model;
+/// <summary>
+/// Contains logic to load the game
+/// </summary>
 
 namespace SilentKnight
 {
@@ -25,10 +28,17 @@ namespace SilentKnight
     /// </summary>
     public partial class LoadWindow : Window
     {
-        MainWindow mw;
+        MainWindow mw; // Reference to main window
         
-        GameScreen gs;
-        GameController ctrl;
+        GameScreen gs; // Reference to the game screen
+        GameController ctrl; // Reference to game controller
+
+        /// <summary>
+        /// Sets variables when window is loaded
+        /// </summary>
+        /// <param name="c">Game controller</param>
+        /// <param name="m">Main window</param>
+        /// <param name="g">Game screen</param>
         public LoadWindow(GameController c, MainWindow m, GameScreen g)
         {
             mw = m;
@@ -37,6 +47,11 @@ namespace SilentKnight
             ctrl = c;
         }
 
+        /// <summary>
+        /// Loads the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLoadClick(object sender, RoutedEventArgs e)
         {
             World.Instance.Load = true;

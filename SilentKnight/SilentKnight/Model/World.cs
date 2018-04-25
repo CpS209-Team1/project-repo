@@ -5,26 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+/// <summary>
+/// This file contains atributes for the World
+/// </summary>
 namespace Model
 {
     class World
     {
         public List<Enemy> Entities { get; set; } //This list is for storing all game entities
-        public List<Arrow> EntitiesArrow { get; set; }
+        public List<Arrow> EntitiesArrow { get; set; } // Contains a list for storing arrows
         public List<Enemy> DeadEnemy { get; set; } //This list is for storing enemies that need to be removed from the canvas
-        public List<Arrow> DeadArrow { get; set; }
+        public List<Arrow> DeadArrow { get; set; } // Contains a list of dead arrows that need to be deleted from the canvas
         public double borderRight { get; set; } //This is for border collision
         public double borderBottom { get; set; } //This is for border collision
         public int Difficulty { get; set; } //Ranges from 1 to 3
-        public bool CheatMode { get; set; }
-        public int LevelCount { get; set; }
-        public int Time = 0;
-        public bool GameCompleted { get; set; }
-        public List<Enemy> EntitiesLoad { get; set; }
-        public bool Load { get; set; }
-        public List<string> EnemyTypes {get;set;}
-        public double MenuBorderRight { get; set; }
-        public double MenuBorderBottom { get; set; }
+        public bool CheatMode { get; set; } // Controlls if cheat mode is on or off
+        public int LevelCount { get; set; } // Level number
+        public int Time = 0; // keeps track of game timer
+        public bool GameCompleted { get; set; } // Contains if the game is completed or not
+        public List<Enemy> EntitiesLoad { get; set; } // Entities that need to be loaded into the game
+        public bool Load { get; set; } // If game is being loaded or not (to prevent crashes)
+        public List<string> EnemyTypes {get;set;} // Contains list of all enemy types
+        public double MenuBorderRight { get; set; } // Contains the window width
+        public double MenuBorderBottom { get; set; } // Contains the window height
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         private World()
         {
             DeadArrow = new List<Arrow>();
@@ -42,6 +49,9 @@ namespace Model
             EnemyTypes = new List<string> { "skeleton", "troll" };
         }
 
+        /// <summary>
+        /// Resets the world
+        /// </summary>
         public void ResetWorld()
         {
             Entities = new List<Enemy>();
@@ -64,17 +74,15 @@ namespace Model
             Entities.Add(enemy);
         }
 
-        public void AddEntityArrow(Arrow enemy)
+        /// <summary>
+        /// Adds `arrow` to `EntitiesArrow`
+        /// </summary>
+        /// <param name="arrow">Type Arrow</param>
+        public void AddEntityArrow(Arrow arrow)
         {
-            EntitiesArrow.Add(enemy);
+            EntitiesArrow.Add(arrow);
         }
 
-        // public Enemy GetEntityByID(int ID)
-        //{
-        //Enemy enemy;
-        //enemy = new Skeleton();
-        // return enemy;
-        //}
         /// <summary>
         /// Removes enemy from `Entities` list
         /// </summary>
@@ -84,6 +92,10 @@ namespace Model
 
         }
 
+        /// <summary>
+        /// Serializes the world
+        /// </summary>
+        /// <returns>List of serialized variables</returns>
         public List<string> Serialize()
         {
             List<string> world = new List<string>();
@@ -110,6 +122,10 @@ namespace Model
             return world;
         }
 
+        /// <summary>
+        /// Deserializes the variables
+        /// </summary>
+        /// <param name="rd">file to be read from</param>
         public void Deserialize(StreamReader rd)
         {
             Enemy ent;

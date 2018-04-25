@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/// <summary>
+/// This file contains the logic needed for enemy AI
+/// </summary>
 
 namespace Model
 {
     /// <summary>
-    /// This class is used to control the enemy's movement AI
+    /// This class is used to control the enemy's movement AI and is a Singleton
     /// </summary>
     class EnemyMove
     {
-        Location previousLoc;
+        Location previousLoc; // Keeps track of the enemy's previous location
         public double Timer { get; set; }//Used as a "delay" (No need to save)
+
+        /// <summary>
+        /// Singleton constructor
+        /// </summary>
         private EnemyMove()
         {
             Timer = 0;
@@ -219,7 +226,8 @@ namespace Model
             }
         }
 
-        private static EnemyMove instance = new EnemyMove();
+
+        private static EnemyMove instance = new EnemyMove(); // Instance of EnemyMoves
         public static EnemyMove Instance
         {
             get

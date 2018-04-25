@@ -56,6 +56,11 @@ namespace SilentKnight
             wn.Main.Content = null;
         }
 
+        /// <summary>
+        /// Changes page size depending on window width
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void AboutScreen_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             aboutPage.Width = World.Instance.MenuBorderRight;

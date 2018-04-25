@@ -25,8 +25,14 @@ namespace SilentKnight
     /// </summary>
     public partial class StartScreen : Page
     {
-        MainWindow mw;
-        GameScreen gs;
+        MainWindow mw; // Main Window
+        GameScreen gs; // Game Screen
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="t">Main Window</param>
+        /// <param name="g">Game Screen</param>
         public StartScreen(MainWindow t, GameScreen g)
         {
             gs = g;
@@ -34,6 +40,11 @@ namespace SilentKnight
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Changes difficulty
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Difficulty_Click(object sender, RoutedEventArgs e)
         {
             string gameDifficulty = (string)difficulty.Content;
@@ -54,6 +65,11 @@ namespace SilentKnight
             }
         }
 
+        /// <summary>
+        /// Changes Cheat Mode
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Cheat_Click(object sender, RoutedEventArgs e)
         {
             string gameCheat = (string)cheat.Content;
@@ -70,6 +86,11 @@ namespace SilentKnight
             }
         }
 
+        /// <summary>
+        /// Launches Game
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void start_Click(object sender, RoutedEventArgs e)
         {
             if (username.Text != "")
@@ -78,6 +99,12 @@ namespace SilentKnight
                 mw.Main.Content = gs;
             }
         }
+
+        /// <summary>
+        /// Goes back to main menu
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mw.Main.Content = null;

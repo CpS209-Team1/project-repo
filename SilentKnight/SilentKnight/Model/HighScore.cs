@@ -5,13 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+/// <summary>
+/// This file contains the high score logic
+/// </summary>
 
 namespace Model
 {
+    /// <summary>
+    /// This class computes the high scores
+    /// </summary>
     public class HighScore
     {
-        public List<Score> scoreList = new List<Score>();
-        public int maxEntries = 10;
+        public List<Score> scoreList = new List<Score>(); // Contains the top 10 scores
+        public int maxEntries = 10; // Controlls how many scores are in the high score list
 
         /// <summary>
         /// Reads the current high scores from a .txt file

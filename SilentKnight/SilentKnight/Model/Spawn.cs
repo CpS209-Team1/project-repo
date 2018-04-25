@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// using System.Windows.Controls;
-// using System.Windows.Media.Imaging;
 
-
+/// <summary>
+/// This file contains logic for loading 
+/// </summary>
 namespace Model
 {
+    /// <summary>
+    /// This class is used to create instances of enemies when loading
+    /// </summary>
     class Spawn
     {
-        public IEnemyObserver observer { get; set; }
+        public IEnemyObserver observer { get; set; } // Observer reference
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         private Spawn() { }
         private static Spawn instance = new Spawn();
 

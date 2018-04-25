@@ -5,27 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Threading;
-// using System.Windows.Controls;
+
+/// <summary>
+/// This file contains an abstract class `Enemy` along with its children: `Skeleton`, `Troll`, and `Spider`
+/// This file also includes an interface `IEnemyObserver`
+/// </summary>
 
 namespace Model
 {
+    /// <summary>
+    /// This class contains methods that control the enemy
+    /// </summary>
     public abstract class Enemy : ISerializable
     {
-        public IEnemyObserver Observer;
-        public int Health { get; set; }
-        
-        public Location EnemyLoc;
-        public string Image { get; set; }
-        public int CoolDownTimer { get; set; } //Enemy attack cooldown
-        public int CoolDown { get; set; }
-        public int AttackDamage { get; set; }
-        static Random rand = new Random();
-        public double EnemySpeed { get; set; }
-        int choose = rand.Next(1, 6);
-        public int Height { get; set; }
-        public int Center { get; set; }
-        public Direction EnemyDirection { get; set; }
-        public bool IsMoving { get; set; }
+        public IEnemyObserver Observer; // Instance of the observer
+        public int Health { get; set; } // Enemy's health
+        public Location EnemyLoc; // Contains the enemy's x and y coords
+        public string Image { get; set; } // Contains the enemy's type (Skeleton, troll, etc.)
+        public int CoolDownTimer { get; set; } // Enemy attack cooldown countdown
+        public int CoolDown { get; set; } // Enemy cooldown number (static for each enemy type)
+        public int AttackDamage { get; set; } // Amount of attack damage an enemy can deal
+        static Random rand = new Random(); // Used to create random numbers
+        public double EnemySpeed { get; set; } // Enemy's walking speed
+        int choose = rand.Next(1, 6); // Used for determining enemy's direction
+        public int Height { get; set; } // Used for dynamic measurements
+        public int Center { get; set; } // Used for dynamic measurements
+        public Direction EnemyDirection { get; set; } // Contains the enemy's current direction
+        public bool IsMoving { get; set; } // Determines if player is moving or not
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="observer">Enemy observer</param>
+        /// <param name="x">Enemy's x coord</param>
+        /// <param name="y">Enemy's y coord</param>
+        /// <param name="image">Enemy's type</param>
+        /// <param name="height">Enemy's image type</param>
         public Enemy(IEnemyObserver observer, double x, double y, string image, int height)
         {
             CoolDownTimer = 0;
@@ -90,6 +104,10 @@ namespace Model
             Observer.NotifyMoved(this);
         }
 
+        /// <summary>
+        /// Used for enemy serialization
+        /// </summary>
+        /// <returns></returns>
         public List<string> Serialize()
         {
             List<string> world = new List<string>();
@@ -101,20 +119,41 @@ namespace Model
 
         public void Deserialize(StreamReader filename)
         {
-
+            //Empty on purpose
         }
 
+        /// <summary>
+        /// This method removes `amount` from enemy's health
+        /// </summary>
+        /// <param name="amount">Amount of damage player dealt</param>
         public abstract void RemoveEnemyHealth(int amount);
 
+        /// <summary>
+        /// This method adds `amount` to enemy's health
+        /// </summary>
+        /// <param name="amount">Amount to be added to health</param>
         public abstract void AddEnemyHealth(int amount);
 
+        /// <summary>
+        /// Removes enemy from World list
+        /// </summary>
         public abstract void KillEnemy();
 
     }
 
-
+    /// <summary>
+    /// This class defines the Skeleton enemy
+    /// </summary>
     class Skeleton : Enemy
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="observer">Enemy observer</param>
+        /// <param name="x">Skeleton's x coord</param>
+        /// <param name="y">Skeleton's y coord</param>
+        /// <param name="image">Skeleton's type</param>
+        /// <param name="height">Skeleton's image type</param>
         public Skeleton(IEnemyObserver observer, double x, double y, string image, int height ) : base(observer, x, y, image, height)
         {
             switch(World.Instance.Difficulty)
@@ -182,8 +221,20 @@ namespace Model
         }
     }
 
+
+    /// <summary>
+    /// This class defines the Troll enemy
+    /// </summary>
     class Troll : Enemy
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="observer">Enemy observer</param>
+        /// <param name="x">Troll's x coord</param>
+        /// <param name="y">Troll's y coord</param>
+        /// <param name="image">Troll's type</param>
+        /// <param name="height">Troll's image type</param>
         public Troll(IEnemyObserver observer, double x, double y, string image, int height) : base(observer, x, y, image, height)
         {
             switch (World.Instance.Difficulty)
@@ -251,8 +302,22 @@ namespace Model
         }
     }
 
-    class Spider: Enemy
+
+
+
+    /// <summary>
+    /// This class defines the Spider boss
+    /// </summary>
+    class Spider : Enemy
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="observer">Enemy observer</param>
+        /// <param name="x">Spider's x coord</param>
+        /// <param name="y">Spider's y coord</param>
+        /// <param name="image">Spider's type</param>
+        /// <param name="height">Spider's image type</param>
         public Spider(IEnemyObserver observer, double x, double y, string image, int height) : base(observer, x, y, image, height)
         {
             switch (World.Instance.Difficulty)
@@ -320,7 +385,9 @@ namespace Model
         }
     }
 
-    // Oberver pattern
+    /// <summary>
+    /// This interface implements Observer pattern
+    /// </summary>
     public interface IEnemyObserver
     {
         void NotifyMoved(Enemy enemy);

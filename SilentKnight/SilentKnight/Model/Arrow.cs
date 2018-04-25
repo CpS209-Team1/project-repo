@@ -4,18 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// This file contains the Arrow class
+/// </summary>
 namespace Model
 {
+    /// <summary>
+    /// This class class contains a custom event handler and also controls the arrow's behavior
+    /// </summary>
     class Arrow
     {
-        public event EventHandler<int> ArrowMovedEvent; // Define event
-        public event EventHandler<int> ArrowKilledEvent;
-        public event EventHandler<int> ArrowSpawnEvent;
-        public Location ArrowLocation;
-        public Direction ArrowDirection;
-        public static int id = 0;
-        Random rand = new Random();
+        public event EventHandler<int> ArrowMovedEvent; // Define arrow moved event
+        public event EventHandler<int> ArrowKilledEvent; // Define arrow killed event
+        public event EventHandler<int> ArrowSpawnEvent; // Define arrow spawn event
+        public Location ArrowLocation; // Contains the arrow's location in the world
+        public Direction ArrowDirection; // Contains the arrow's direction
 
+        /// <summary>
+        /// This is the constructor
+        /// </summary>
+        /// <param name="x">Arrow's x pos</param>
+        /// <param name="y">Arrow's y pos</param>
+        /// <param name="direction">Arrow's direction</param>
         public Arrow(double x, double y, string direction)
         {
             switch (direction)
@@ -38,6 +48,9 @@ namespace Model
 
         }
 
+        /// <summary>
+        /// Updates the arrow's position and if the arrow is out of the game bounds it kills the arrow
+        /// </summary>
         public void Update()
         {
             if(ArrowDirection == Direction.Left)
@@ -61,33 +74,43 @@ namespace Model
                 Killed();
             }
 
-
-            if (ArrowMovedEvent != null)  // Is anyone subscribed?
-                ArrowMovedEvent(this, 0);   // Raise event
-
+            if (ArrowMovedEvent != null) 
+                ArrowMovedEvent(this, 0);   
         }
+
+        /// <summary>
+        /// Removes arrow from the game
+        /// </summary>
         public void Killed()
         {
-
-
-            if (ArrowKilledEvent != null)  // Is anyone subscribed?
-                ArrowKilledEvent(this, 0);   // Raise event
-
+            if (ArrowKilledEvent != null) 
+                ArrowKilledEvent(this, 0);   
         }
+
+        /// <summary>
+        /// Adds an arrow to the game
+        /// </summary>
         public void Spawn()
         {
-
-
             if (ArrowSpawnEvent != null)  // Is anyone subscribed?
                 ArrowSpawnEvent(this, 0);   // Raise event
-
         }
+
+        /// <summary>
+        /// Removes the arrow `i` from the game
+        /// </summary>
+        /// <param name="i">Instance of an arrow</param>
         public void KillArrow(Arrow i)
         {
 
                 World.Instance.EntitiesArrow.Remove(i);
             
         }
+
+        /// <summary>
+        /// Serialization for the arrow
+        /// </summary>
+        /// <returns></returns>
         public List<string> Serialize()
         {
             List<string> world = new List<string>();

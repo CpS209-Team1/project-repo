@@ -18,27 +18,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Model;
+/// <summary>
+/// This file contains logic for controlling the menu
+/// </summary>
 
 namespace SilentKnight
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
+    /// This class controlls the menus
     /// </summary>
     public partial class MainWindow : Window
     {
-        HighScore topScore;
-        GameScreen gameScreen;
-        HelpScreen helpScreen;
-        HighScoresScreen highScoreScreen;
-        AboutScreen aboutscreen;
-        StartScreen startScreen;
-        bool loaded = false;
+        HighScore topScore; // High score
+        GameScreen gameScreen; // Game screen
+        HelpScreen helpScreen; // Help Screen
+        HighScoresScreen highScoreScreen; // High Scores Screen
+        AboutScreen aboutscreen; // About Screen
+        StartScreen startScreen; // Start Screen
+        bool loaded = false; // Is game loaded
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MainWindow()
         {
             gameScreen = new GameScreen(this);
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets variables when window is loaded
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
             topScore = new HighScore();
@@ -54,32 +67,61 @@ namespace SilentKnight
             loaded = true;
         }
 
+        /// <summary>
+        /// Changes to Start Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Button_Click_StartScreen(object sender, RoutedEventArgs e)
         {
             Main.Content = startScreen;
         }
+        /// <summary>
+        /// Changes to Help Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
 
         private void Button_Click_HelpScreen(object sender, RoutedEventArgs e)
         {
             Main.Content = helpScreen;
         }
 
+        /// <summary>
+        /// Changes to About Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Button_Click_AboutScreen(object sender, RoutedEventArgs e)
         {
             Main.Content = aboutscreen;
         }
 
+        /// <summary>
+        /// Changes to High Scores Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Button_Click_HighScoresScreen(object sender, RoutedEventArgs e)
         {
             Main.Content = highScoreScreen;
         }
 
+        /// <summary>
+        /// Changes to Game Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void btnKeyUp(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(e);
             gameScreen.OnKeyUp(sender, e);
         }
 
+        /// <summary>
+        /// Calculates dynamic measurements
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             World.Instance.MenuBorderRight = mainWindow.ActualWidth;
@@ -129,12 +171,20 @@ namespace SilentKnight
             World.Instance.borderBottom = gameScreen.enemyCanvas.Height;
         }
 
+        /// <summary>
+        /// Changes to Load Screen
+        /// </summary>
+        /// <param name="sender">Tells which object set off this event handler</param>
+        /// <param name="e">Contains the arguments passed to the event handler</param>
         private void Button_Click_LoadScreen(object sender, RoutedEventArgs e)
         {
             LoadWindow lw = new LoadWindow(gameScreen.Controller, this, gameScreen);
             lw.Show();
         }
 
+        /// <summary>
+        /// Changes to High Score Screen
+        /// </summary>
         public void ShowHighScoreScreen()
         {
             Main.Content = highScoreScreen;

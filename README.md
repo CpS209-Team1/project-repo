@@ -17,6 +17,8 @@ No Known Issues.
 A link to the screen recording found <a href = "https://drive.google.com/file/d/1ENaYVAAA_NzYNI9oi8D6IisTSApAqCFM/view?usp=sharing">here</a> (Beta).
 
 A link to the screen recording found <a href = "https://drive.google.com/file/d/1jaFfCYT_bxnDR0QzcTrV_W6i0RC1ik3v/view?usp=sharing">here</a> (RC).
+
+A link to the screen recording found <a href = "https://drive.google.com/file/d/1NdKN61ts2VErOn_1PefgHdM9hoLM7xL8/view?usp=sharing">here</a> (Final Release).
 # Expenses
 
 <table>

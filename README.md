@@ -35,8 +35,8 @@ A link to the screen recording found <a href = "https://drive.google.com/file/d/
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>
-<td>33 hours</td>
-<td>17 hours</td>
+<td>35 hours</td>
+<td>15 hours</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/DueleneJournal">Olson</a>  </td>

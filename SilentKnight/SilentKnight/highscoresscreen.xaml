@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="HighScoresScreen" Loaded="Windows_Loaded">
 
-    <Canvas x:Name="highScoreCanvas" Margin="0,0,-1209,-453">
+    <Canvas x:Name="highScoreCanvas">
         <StackPanel x:Name="highStack" Background="#FF7B9191" >
             <Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>
             <!--<Image Source="/Assets/HighScoreAchieverScreen.png" Width="1300" Margin="0,20,0,0"/>-->

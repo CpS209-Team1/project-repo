@@ -37,6 +37,7 @@ namespace SilentKnight
         AboutScreen aboutscreen; // About Screen
         StartScreen startScreen; // Start Screen
         bool loaded = false; // Is game loaded
+        SizeChangedEventArgs size; // For Screen resizing
 
         /// <summary>
         /// Constructor
@@ -65,6 +66,7 @@ namespace SilentKnight
                 Console.WriteLine(i.Name);
             }
             loaded = true;
+            MainWindow_SizeChanged(sender, size);
         }
 
         /// <summary>
@@ -132,6 +134,8 @@ namespace SilentKnight
 
             gameScreen.gameScreen.Width = World.Instance.MenuBorderRight;
             gameScreen.gameScreen.Height = World.Instance.MenuBorderBottom;
+
+            size = e;
 
             if(loaded)
             {

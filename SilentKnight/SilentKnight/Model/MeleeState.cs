@@ -54,7 +54,7 @@ namespace Model
                     }
 
                 }
-                else if (enemyDistance < 100 && World.Instance.CheatMode == true)
+                else if (enemyDistance < i.Center + 50 && World.Instance.CheatMode == true)
                 {
                     i.RemoveEnemyHealth(i.Health);
                     EnemyMove.Instance.Hit(i);

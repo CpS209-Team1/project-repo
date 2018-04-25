@@ -65,7 +65,7 @@ namespace SilentKnight
                 enemyCanvas.Children.RemoveAt(1);
             }
             LoadTime();
-            scoreNum.Text = "0";
+            scoreNum.Text = Convert.ToString(Player.Instance.PlayerScore);
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
             levelNum.Text = Convert.ToString(World.Instance.LevelCount);
             PlayerHealth();

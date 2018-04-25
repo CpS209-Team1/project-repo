@@ -26,17 +26,17 @@ namespace SilentKnight
     /// </summary>
     public class PlayerAnimationControl
     {
-        public Direction CurDirection { get; set;}
-        public Image PlayerImage { get; set; }
-        public int Pointer { get; set; }
-        public bool KeyDown { get; set; }
-        public bool CanAttack = true;
-        public bool IsAttacking { get; set; }
-        public int[] CurList { get; set; }
-        public int[] RightList = { 1,2,3,4,5 };
-        public int[] LeftList = { 6,7,8,9,10 };
-        public int[] UpList = { 11,12,13,14,15 };
-        public int[] DownList = { 16,17,18,19,20 };
+        public Direction CurDirection { get; set; } // Player's current direction 
+        public Image PlayerImage { get; set; } // Contains a reference to the player's image
+        public int Pointer { get; set; } // Pointer to player's current sprite frame
+        public bool KeyDown { get; set; } // Bool indicating whether the player is moving
+        public bool CanAttack = true; // Bool indicating whether the player can attack
+        public bool IsAttacking { get; set; } // Bool indicating whether the player is currently attacking
+        public int[] CurList { get; set; } // Current list of sprite frame indicies
+        public int[] RightList = { 1,2,3,4,5 }; // List of sprite frame indices
+        public int[] LeftList = { 6,7,8,9,10 }; // List of sprite frame indices
+        public int[] UpList = { 11,12,13,14,15 }; // List of sprite frame indices
+        public int[] DownList = { 16,17,18,19,20 }; // List of sprite frame indices
 
         /// <summary>
         /// Sets the player's sprite frame to an image source.
@@ -120,21 +120,21 @@ namespace SilentKnight
 
     public class EnemyAnimationControl
     {
-        public Enemy CurEnemy { get; set; }
-        public Image EnemyImage { get; set; }
-        public int Pointer = 3;
-        public bool IsMoving { get; set; }
-        public bool CanAttack = true;
-        public bool IsAttacking { get; set; }
-        public DispatcherTimer animTimer = new DispatcherTimer();
-        public int[] RightList = { 1, 2, 3, 4, 5 };
-        public int[] LeftList = { 6, 7, 8, 9, 10 };
-        public int[] UpList = { 11, 12, 13, 14, 15 };
-        static public int[] DownList = { 16, 17, 18, 19, 20 };
-        public int[] CurList = DownList;
+        public Enemy CurEnemy { get; set; } // Hold an Instance of Enemy
+        public Image EnemyImage { get; set; } // Contains a reference to Enemy's Image
+        public int Pointer = 3; // Pointer to enemy's animation frame
+        public bool IsMoving { get; set; } // Bool indicating whether an enemy is moving
+        public bool CanAttack = true; // Bool indicating whether an enemy can attack
+        public bool IsAttacking { get; set; } // Bool indicating whether an enemy is currently attacking
+        public DispatcherTimer animTimer = new DispatcherTimer(); // Creates an instance of dispatch timer
+        public int[] RightList = { 1, 2, 3, 4, 5 }; // List of indicies for selecting sprite frames
+        public int[] LeftList = { 6, 7, 8, 9, 10 }; // List of indicies for selecting sprite frames
+        public int[] UpList = { 11, 12, 13, 14, 15 }; // List of indicies for selecting sprite frames
+        static public int[] DownList = { 16, 17, 18, 19, 20 }; // List of indicies for selecting sprite frames
+        public int[] CurList = DownList; // Contains the current direction list
 
         /// <summary>
-        /// Creates animation timer for enemy animations
+        /// Sets up animation timer for enemy animations
         /// </summary>
         public void StartAnimations()
         {

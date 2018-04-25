@@ -95,6 +95,21 @@ namespace SilentKnight
         {
             if (username.Text != "")
             {
+                if(username.Text.Contains(" "))
+                {
+                    username.Text = "";
+                    foreach(char i in username.Text)
+                    {
+                        if(i == ' ')
+                        {
+                            username.Text += '_';
+                        }
+                        else
+                        {
+                            username.Text += i;
+                        }
+                    }
+                }
                 Player.Instance.PlayerName = username.Text;
                 mw.Main.Content = gs;
             }

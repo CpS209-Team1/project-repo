@@ -92,8 +92,8 @@ namespace SilentKnight
         /// </summary>
         void LoadTime()
         {
-            secondTxt.Text = Convert.ToString(World.Instance.Time % 60);
-            minuteTxt.Text = Convert.ToString(World.Instance.Time / 60);
+            secondTxt.Text = (World.Instance.Time % 60).ToString("D2");
+            minuteTxt.Text = (World.Instance.Time / 60).ToString("D2");
         }
 
         //TIMERS AND LOGIC LINES 74 - 149

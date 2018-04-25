@@ -30,8 +30,8 @@ A link to the screen recording found <a href = "https://drive.google.com/file/d/
 
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/Avinante-Journal">Avinante</a>  </td>
-<td>40 hours 15 minutes</td>
-<td>9 hours 45 minutes</td>
+<td>43 hours</td>
+<td>7 hours</td>
 </tr>
 <tr>
 <td><a href="https://github.com/CpS209-Team1/project-repo/wiki/BrunoJournal">Bruno</a>  </td>

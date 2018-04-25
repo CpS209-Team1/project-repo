@@ -67,8 +67,8 @@ namespace SilentKnight
             LoadTime();
             scoreNum.Text = "0";
             enemyNum.Text = Convert.ToString(World.Instance.Entities.Count);
-            levelNum.Text = "1";
-            PlayerHealth();
+            levelNum.Text = Convert.ToString(World.Instance.LevelCount);
+			PlayerHealth();
             gameScreen.Width = mw.ActualWidth;
             if (World.Instance.Load == true)
             {

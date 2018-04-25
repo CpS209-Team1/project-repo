@@ -154,6 +154,9 @@ namespace Model
                     case "troll":
                       ent = new Troll(Spawn.Instance.observer, x, y, image, 200);
                         break;
+                    case "spider":
+                        ent = new Spider(Spawn.Instance.observer, x, y, image, 500);
+                        break;
                     default:
                         ent = new Troll(Spawn.Instance.observer, x, y, image, 250);
                         break;
